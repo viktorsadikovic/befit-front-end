@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Meal } from '../shared/data.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-meal',
@@ -8,8 +10,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class MealComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private service: DataService) { }
+  meals: Meal[]
 
   meal = new FormGroup({
     id : new FormControl(),
@@ -28,6 +30,10 @@ export class MealComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
+
+    this.service.getMeals().subscribe(data => {
+      this.meals = data;
+    })
   }
 
   selectedFilter(){
