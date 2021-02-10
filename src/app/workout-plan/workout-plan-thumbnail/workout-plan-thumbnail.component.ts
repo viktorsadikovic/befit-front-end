@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { WorkoutPlan } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
 
@@ -10,12 +10,10 @@ import { DataService } from 'src/app/shared/data.service';
 export class WorkoutPlanThumbnailComponent implements OnInit {
 
   constructor(private service: DataService) { }
-  workoutPrograms: WorkoutPlan[]
+  @Input() workoutPlan: WorkoutPlan;
 
   ngOnInit(): void {
-    this.service.getWorkoutPlans().subscribe(data => {
-      this.workoutPrograms = data;
-    })
+
   }
 
 }

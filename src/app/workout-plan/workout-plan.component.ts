@@ -1,5 +1,7 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { WorkoutPlan } from '../shared/data.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-workout-plan',
@@ -8,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class WorkoutPlanComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: DataService) { }
   wType: {[key: string]: string} = { 'Cardio' : 'CARDIO_TRAINING', 'Bodybuilding' : 'BODYBUILDING', 'Crossfit' : 'CROSSFIT', 'Yoga' : 'YOGA',
           'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
@@ -18,6 +20,8 @@ export class WorkoutPlanComponent implements OnInit {
   selectedBodyPart: any;
   selectedMuscleGroups: any;
   wTypeDisabled = false;
+
+  workoutPrograms: WorkoutPlan[]
 
   workout = new FormGroup({
     username : new FormControl(null),
@@ -35,6 +39,10 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
+
+    this.service.getWorkoutPlans().subscribe(data => {
+      this.workoutPrograms = data;
+    })
   }
 
   onSubmit() {
