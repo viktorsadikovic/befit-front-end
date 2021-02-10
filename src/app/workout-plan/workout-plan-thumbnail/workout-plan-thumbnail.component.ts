@@ -11,8 +11,11 @@ export class WorkoutPlanThumbnailComponent implements OnInit {
 
   constructor(private service: DataService) { }
   @Input() workoutPlan: WorkoutPlan;
+  rating;
 
   ngOnInit(): void {
+    this.workoutPlan.reviews.forEach(rev => this.rating += rev.score);
+    this.rating = this.rating / this.workoutPlan.reviews.length;
 
   }
 

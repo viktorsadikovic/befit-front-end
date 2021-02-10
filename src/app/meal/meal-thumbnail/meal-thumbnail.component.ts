@@ -10,8 +10,11 @@ export class MealThumbnailComponent implements OnInit {
 
   constructor() { }
   @Input() meal: Meal
+  rating;
 
   ngOnInit(): void {
+    this.meal.reviews.forEach(rev => this.rating += rev.score);
+    this.rating = this.rating/this.meal.reviews.length;
   }
 
 }

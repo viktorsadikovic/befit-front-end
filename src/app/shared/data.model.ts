@@ -19,6 +19,7 @@ export interface Review {
 export interface WorkoutPlan {
   id: number,
   username: string,
+  title: string,
   description: string,
   workoutType: string,
   equipment: boolean,
