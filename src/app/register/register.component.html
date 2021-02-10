@@ -1,0 +1,25 @@
+
+<div class="register-page">
+  <div class="login-form" data-aos="zoom-in" data-aos-delay="100">
+    <form action="/examples/actions/confirmation.php" method="post">
+        <h2 class="text-center">Register</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Confirm password" required="required">
+      </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </div>
+        <div class="clearfix">
+            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>
+    </form>
+    <p class="text-center"><a [routerLink]='["/login"]'>Already have an account?</a></p>
+  </div>
+</div>

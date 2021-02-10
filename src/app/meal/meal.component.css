@@ -1,0 +1,36 @@
+.container {
+  width: 90%;
+  margin: auto!important;
+
+}
+
+.meal {
+  background: url('../../assets/img/fruits.jpg') top center;
+  background-size: cover;
+  min-height: 125vh;
+}
+
+.form-group {
+  width: 100%;
+  padding: 10px
+}
+
+.left {
+  border-radius: 15px;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+:host ::ng-deep .average .mat-slider-thumb{
+  background-color: #2dc997;
+}
+
+:host ::ng-deep .average .mat-slider-track-fill {
+  background-color: #2dc997;
+}
+
+:host ::ng-deep .average .mat-slider-thumb-label {
+  background-color: #2dc997;
+}

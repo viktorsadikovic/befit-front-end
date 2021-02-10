@@ -1,0 +1,32 @@
+.container {
+  width: 80%;
+  margin: auto!important;
+}
+
+.create-workout-plan-page {
+  background: url('../../../assets/img/limit.jpg') top center;
+  background-size: cover;
+  min-height: 125vh;
+}
+
+.btn {
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #2dc997;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn:hover, .btn:active:focus {
+  background-color: transparent;
+  border: 2px solid;
+  border-color: gray;
+  color: gray;
+}
+
+input:focus {
+  border-color:  rgba(45, 201, 151, 0.81);
+  box-shadow:  rgba(45, 201, 151, 0.81);
+  outline: 0 none;
+}
+

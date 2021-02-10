@@ -1,0 +1,33 @@
+<div class="login-page">
+  <div class="login-form" data-aos="zoom-in" data-aos-delay="100">
+    <form>
+        <h2 class="text-center">Log in</h2>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-outline-danger btn-lg btn-block" (click)="signInWithGoogle()">
+            <i class="fa fa-google"></i> Sign in with Google</button>
+          <button class="btn btn-outline-primary btn-lg btn-block" (click)="signInWithFB()">
+            <i class="fa fa-facebook"></i> Sign in with Facebook</button>
+        </div>
+        <div class="clearfix">
+            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
+            <a href="#" class="float-right">Forgot Password?</a>
+        </div>
+    </form>
+    <div class="card-body">
+      <button class="btn btn-outline-danger btn-lg btn-block" (click)="signInWithGoogle()">
+        <i class="fab fa-google"></i> Iniciar Sesión con Google</button>
+      <button class="btn btn-outline-primary btn-lg btn-block" (click)="signInWithFB()">
+        <i class="fab fa-facebook"></i> Iniciar Sesión con Facebook</button>
+    </div>
+    <p class="text-center"><a [routerLink]='["/register"]'>Create an Account</a></p>
+  </div>
+</div>

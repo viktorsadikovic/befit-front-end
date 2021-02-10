@@ -1,0 +1,86 @@
+<div class="create-meal-background">
+
+  <br>
+  <br>
+  <br>
+
+
+
+
+  <div class="container">
+    <form [formGroup]="meal" (ngSubmit)="onSubmit()" style="margin: auto; width: 100%" data-aos="zoom-in" data-aos-delay="100">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="dietaryType">Dietary type</label>
+          <select class="form-control" id="dietaryType" formControlName="dietaryType">
+            <option value="VEGAN">Vegan</option>
+            <option value="VEGETARIAN">Vegetarian</option>
+            <option value="PESCATARIAN">Pescatarian</option>
+            <option value="CARNIVORE">Carnivore</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-3">
+          <label for="mealTypes">Meal type</label>
+          <select multiple class="form-control" id="mealTypes" formControlName="mealTypes">
+            <option value="BREAKFAST">Breakfast</option>
+            <option value="LUNCH">Lunch</option>
+            <option value="DINNER">Dinner</option>
+            <option value="SNACK">Snack</option>
+            <option value="DESSERT">Dessert</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="preparationTime">Preparation time</label>
+          <input type="text" class="form-control" id="preparationTime" placeholder="Preparation time" formControlName="preparationTime">
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="cookingTime">Cooking time</label>
+          <input type="text" class="form-control" id="cookingTime" placeholder="Cooking time" formControlName="cookingTime">
+        </div>
+
+        <div class="form-group col-md-2">
+          <label for="servings">Servings</label>
+          <input type="text" class="form-control" id="servings" placeholder="Servings" formControlName="servings">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="description">Description</label>
+          <textarea type="text" class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="ingredients">Ingredients</label>
+          <textarea type="text" class="form-control" id="ingredients" placeholder="Ingredients" formControlName="ingredients"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="preparation">Preparation</label>
+          <textarea type="text" class="form-control" id="preparation" placeholder="Preparation" formControlName="preparation"></textarea>
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-primary col-md-6">Create</button>
+    </form>
+  </div>
+
+</div>
