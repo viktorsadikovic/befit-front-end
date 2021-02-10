@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-create-article',
@@ -9,13 +10,13 @@ import { Router } from '@angular/router';
 })
 export class CreateArticleComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, private service: DataService) { }
   article = new FormGroup({
     id: new FormControl(null),
     title: new FormControl(),
     description: new FormControl(),
     submitter:  new FormControl(null),
-    submissionTime: new FormControl(Date.now),
+    submissionTime: new FormControl(new Date()),
     comments:  new FormControl(null)
   })
 
@@ -24,7 +25,8 @@ export class CreateArticleComponent implements OnInit {
 
   onSubmit() {
     console.log(this.article.value)
-    window.location.reload()
+    this.service.saveArticle(this.article.value)
+    // window.location.reload()
   }
 
 }

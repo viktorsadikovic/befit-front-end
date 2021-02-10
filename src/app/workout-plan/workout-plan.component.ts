@@ -39,10 +39,6 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
-
-    this.service.getWorkoutPlans().subscribe(data => {
-      this.workoutPrograms = data;
-    })
   }
 
   onSubmit() {

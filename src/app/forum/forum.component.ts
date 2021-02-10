@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Article } from '../shared/data.model';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-forum',
@@ -7,7 +9,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: DataService) { }
+  articles: Article[]
 
   ngOnInit(): void {
     document.getElementById('nutrition-nav').className = ''
@@ -15,6 +18,10 @@ export class ForumComponent implements OnInit {
     document.getElementById('forum-nav').className = 'menu-active'
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
+
+    this.service.getArticles().subscribe(data => {
+      this.articles = data;
+    })
   }
 
 }

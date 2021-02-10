@@ -31,7 +31,7 @@
 
               <!-- Forum List -->
               <div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
-                 <app-article-thumbnail></app-article-thumbnail>
+                 <app-article-thumbnail *ngFor="let article of articles" [article]="article"></app-article-thumbnail>
                  <app-article-thumbnail></app-article-thumbnail>
                  <app-article-thumbnail></app-article-thumbnail>
                  <app-article-thumbnail></app-article-thumbnail>
@@ -53,13 +53,12 @@
               <!-- /Forum List -->
 
               <!-- Forum Detail -->
-              <app-article-content></app-article-content>
 
               <!-- /Inner main body -->
           <!-- /Inner main -->
       </div>
 
       <!-- New Thread Modal -->
-      <app-create-article></app-create-article>
+      <app-create-article ></app-create-article>
   </div>
   </div>

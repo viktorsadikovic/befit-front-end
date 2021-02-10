@@ -45,10 +45,11 @@ export class DataService {
   }
 
   getArticles() {
-    this.http.get<Article[]>(this.api + "forum/articles/all");
+    return this.http.get<Article[]>(this.api + "forum/articles/all");
   }
 
   saveArticle(article) {
+    console.log(article)
     this.http.post<Article>(this.api + "forum/articles/add", article, this.options);
   }
 
