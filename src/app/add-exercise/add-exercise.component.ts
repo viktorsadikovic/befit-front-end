@@ -15,12 +15,14 @@ export class AddExerciseComponent implements OnInit {
 
   constructor(private service: DataService) { }
 
-  exercise = new FormGroup({
+  exerciseForm = new FormGroup({
     id: new FormControl(null),
     name: new FormControl(null),
     muscleGroup: new FormControl(null),
     equipment: new FormControl(null)
   })
+
+  exercise: any;
 
   ngOnInit(): void {
   }
@@ -30,13 +32,13 @@ export class AddExerciseComponent implements OnInit {
  }
 
  onSubmit() {
-  console.log(this.exercise.value)
+  console.log(this.exerciseForm.value)
   const uploadImageData = new FormData();
 
   uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
 
-    let exercise = {
+    this.exercise = {
       id: null,
       name: this.exercise.value.name,
       muscleGroup: this.exercise.value.muscleGroup,
@@ -44,7 +46,7 @@ export class AddExerciseComponent implements OnInit {
       image: null
     }
 
-  uploadImageData.append('exercise', JSON.stringify(exercise));
+  uploadImageData.append('exercise', this.exercise);
   this.service.addExercise(uploadImageData)
  }
 
