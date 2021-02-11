@@ -31,6 +31,8 @@ import { mealsInterceptor } from './interceptors/meals.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WorkoutPlanThumbnailComponent } from './workout-plan/workout-plan-thumbnail/workout-plan-thumbnail.component';
 import { CreateArticleComponent } from './forum/create-article/create-article.component';
+import { MealDetailsComponent } from './meal/meal-details/meal-details.component';
+import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 
 
 
@@ -51,7 +53,9 @@ import { CreateArticleComponent } from './forum/create-article/create-article.co
     ArticleThumbnailComponent,
     ArticleContentComponent,
     WorkoutPlanThumbnailComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
+    MealDetailsComponent,
+    WorkoutPlanDetailsComponent
   ],
   imports: [
     BrowserModule,

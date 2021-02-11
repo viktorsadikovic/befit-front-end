@@ -29,7 +29,6 @@ export class WorkoutPlanComponent implements OnInit {
     workoutType : new FormControl(null),
     bodyPart: new FormControl(null),
     muscleGroups: new FormControl(),
-    exercises: new FormControl(),
     sort: new FormControl()
   })
 

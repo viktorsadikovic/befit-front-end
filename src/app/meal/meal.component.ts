@@ -14,13 +14,12 @@ export class MealComponent implements OnInit {
   meals: Meal[]
 
   meal = new FormGroup({
-    id : new FormControl(),
-    mealTypes : new FormControl(),
+    mealTypes : new FormControl(null),
     dietaryType : new FormControl('VEGAN'),
     preparationTime : new FormControl(),
-    cookingTime : new FormControl(),
-    servings : new FormControl(),
-    preparation : new FormControl(),
+    cookingTime : new FormControl(null),
+    servings : new FormControl(null),
+    preparation : new FormControl(null),
     sort: new FormControl()
   })
 
