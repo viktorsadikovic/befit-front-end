@@ -76,6 +76,12 @@
         </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="description">Add photo</label>
+          <input type="file" (change)="onFileChanged($event)">
+        </div>
+      </div>
       <button type="submit" class="btn btn-primary col-md-6">Create</button>
     </form>
   </div>

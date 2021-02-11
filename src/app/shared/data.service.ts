@@ -20,8 +20,16 @@ export class DataService {
     return this.http.get<Exercise[]>(this.api + muscleGroup + "/all");
   }
 
+  addExercise(ExerciseDto) {
+    this.http.post(this.api + "exercises/add", ExerciseDto)
+  }
+
   getMeals() {
     return this.http.get<Meal[]>(this.api + "meals/all");
+  }
+
+  getSingleMeal(id) {
+    return this.http.get<Meal>(this.api + "meals/" + id);
   }
 
   createMeal(meal) {
@@ -34,6 +42,10 @@ export class DataService {
 
   getWorkoutPlans() {
     return this.http.get<WorkoutPlan[]>(this.api + "workouts/all");
+  }
+
+  getSingleWorkoutPlan(id) {
+    return this.http.get<WorkoutPlan>(this.api + "workouts/" + id);
   }
 
   createWorkoutPlan(workoutPlan) {
@@ -50,7 +62,7 @@ export class DataService {
 
   saveArticle(article) {
     console.log(article)
-    this.http.post<Article>(this.api + "forum/articles/add", article, this.options);
+    this.http.post<Article>(this.api + "forum/articles/add", article, this.options).subscribe();
   }
 
   deleteArticle(id) {
@@ -59,6 +71,15 @@ export class DataService {
 
   getUsers() {
     return this.http.get<User[]>(this.api + 'users/all');
+  }
+
+  uploadImage(imageData) {
+    this.http.post('http://localhost:8080/image/upload', imageData, {observe: 'response'}).subscribe()
+
+  }
+
+  getImage(imageName) {
+    return this.http.get('http://localhost:8080/image/get/' + imageName)
   }
 
 }

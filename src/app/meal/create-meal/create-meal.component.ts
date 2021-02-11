@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-create-meal',
@@ -8,7 +9,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class CreateMealComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: DataService) { }
 
   meal = new FormGroup({
     id : new FormControl(),
@@ -24,12 +25,40 @@ export class CreateMealComponent implements OnInit {
     preparation : new FormControl(),
     reviews : new FormControl(null)
   })
+  selectedFile: File;
 
   ngOnInit(): void {
   }
 
   onSubmit() {
     console.log(this.meal.value)
+
+    const uploadImageData = new FormData();
+
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+
+    let meal = {
+      id: null,
+      title: this.meal.value.title,
+      username: null,
+      mealType: this.meal.value.mealTypes,
+      dietaryType: this.meal.value.dietaryType,
+      preparationTime: this.meal.value.preparationTime,
+      cookingTime : this.meal.value.cookingTime,
+      servings : this.meal.value.servings,
+      description : this.meal.value.description,
+      ingredients : this.meal.value.ingredients,
+      preparation : this.meal.value.preparation,
+      reviews : null,
+      image: uploadImageData.get('imageFile')
+    }
+
+    console.log(meal)
+    this.service.createMeal(meal);
   }
+
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0];
+ }
 
 }

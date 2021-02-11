@@ -1,3 +1,4 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DataService } from 'src/app/shared/data.service';
@@ -19,6 +20,9 @@ export class CreateWorkoutPlanComponent implements OnChanges {
   selectedBodyPart: any;
   selectedMuscleGroups: any;
   wTypeDisabled = false;
+  selectedFile: File;
+  retrieveResponse: any;
+
 
   constructor(private service: DataService) { }
   test = true;
@@ -38,10 +42,6 @@ export class CreateWorkoutPlanComponent implements OnChanges {
 
   ngOnChanges(): void {
     this.exercises = this.service.getExercises()
-  }
-
-  onSubmit() {
-    console.log(this.workout.value)
   }
 
   changeWorkoutType() {
@@ -75,6 +75,44 @@ export class CreateWorkoutPlanComponent implements OnChanges {
 
   changeMuscleGroup() {
     console.log(this.selectedMuscleGroups)
+  }
+
+  onFileChanged(event) {
+     this.selectedFile = event.target.files[0];
+  }
+
+  onSubmit() {
+    console.log(this.workout.value)
+    const uploadImageData = new FormData();
+
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+
+    let workoutPlan = {
+      id : null,
+      title : this.workout.value.title,
+      description: this.workout.value.description,
+      username : null,
+      equipment : this.workout.value.equipment,
+      workoutType : this.workout.value.workoutType,
+      bodyPart: this.workout.value.bodyPart,
+      muscleGroups: this.workout.value.muscleGroups,
+      exercises: this.workout.value.exercises,
+      reviews : null,
+      image: uploadImageData.get('imageFile')
+    }
+
+    console.log(uploadImageData.get('imageFile'))
+    // this.service.uploadImage(uploadImageData);
+    this.service.createWorkoutPlan(workoutPlan)
+  }
+
+  getImage() {
+    let image = null;
+
+    this.service.getImage(null).subscribe(res => {
+      this.retrieveResponse = res;
+      image = 'data:image/jpeg;base64,' + this.retrieveResponse.picByte;
+    })
   }
 
 }

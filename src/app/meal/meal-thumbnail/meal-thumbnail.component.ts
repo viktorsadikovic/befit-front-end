@@ -13,8 +13,13 @@ export class MealThumbnailComponent implements OnInit {
   rating;
 
   ngOnInit(): void {
-    // this.meal.reviews.forEach(rev => this.rating += rev.score);
-    // this.rating = this.rating/this.meal.reviews.length;
+    if(this.meal.reviews != null) {
+      this.meal.reviews.forEach(rev => this.rating += rev.score);
+      this.rating = this.rating/this.meal.reviews.length;
+    } else {
+      this.rating = 0;
+    }
+
   }
 
 }

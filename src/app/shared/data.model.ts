@@ -26,6 +26,7 @@ export interface WorkoutPlan {
   bodyPart: string,
   muscleGroups: string[],
   exercises: ExerciseWrapper[],
+  submissionTime: Date
   reviews: Review[]
 }
 
@@ -41,6 +42,7 @@ export interface Meal {
   description: string,
   ingredients: string,
   preparation: string,
+  submissionTime: Date,
   reviews: Review[]
 }
 

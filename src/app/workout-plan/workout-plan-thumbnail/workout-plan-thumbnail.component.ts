@@ -14,8 +14,13 @@ export class WorkoutPlanThumbnailComponent implements OnInit {
   rating;
 
   ngOnInit(): void {
-    this.workoutPlan.reviews.forEach(rev => this.rating += rev.score);
-    this.rating = this.rating / this.workoutPlan.reviews.length;
+    if( this.workoutPlan.reviews != null) {
+      this.workoutPlan.reviews.forEach(rev => this.rating += rev.score);
+      this.rating = this.rating / this.workoutPlan.reviews.length;
+    } else {
+      this.rating = 0;
+    }
+
 
   }
 

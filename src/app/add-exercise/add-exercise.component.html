@@ -1,0 +1,55 @@
+<div class="container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <form [formGroup]="exercise" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="title">Name</label>
+          <input type="text" class="form-control" id="name" placeholder="Name" formControlName="name">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="equipment">Equipment</label>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" id="exampleRadios1" [value]="true">
+          <label class="form-check-label" for="yes">
+            Yes
+          </label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" id="exampleRadios2" [value]="false">
+          <label class="form-check-label" for="no">
+            No
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-rom">
+      <div class="form-group col-md-2">
+        <label for="muscleGroup">Muscle group</label>
+        <select class="form-control" id="muscleGroup" formControlName="muscleGroup">
+          <option *ngFor='let group of mGroups | keyvalue' [value]='group.value'>{{ group.key }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="description">Add photo</label>
+        <input type="file" (change)="onFileChanged($event)">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary col-md-6">Create</button>
+
+  </form>
+</div>
