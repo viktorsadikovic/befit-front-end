@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Exercise } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
 
 @Component({
@@ -34,19 +35,17 @@ export class AddExerciseComponent implements OnInit {
 
   uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
-  let ExerciseDto = {
-    exercise : {
+
+    let exercise = {
       id: null,
       name: this.exercise.value.name,
       muscleGroup: this.exercise.value.muscleGroup,
       equipment: this.exercise.value.equipment,
       image: null
-    },
-    file: uploadImageData.get('imageFile')
-  }
+    }
 
-  console.log(ExerciseDto);
-  this.service.addExercise(ExerciseDto)
+  uploadImageData.append('exercise', JSON.stringify(exercise));
+  this.service.addExercise(uploadImageData)
  }
 
 }

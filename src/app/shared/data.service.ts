@@ -21,7 +21,7 @@ export class DataService {
   }
 
   addExercise(ExerciseDto) {
-    this.http.post(this.api + "exercises/add", ExerciseDto)
+    this.http.post(this.api + "exercises/add", ExerciseDto).subscribe();
   }
 
   getMeals() {
