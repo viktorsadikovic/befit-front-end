@@ -10,7 +10,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
   api = "http://localhost:8080/";
   options = { headers: new HttpHeaders({'Content-Type': 'application/json; charset=UTF-8'})}
-
+  optionsImage = { headers: new HttpHeaders({'Content-Type': 'multipart/form-data; charset=UTF-8'})}
 
   getExercises(){
     return this.http.get<Exercise[]>(this.api + "exercises/all");
@@ -21,7 +21,7 @@ export class DataService {
   }
 
   addExercise(ExerciseDto) {
-    this.http.post(this.api + "exercises/add", ExerciseDto).subscribe();
+    this.http.post(this.api + "exercises/add", ExerciseDto, ).subscribe();
   }
 
   getMeals() {
