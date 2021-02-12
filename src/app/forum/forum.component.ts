@@ -11,7 +11,7 @@ export class ForumComponent implements OnInit {
 
   constructor(private service: DataService) { }
   articles: Article[]
-  currentArticle;
+  currentArticle: Article;
 
   ngOnInit(): void {
     document.getElementById('nutrition-nav').className = ''

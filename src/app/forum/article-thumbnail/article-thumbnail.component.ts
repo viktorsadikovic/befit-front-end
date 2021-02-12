@@ -10,13 +10,13 @@ export class ArticleThumbnailComponent implements OnInit {
 
   constructor() { }
   @Input() article: Article;
-  @Output() eventClick = new EventEmitter<any>();
+  @Output() eventClick = new EventEmitter<Article>();
 
   ngOnInit(): void {
   }
 
   sendData() {
-    this.eventClick.emit('spiro')
+    this.eventClick.emit(this.article)
   }
 
 }
