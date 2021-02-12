@@ -3,11 +3,11 @@
       <div class="media forum-item">
           <a href="#" data-toggle="collapse" data-target=".forum-content" ><img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
           <div class="media-body">
-              <h6><a data-toggle="collapse" data-target=".forum-content" class="text-body" (click)="sendData()" style="cursor:pointer">Realtime fetching data</a></h6>
+              <h6><a data-toggle="collapse" data-target=".forum-content" class="text-body" (click)="sendData()" style="cursor:pointer">{{article?.title}}</a></h6>
               <p class="text-secondary">
-                  lorem ipsum dolor sit amet lorem ipsum dolor sit amet lorem ipsum dolor sit amet
+                  {{article?.title | slice:0:100}}
               </p>
-              <p class="text-muted"><a href="javascript:void(0)"></a>Published by <span class="text-secondary font-weight-bold">Filip Spirovski</span></p>
+              <p class="text-muted"><a href="javascript:void(0)"></a>Published by <span class="text-secondary font-weight-bold">{{article?.submitter.username}}</span></p>
           </div>
           <div class="text-muted small text-center align-self-center">
               <span class="d-none d-sm-inline-block"><i class="fa fa-eye"></i> 19</span>

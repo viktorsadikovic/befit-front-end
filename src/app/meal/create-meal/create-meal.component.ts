@@ -43,7 +43,7 @@ export class CreateMealComponent implements OnInit {
       id: null,
       title: this.mealForm.value.title,
       username: null,
-      mealType: this.mealForm.value.mealTypes,
+      mealTypes: this.mealForm.value.mealTypes,
       dietaryType: this.mealForm.value.dietaryType,
       preparationTime: this.mealForm.value.preparationTime,
       cookingTime : this.mealForm.value.cookingTime,
@@ -51,6 +51,7 @@ export class CreateMealComponent implements OnInit {
       description : this.mealForm.value.description,
       ingredients : this.mealForm.value.ingredients,
       preparation : this.mealForm.value.preparation,
+      submissionTime: Date.now(),
       reviews : null,
       image: null
     }
