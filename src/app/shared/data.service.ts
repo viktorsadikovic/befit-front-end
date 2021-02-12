@@ -16,6 +16,10 @@ export class DataService {
     return this.http.get<Exercise[]>(this.api + "exercises/all");
   }
 
+  getSingleExercise(id) {
+    return this.http.get(this.api + "exercises/" + id);
+  }
+
   getExercisesByMuscleGroup(muscleGroup) {
     return this.http.get<Exercise[]>(this.api + muscleGroup + "/all");
   }

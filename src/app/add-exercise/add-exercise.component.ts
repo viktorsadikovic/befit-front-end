@@ -52,9 +52,14 @@ export class AddExerciseComponent implements OnInit {
   uploadImageData.append('exercise', JSON.stringify(this.exercise));
   this.service.addExercise(uploadImageData);
 
-  this.service.getImage(this.selectedFile.name).subscribe((res: Object) => {
+  // this.service.getImage(this.selectedFile.name).subscribe((res: Object) => {
+  //   this.retrieveResponse = res;
+  //   this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.picByte;
+  // })
+
+  this.service.getSingleExercise(null).subscribe(res => {
     this.retrieveResponse = res;
-    this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.picByte;
+    this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.image.picByte;
   })
  }
 
