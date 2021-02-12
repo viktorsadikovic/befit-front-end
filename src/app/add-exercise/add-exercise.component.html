@@ -43,6 +43,15 @@
       </div>
     </div>
 
+    <div class="form-rom">
+      <div class="form-group col-md-2">
+        <label for="workoutType">Workout type</label>
+        <select class="form-control" id="workoutType" formControlName="workoutType">
+          <option *ngFor='let type of wType | keyvalue' [value]='type.value'>{{ type.key }}</option>
+        </select>
+      </div>
+    </div>
+
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="description">Add photo</label>

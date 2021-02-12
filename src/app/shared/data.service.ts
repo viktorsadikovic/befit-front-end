@@ -13,7 +13,7 @@ export class DataService {
   optionsImage = { headers: new HttpHeaders({'Content-Type': 'multipart/form-data; charset=UTF-8'})}
 
   getExercises(){
-    return this.http.get<Exercise[]>(this.api + "exercises/all");
+    return this.http.get<any>(this.api + "exercises/all");
   }
 
   getSingleExercise(id) {
@@ -29,15 +29,15 @@ export class DataService {
   }
 
   getMeals() {
-    return this.http.get<Meal[]>(this.api + "meals/all");
+    return this.http.get<any>(this.api + "meals/all");
   }
 
   getSingleMeal(id) {
-    return this.http.get<Meal>(this.api + "meals/" + id);
+    return this.http.get<any>(this.api + "meals/" + id);
   }
 
   createMeal(meal) {
-    this.http.post<Meal>(this.api + "meals/add", meal, this.options).subscribe();
+    this.http.post(this.api + "meals/add", meal, {observe: 'response' }).subscribe();
   }
 
   deleteMeal(id) {

@@ -11,6 +11,8 @@ import { DataService } from '../shared/data.service';
 export class AddExerciseComponent implements OnInit {
 
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
+  wType: {[key: string]: string} = { 'Cardio' : 'CARDIO_TRAINING', 'Bodybuilding' : 'BODYBUILDING', 'Yoga' : 'YOGA',
+          'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   selectedFile: File;
 
 
@@ -20,6 +22,7 @@ export class AddExerciseComponent implements OnInit {
     id: new FormControl(null),
     name: new FormControl(null),
     muscleGroup: new FormControl(null),
+    workoutType: new FormControl(null),
     equipment: new FormControl(null)
   })
   retrievedImage: any;
@@ -59,7 +62,7 @@ export class AddExerciseComponent implements OnInit {
 
   this.service.getSingleExercise(null).subscribe(res => {
     this.retrieveResponse = res;
-    this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.image.picByte;
+    this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.image.pictureBytes;
   })
  }
 

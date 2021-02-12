@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Article } from 'src/app/shared/data.model';
 
 @Component({
@@ -10,8 +10,13 @@ export class ArticleThumbnailComponent implements OnInit {
 
   constructor() { }
   @Input() article: Article;
+  @Output() eventClick = new EventEmitter<any>();
 
   ngOnInit(): void {
+  }
+
+  sendData() {
+    this.eventClick.emit('spiro')
   }
 
 }

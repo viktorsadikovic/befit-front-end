@@ -11,7 +11,7 @@ import { DataService } from '../shared/data.service';
 export class WorkoutPlanComponent implements OnInit {
 
   constructor(private service: DataService) { }
-  wType: {[key: string]: string} = { 'Cardio' : 'CARDIO_TRAINING', 'Bodybuilding' : 'BODYBUILDING', 'Crossfit' : 'CROSSFIT', 'Yoga' : 'YOGA',
+  wType: {[key: string]: string} = { 'Cardio' : 'CARDIO_TRAINING', 'Bodybuilding' : 'BODYBUILDING', 'Yoga' : 'YOGA',
           'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
@@ -51,7 +51,7 @@ export class WorkoutPlanComponent implements OnInit {
   changeWorkoutType() {
     console.log(this.selectedWorkoutType)
 
-    if(this.selectedWorkoutType === "BODYBUILDING" || this.selectedWorkoutType === "CROSSFIT"){
+    if(this.selectedWorkoutType === "BODYBUILDING"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
         this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
     } else {

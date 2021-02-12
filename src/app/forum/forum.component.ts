@@ -11,6 +11,7 @@ export class ForumComponent implements OnInit {
 
   constructor(private service: DataService) { }
   articles: Article[]
+  currentArticle;
 
   ngOnInit(): void {
     document.getElementById('nutrition-nav').className = ''
@@ -21,7 +22,14 @@ export class ForumComponent implements OnInit {
 
     this.service.getArticles().subscribe(data => {
       this.articles = data;
+      this.currentArticle = this.articles[0]
     })
+
+  }
+
+  changeCurrentArticle(currArticle) {
+    console.log(currArticle)
+    this.currentArticle = currArticle
   }
 
 }

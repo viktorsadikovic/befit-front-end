@@ -9,7 +9,7 @@ import { Article } from 'src/app/shared/data.model';
 export class ArticleContentComponent implements OnInit {
 
   constructor() { }
-  // @Input() article: Article
+  @Input() article;
 
   ngOnInit(): void {
   }

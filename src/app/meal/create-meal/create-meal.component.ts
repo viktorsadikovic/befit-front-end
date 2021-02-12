@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -9,9 +10,9 @@ import { DataService } from 'src/app/shared/data.service';
 })
 export class CreateMealComponent implements OnInit {
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService, private router: Router) { }
 
-  meal = new FormGroup({
+  mealForm = new FormGroup({
     id : new FormControl(),
     title : new FormControl(),
     username : new FormControl(),
@@ -26,35 +27,40 @@ export class CreateMealComponent implements OnInit {
     reviews : new FormControl(null)
   })
   selectedFile: File;
+  meal;
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    console.log(this.meal.value)
+    console.log(this.mealForm.value)
 
     const uploadImageData = new FormData();
 
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
-    let meal = {
+    this.meal = {
       id: null,
-      title: this.meal.value.title,
+      title: this.mealForm.value.title,
       username: null,
-      mealType: this.meal.value.mealTypes,
-      dietaryType: this.meal.value.dietaryType,
-      preparationTime: this.meal.value.preparationTime,
-      cookingTime : this.meal.value.cookingTime,
-      servings : this.meal.value.servings,
-      description : this.meal.value.description,
-      ingredients : this.meal.value.ingredients,
-      preparation : this.meal.value.preparation,
+      mealType: this.mealForm.value.mealTypes,
+      dietaryType: this.mealForm.value.dietaryType,
+      preparationTime: this.mealForm.value.preparationTime,
+      cookingTime : this.mealForm.value.cookingTime,
+      servings : this.mealForm.value.servings,
+      description : this.mealForm.value.description,
+      ingredients : this.mealForm.value.ingredients,
+      preparation : this.mealForm.value.preparation,
       reviews : null,
-      image: uploadImageData.get('imageFile')
+      image: null
     }
 
-    console.log(meal)
-    this.service.createMeal(meal);
+    uploadImageData.append('meal', JSON.stringify(this.meal));
+
+    console.log(this.meal)
+    console.log(uploadImageData.get('imageFile'))
+    this.service.createMeal(uploadImageData);
+    // this.router.navigate(['/meals']);
   }
 
   onFileChanged(event) {
