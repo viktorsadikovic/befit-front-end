@@ -13,6 +13,7 @@ export class AddExerciseComponent implements OnInit {
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
   selectedFile: File;
 
+
   constructor(private service: DataService) { }
 
   exerciseForm = new FormGroup({
@@ -21,6 +22,8 @@ export class AddExerciseComponent implements OnInit {
     muscleGroup: new FormControl(null),
     equipment: new FormControl(null)
   })
+  retrievedImage: any;
+  retrieveResponse: any;
 
   exercise: any;
 
@@ -38,16 +41,21 @@ export class AddExerciseComponent implements OnInit {
   uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
 
-    this.exercise = {
-      id: null,
-      name: this.exercise.value.name,
-      muscleGroup: this.exercise.value.muscleGroup,
-      equipment: this.exercise.value.equipment,
-      image: null
-    }
+  this.exercise = {
+    id: null,
+    name: this.exerciseForm.value.name,
+    muscleGroup: this.exerciseForm.value.muscleGroup,
+    equipment: this.exerciseForm.value.equipment,
+    image: null
+  }
 
-  uploadImageData.append('exercise', this.exercise);
-  this.service.addExercise(uploadImageData)
+  uploadImageData.append('exercise', JSON.stringify(this.exercise));
+  this.service.addExercise(uploadImageData);
+
+  this.service.getImage(this.selectedFile.name).subscribe((res: Object) => {
+    this.retrieveResponse = res;
+    this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.picByte;
+  })
  }
 
 }

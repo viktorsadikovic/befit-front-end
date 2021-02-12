@@ -51,5 +51,13 @@
     </div>
     <button type="submit" class="btn btn-primary col-md-6">Create</button>
 
+    <div class="container row">
+          <div class="col-md-12">
+              <div *ngIf=retrievedImage>
+                  <img [src]="retrievedImage">
+              </div>
+          </div>
+      </div>
+
   </form>
 </div>
