@@ -21,16 +21,18 @@ export class MealDetailsComponent implements OnInit {
       this.id = params['id']
       this.service.getSingleMeal(this.id).subscribe(data => {
         this.meal = data;
+        
+        this.service.getLatestMeals(this.meal.id).subscribe(data => {
+          this.latest = data;
+        })
+
+        this.service.getTrendingMeals(this.meal.id).subscribe(data => {
+          this.trending = data;
+        })
       })
     })
 
-    this.service.getLatestMeals(this.meal.id).subscribe(data => {
-      this.latest = data;
-    })
 
-    this.service.getTrendingMeals(this.meal.id).subscribe(data => {
-      this.trending = data;
-    })
   }
 
 }
