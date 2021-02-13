@@ -16,6 +16,7 @@ export class ArticleThumbnailComponent implements OnInit {
   }
 
   sendData() {
+    console.log(this.article)
     this.eventClick.emit(this.article)
   }
 

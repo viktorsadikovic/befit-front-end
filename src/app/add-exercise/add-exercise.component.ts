@@ -49,9 +49,11 @@ export class AddExerciseComponent implements OnInit {
     name: this.exerciseForm.value.name,
     muscleGroup: this.exerciseForm.value.muscleGroup,
     equipment: this.exerciseForm.value.equipment,
+    workoutType: this.exerciseForm.value.workoutType,
     image: null
   }
 
+  console.log(this.exercise)
   uploadImageData.append('exercise', JSON.stringify(this.exercise));
   this.service.addExercise(uploadImageData);
 

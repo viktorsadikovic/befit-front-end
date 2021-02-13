@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Article } from 'src/app/shared/data.model';
 
 @Component({
@@ -6,12 +6,13 @@ import { Article } from 'src/app/shared/data.model';
   templateUrl: './article-content.component.html',
   styleUrls: ['./article-content.component.css']
 })
-export class ArticleContentComponent implements OnInit {
+export class ArticleContentComponent implements OnChanges {
 
   constructor() { }
-  @Input() article;
+  @Input() article: Article;
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    console.log(this.article)
   }
 
 }
