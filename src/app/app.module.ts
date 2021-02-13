@@ -35,6 +35,7 @@ import { MealDetailsComponent } from './meal/meal-details/meal-details.component
 import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
+import { StarComponent } from './shared/star/star.component';
 
 
 
@@ -59,7 +60,8 @@ import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/ex
     MealDetailsComponent,
     WorkoutPlanDetailsComponent,
     AddExerciseComponent,
-    ExerciseThumbnailComponent
+    ExerciseThumbnailComponent,
+    StarComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ export class MealThumbnailComponent implements OnInit {
   constructor() { }
   @Input() meal: Meal
   rating;
+  stars = [1,2,3,4,5]
 
   ngOnInit(): void {
     if(this.meal.reviews != null) {

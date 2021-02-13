@@ -15,11 +15,9 @@
         <h6 class="font-weight-bold my-2">FREE</h6>
 
         <ul class="list-inline small">
-          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-          <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-          <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+          <ng-container *ngFor="let star of stars">
+            <app-star [starId]="star" [rating]="rating"></app-star>
+          </ng-container>
         </ul>
       </div>
     </div><img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" alt="Generic placeholder image" width="200" class="ml-lg-5 order-1 order-lg-2">
