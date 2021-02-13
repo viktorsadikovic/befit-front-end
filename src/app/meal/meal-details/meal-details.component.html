@@ -17,7 +17,7 @@
                             </div>
                             <div class="media-body">
                                 <label>{{meal?.username}}</label>
-                                <span>{{meal?.submissionTime}}</span>
+                                <span>{{meal?.submissionTime | date}}</span>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                         <h4>Cooking time:</h4>
                         <p>{{meal?.cookingTime}} minutes</p>
                         <h4>Servings:</h4>
-                        <p>{{meal?.preparation}} people</p>
+                        <p>{{meal?.servings}} people</p>
                         <h4>Meal types:</h4>
                     </div>
                     <div class="nav tag-cloud">

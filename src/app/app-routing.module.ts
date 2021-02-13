@@ -10,6 +10,7 @@ import { MealDetailsComponent } from './meal/meal-details/meal-details.component
 import { MealComponent } from './meal/meal.component';
 import { RegisterComponent } from './register/register.component';
 import { CreateWorkoutPlanComponent } from './workout-plan/create-workout-plan/create-workout-plan.component';
+import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 import { WorkoutPlanComponent } from './workout-plan/workout-plan.component';
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'meals', component: MealComponent},
   { path: 'forum', component: ForumComponent },
   { path: 'exercise', component: AddExerciseComponent },
+  { path: 'card', component: ExerciseThumbnailComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

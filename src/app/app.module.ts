@@ -34,6 +34,7 @@ import { CreateArticleComponent } from './forum/create-article/create-article.co
 import { MealDetailsComponent } from './meal/meal-details/meal-details.component';
 import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
+import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 
 
 
@@ -57,7 +58,8 @@ import { AddExerciseComponent } from './add-exercise/add-exercise.component';
     CreateArticleComponent,
     MealDetailsComponent,
     WorkoutPlanDetailsComponent,
-    AddExerciseComponent
+    AddExerciseComponent,
+    ExerciseThumbnailComponent
   ],
   imports: [
     BrowserModule,

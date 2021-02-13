@@ -1,5 +1,5 @@
 .container {
-  width: 80%;
+  width: 90%;
   margin: auto!important;
 }
 
@@ -10,6 +10,7 @@
 }
 
 .btn {
+  width: 100%;
   font-size: 15px;
   font-weight: bold;
   background-color: #2dc997;
@@ -30,3 +31,11 @@ input:focus {
   outline: 0 none;
 }
 
+.scroll {
+  overflow: scroll;
+  height: 690px;
+}
+
+.form-group {
+  width: 100%;
+}

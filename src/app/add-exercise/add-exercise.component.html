@@ -38,6 +38,7 @@
       <div class="form-group col-md-2">
         <label for="muscleGroup">Muscle group</label>
         <select class="form-control" id="muscleGroup" formControlName="muscleGroup">
+          <option [value]="null">None</option>
           <option *ngFor='let group of mGroups | keyvalue' [value]='group.value'>{{ group.key }}</option>
         </select>
       </div>

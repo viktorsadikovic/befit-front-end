@@ -7,7 +7,7 @@
 .meal {
   background: url('../../assets/img/fruits.jpg') top center;
   background-size: cover;
-  min-height: 125vh;
+  min-height: 135vh;
 }
 
 .form-group {
@@ -33,4 +33,9 @@ mat-slider {
 
 :host ::ng-deep .average .mat-slider-thumb-label {
   background-color: #2dc997;
+}
+
+.scroll {
+  overflow: scroll;
+  height: 600px;
 }

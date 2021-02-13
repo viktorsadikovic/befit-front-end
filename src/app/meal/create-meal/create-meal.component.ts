@@ -51,7 +51,7 @@ export class CreateMealComponent implements OnInit {
       description : this.mealForm.value.description,
       ingredients : this.mealForm.value.ingredients,
       preparation : this.mealForm.value.preparation,
-      submissionTime: Date.now(),
+      submissionTime: null,
       reviews : null,
       image: null
     }
