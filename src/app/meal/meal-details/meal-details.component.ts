@@ -13,6 +13,8 @@ export class MealDetailsComponent implements OnInit {
   constructor(private service: DataService, private route: ActivatedRoute) { }
   id;
   meal: Meal;
+  latest: Meal[];
+  trending: Meal[];
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -20,6 +22,14 @@ export class MealDetailsComponent implements OnInit {
       this.service.getSingleMeal(this.id).subscribe(data => {
         this.meal = data;
       })
+    })
+
+    this.service.getLatestMeals(this.meal.id).subscribe(data => {
+      this.latest = data;
+    })
+
+    this.service.getTrendingMeals(this.meal.id).subscribe(data => {
+      this.trending = data;
     })
   }
 

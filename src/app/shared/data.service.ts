@@ -36,6 +36,14 @@ export class DataService {
     return this.http.get<any>(this.api + "meals/" + id);
   }
 
+  getTrendingMeals(id) {
+    return this.http.get<any>(this.api + "meals/trending/" + id);
+  }
+
+  getLatestMeals(id) {
+    return this.http.get<any>(this.api + "meals/latest/" + id);
+  }
+
   createMeal(meal) {
     this.http.post(this.api + "meals/add", meal, {observe: 'response' }).subscribe();
   }
