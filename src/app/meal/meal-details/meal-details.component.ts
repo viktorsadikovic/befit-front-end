@@ -64,7 +64,7 @@ export class MealDetailsComponent implements OnInit {
       submissionTime: null
     }
 
-    console.log(review);
+    this.service.addMealReview(this.meal.id, review);
   }
 
 }

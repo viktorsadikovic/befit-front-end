@@ -94,4 +94,12 @@ export class DataService {
     return this.http.get('http://localhost:8080/image/get/' + imageName)
   }
 
+  addMealReview(id, review) {
+    this.http.post(this.api + "reviews/add/meal/" + id, review).subscribe();
+  }
+
+  addWorkoutReviews(id, review) {
+    this.http.post(this.api + "reviews/add/workout-plan/" + id, review).subscribe();
+  }
+
 }

@@ -57,6 +57,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
     }
 
     console.log(review);
+    this.service.addWorkoutReviews(this.workoutProgram.id, review);
   }
 
 }
