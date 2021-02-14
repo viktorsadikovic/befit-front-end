@@ -43,15 +43,6 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="exercises">Exercises</label>
-            <select class="form-control" id="exercises" formControlName="exercises">
-              <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
             <label for="equipment">Equipment</label>
 
             <div class="form-check">
@@ -94,8 +85,8 @@
 
           <!-- List group-->
           <ul class="list-group shadow">
-            <app-exercise-thumbnail></app-exercise-thumbnail>
-            <app-exercise-thumbnail></app-exercise-thumbnail>
+            <app-exercise-thumbnail *ngFor="let exercise of exercises" [exercise]="exercise" (eventClick)="addExercise($event)"></app-exercise-thumbnail>
+            <app-exercise-thumbnail (eventClick)="addExercise($event)"></app-exercise-thumbnail>
             <app-exercise-thumbnail></app-exercise-thumbnail>
 
 

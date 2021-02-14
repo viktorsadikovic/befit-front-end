@@ -15,16 +15,20 @@ export class CreateWorkoutPlanComponent implements OnChanges {
           'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
-  exercises;
+  exercises: any[];
   selectedWorkoutType: any;
   selectedBodyPart: any;
   selectedMuscleGroups: any;
   wTypeDisabled = false;
   selectedFile: File;
   retrieveResponse: any;
+  selectedExercises: any[];
 
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService) {
+    this.selectedExercises = []
+  }
+
   test = true;
   workout = new FormGroup({
     id : new FormControl(null),
@@ -41,7 +45,7 @@ export class CreateWorkoutPlanComponent implements OnChanges {
 
 
   ngOnChanges(): void {
-    this.exercises = this.service.getExercises()
+    this.service.getExercises();
   }
 
   changeWorkoutType() {
@@ -50,12 +54,14 @@ export class CreateWorkoutPlanComponent implements OnChanges {
     if(this.selectedWorkoutType === "BODYBUILDING"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
         this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
+        this.exercises = null;
     } else {
       this.workout.controls.muscleGroups.reset()
       this.bPart = {'' : ''}
       this.mGroups = {'' : ''}
       this.workout.controls.muscleGroups.setValue(null)
       this.workout.controls.bodyPart.setValue(null)
+      this.exercises = null;
 
       console.log(this.wTypeDisabled)
     }
@@ -65,11 +71,14 @@ export class CreateWorkoutPlanComponent implements OnChanges {
   changeBodyPart() {
     if(this.selectedBodyPart === "FULL_BODY"){
       this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
+      this.exercises = null;
     } else if(this.selectedBodyPart === "LOWER_BODY"){
         this.mGroups = {'Legs' : 'LEGS'}
+        this.exercises = null;
       console.log(this.wTypeDisabled)
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
+        this.exercises = null;
     }
   }
 
@@ -96,12 +105,13 @@ export class CreateWorkoutPlanComponent implements OnChanges {
       workoutType : this.workout.value.workoutType,
       bodyPart: this.workout.value.bodyPart,
       muscleGroups: this.workout.value.muscleGroups,
-      exercises: this.workout.value.exercises,
+      exercises: this.selectedExercises,
       reviews : null,
       image: uploadImageData.get('imageFile')
     }
 
     console.log(uploadImageData.get('imageFile'))
+    console.log(workoutPlan)
     // this.service.uploadImage(uploadImageData);
     this.service.createWorkoutPlan(workoutPlan)
   }
@@ -113,6 +123,11 @@ export class CreateWorkoutPlanComponent implements OnChanges {
       this.retrieveResponse = res;
       image = 'data:image/jpeg;base64,' + this.retrieveResponse.picByte;
     })
+  }
+
+  addExercise(exerciseWrapper) {
+    this.selectedExercises.push(exerciseWrapper)
+    console.log(this.selectedExercises)
   }
 
 }

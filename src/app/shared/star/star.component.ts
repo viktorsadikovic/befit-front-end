@@ -15,8 +15,7 @@ export class StarComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(): void {
-    console.log(this.rating);
-    console.log(this.starId)
+   
   }
 
   onStarClicked(){

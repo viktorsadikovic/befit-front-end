@@ -41,26 +41,22 @@
                 </article>
                 <div class="contact-form article-comment">
                     <h4>Leave a Reply</h4>
-                    <form id="contact-form" method="POST">
+                    <form id="contact-form" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input name="Name" id="name" placeholder="Name *" class="form-control" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
-                                </div>
-                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea name="message" id="message" placeholder="Your message *" rows="4" class="form-control"></textarea>
+                                    <textarea name="message" id="message" placeholder="Your message *" rows="4" formControlName="description" class="form-control"></textarea>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <ng-container *ngFor="let star of stars">
+                                  <app-star (starEnter)="onStarEnter($event)" (starLeave)="onStarLeave()" (starClicked)="onStarClicked($event)" [starId]="star" [rating]="hoverState || rating"></app-star>
+                                </ng-container>                              </div>
+                          </div>
                             <div class="col-md-12">
                                 <div class="send">
-                                    <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                                    <button type="submit" class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
                                 </div>
                             </div>
                         </div>
