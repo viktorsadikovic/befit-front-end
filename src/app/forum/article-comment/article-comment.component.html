@@ -1,0 +1,26 @@
+<div class="modal fade" id="threadModall" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+              <div class="modal-header d-flex align-items-center bg-primary text-white">
+                  <h6 class="modal-title mb-0" id="threadModalLabel">Add comment</h6>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <label for="text">Your comment:</label>
+                    <textarea class="form-control summernote" id="text" placeholder="Text" formControlName="text"></textarea>
+                  </div>
+
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Post</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+

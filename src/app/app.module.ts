@@ -36,6 +36,7 @@ import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 import { StarComponent } from './shared/star/star.component';
+import { ArticleCommentComponent } from './forum/article-comment/article-comment.component';
 
 
 
@@ -61,7 +62,8 @@ import { StarComponent } from './shared/star/star.component';
     WorkoutPlanDetailsComponent,
     AddExerciseComponent,
     ExerciseThumbnailComponent,
-    StarComponent
+    StarComponent,
+    ArticleCommentComponent
   ],
   imports: [
     BrowserModule,
