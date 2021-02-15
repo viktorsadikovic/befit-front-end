@@ -11,7 +11,7 @@ export class WorkoutPlanThumbnailComponent implements OnInit {
 
   constructor(private service: DataService) { }
   @Input() workoutPlan: WorkoutPlan;
-  rating;
+  rating = 0;
   stars = [1,2,3,4,5]
 
   ngOnInit(): void {

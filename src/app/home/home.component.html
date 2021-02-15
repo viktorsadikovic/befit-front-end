@@ -121,67 +121,31 @@
 
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
+        <div class="col-lg-4 col-md-6 portfolio-item filter-app" *ngFor="let workout of trendingWorkoutPlans">
+          <img [src]="'data:image/gif;base64,'+ workout?.image.pictureBytes" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4>App 1</h4>
-            <p>App</p>
-            <a href="assets/img/portfolio/portfolio-1.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-          <div class="portfolio-info">
-            <h4>App 2</h4>
-            <p>App</p>
+            <h4>{{workout?.title}}</h4>
+            <p>{{workout?.workoutType}}</p>
             <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            <a [routerLink]="['/workout-plans/workout-details', workout?.id]" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
           </div>
         </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">
+        <div class="col-lg-4 col-md-6 portfolio-item filter-card" *ngFor="let meal of trendingMeals">
+          <img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" class="img-fluid" alt="">
           <div class="portfolio-info">
-            <h4>Card 2</h4>
-            <p>Card</p>
+            <h4>{{meal?.title}}</h4>
+            <p>{{meal?.dietaryType}}</p>
             <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+            <a [routerLink]="['/meals/meal-details', meal?.id]" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
           </div>
         </div>
 
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-          <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-          <div class="portfolio-info">
-            <h4>App 3</h4>
-            <p>App</p>
-            <a href="assets/img/portfolio/portfolio-6.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 3"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-          <div class="portfolio-info">
-            <h4>Card 1</h4>
-            <p>Card</p>
-            <a href="assets/img/portfolio/portfolio-7.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 1"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-          <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-          <div class="portfolio-info">
-            <h4>Card 3</h4>
-            <p>Card</p>
-            <a href="assets/img/portfolio/portfolio-8.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 3"><i class="bx bx-plus"></i></a>
-            <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
-          </div>
-        </div>
 
+        
 
       </div>
 

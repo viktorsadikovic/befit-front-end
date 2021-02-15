@@ -62,7 +62,7 @@ export interface ExerciseWrapper {
   exerciseId: number,
   exercise: Exercise,
   numberOfSets: number,
-  repsPerSet: number
+  numberOfReps: number
 }
 
 export interface Comment {

@@ -26,8 +26,8 @@ export class ExerciseThumbnailComponent implements OnInit {
       id: null,
       exerciseId: this.exercise.id,
       exercise: null,
-      series: this.exerciseForm.value.series,
-      reps: this.exerciseForm.value.reps,
+      numberOfSets: this.exerciseForm.value.series,
+      numberOfReps: this.exerciseForm.value.reps,
     }
 
     console.log(this.exercise)

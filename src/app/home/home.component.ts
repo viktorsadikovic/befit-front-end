@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { Meal, WorkoutPlan } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
 import { TokenService } from '../shared/token.service';
 
@@ -16,6 +17,8 @@ export class HomeComponent implements OnInit {
   workoutProgramsCount;
   mealsCount;
   usersCount;
+  trendingMeals: Meal[];
+  trendingWorkoutPlans: WorkoutPlan[];
 
   constructor(
     private authService: SocialAuthService,
@@ -51,6 +54,14 @@ export class HomeComponent implements OnInit {
 
     this.dataService.getUsers().subscribe(data => {
       this.usersCount = data.length
+    })
+
+    this.dataService.getTrendingWorkoutPrograms(-1).subscribe(data => {
+      this.trendingWorkoutPlans = data;
+    })
+
+    this.dataService.getTrendingMeals(-1).subscribe(data => {
+      this.trendingMeals = data;
     })
   }
 

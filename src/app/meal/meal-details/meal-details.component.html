@@ -6,7 +6,7 @@
             <div class="col-lg-8 m-15px-tb">
                 <article class="article">
                     <div class="article-img">
-                        <img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" style="max-width: 700px;" title="" alt="">
+                        <img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" title="" alt="">
                     </div>
                     <div class="article-title">
                         <h6><a href="#">{{meal?.dietaryType}}</a></h6>
@@ -39,6 +39,7 @@
                         <a href="#" *ngFor="let type of meal?.mealTypes">{{type}}</a>
                     </div>
                 </article>
+                
                 <div class="contact-form article-comment">
                     <h4>Leave a Reply</h4>
                     <form id="contact-form" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
