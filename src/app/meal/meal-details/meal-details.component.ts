@@ -63,6 +63,7 @@ export class MealDetailsComponent implements OnInit {
       submitter: null,
       submissionTime: null
     }
+    
     setTimeout(function() {
       window.location.reload()
     }, 3000)

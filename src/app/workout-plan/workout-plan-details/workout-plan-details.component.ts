@@ -30,6 +30,14 @@ export class WorkoutPlanDetailsComponent implements OnInit {
       this.id = params['id']
       this.service.getSingleWorkoutPlan(this.id).subscribe(data => {
         this.workoutProgram = data;
+
+        this.service.getLatestWorkoutPrograms(this.workoutProgram.id).subscribe(data => {
+          this.latest = data;
+        })
+
+        this.service.getTrendingWorkoutPrograms(this.workoutProgram.id).subscribe(data => {
+          this.trending = data;
+        })
       })
     })
 
@@ -55,6 +63,10 @@ export class WorkoutPlanDetailsComponent implements OnInit {
       submitter: null,
       submissionTime: null
     }
+
+    setTimeout(function() {
+      window.location.reload()
+    }, 3000)
 
     console.log(review);
     this.service.addWorkoutReviews(this.workoutProgram.id, review);

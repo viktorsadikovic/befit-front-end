@@ -61,12 +61,9 @@
                   </form>
                 </div>
 
-                <div class="contact-form article-comment">
-                  <h4>Leave a Reply</h4>
 
-              </div>
             </div>
-            
+
             <div class="col-lg-4 m-15px-tb blog-aside">
                 <!-- Author -->
                 <div class="widget widget-author">
@@ -157,7 +154,77 @@
                 </div>
                 <!-- End widget Tags -->
             </div>
+
+            <div class="widget widget-author">
+
+              <section class="pt-5 pb-5">
+                <div class="container">
+                  <div class="row">
+                      <div class="col-6 widget-title">
+                          <h3 >Comments</h3>
+                      </div>
+                      <div class="col-6 text-right">
+                          <a class="btn btn-primary mb-3 mr-1" style="background-color: #2dc997; border: none;" href="#carouselExampleIndicators2" role="button" data-slide="prev">
+                              <i class="fa fa-arrow-left"></i>
+                          </a>
+                          <a class="btn btn-primary mb-3 " style="background-color: #2dc997; border: none;" href="#carouselExampleIndicators2" role="button" data-slide="next">
+                              <i class="fa fa-arrow-right"></i>
+                          </a>
+                      </div>
+                      <div class="col-12">
+                          <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+
+                              <div class="carousel-inner">
+                                  <div class="carousel-item active">
+                                      <div class="row">
+
+                                          <div class="col">
+                                              <div class="card">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">{{workoutProgram?.reviews[0]?.submitter?.username}}</h4>
+                                                      <h3 class="card-title">{{workoutProgram?.reviews[0].description}}</h3>
+                                                      <ng-container *ngFor="let star of stars">
+                                                        <app-star [starId]="star" [rating]="workoutProgram?.reviews[0]?.score"></app-star>
+                                                      </ng-container>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                                  <div *ngFor="let review of workoutProgram?.reviews | slice:1:workoutProgram?.reviews.length" class="carousel-item">
+                                      <div class="row">
+
+                                          <div class="col">
+                                              <div class="card">
+                                                  <div class="card-body">
+                                                    <h4 class="card-title">{{review?.submitter?.username}}</h4>
+                                                      <h3 class="card-title">{{review?.description}}</h3>
+                                                      <ng-container *ngFor="let star of stars">
+                                                        <app-star [starId]="star" [rating]="review?.score"></app-star>
+                                                      </ng-container>
+                                                  </div>
+
+                                              </div>
+                                          </div>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </section>
+
+
+            </div>
+
         </div>
+
+
     </div>
   </div>
 

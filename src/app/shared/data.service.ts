@@ -68,6 +68,14 @@ export class DataService {
     this.http.delete<WorkoutPlan>(this.api + "workouts/" + id + "/delete");
   }
 
+  getTrendingWorkoutPrograms(id) {
+    return this.http.get<any>(this.api + "workouts/trending/" + id);
+  }
+
+  getLatestWorkoutPrograms(id) {
+    return this.http.get<any>(this.api + "workouts/latest/" + id);
+  }
+
   getArticles() {
     return this.http.get<Article[]>(this.api + "forum/articles/all");
   }
