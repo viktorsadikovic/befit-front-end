@@ -24,11 +24,12 @@ export class ExerciseThumbnailComponent implements OnInit {
   onSubmit() {
     let exercise = {
       id: null,
-      exercise: this.exercise,
+      exerciseId: this.exercise.id,
+      exercise: null,
       series: this.exerciseForm.value.series,
       reps: this.exerciseForm.value.reps,
     }
-    
+
     console.log(this.exercise)
     this.eventClick.emit(exercise)
   }

@@ -59,6 +59,7 @@ export interface Exercise {
 
 export interface ExerciseWrapper {
   id: number,
+  exerciseId: number,
   exercise: Exercise,
   numberOfSets: number,
   repsPerSet: number
