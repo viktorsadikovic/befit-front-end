@@ -51,16 +51,17 @@ export interface Meal {
 export interface Exercise {
   id: number,
   name: string,
-  description: string,
+  image: any,
   muscleGroup: string,
-  workoutType: string
+  workoutType: string,
+  equipment: boolean
 }
 
 export interface ExerciseWrapper {
   id: number,
   exercise: Exercise,
   numberOfSets: number,
-  repsPerSet: number[]
+  repsPerSet: number
 }
 
 export interface Comment {
@@ -77,6 +78,7 @@ export interface Article {
   description: string,
   submitter: User,
   submissionTime: Date,
+  views: number,
   comments: Comment[]
 }
 

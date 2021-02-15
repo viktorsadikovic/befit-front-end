@@ -10,7 +10,7 @@ export class MealThumbnailComponent implements OnChanges {
 
   constructor() { }
   @Input() meal: Meal
-  rating;
+  rating = 0;
   stars = [1,2,3,4,5]
 
   ngOnChanges(): void {
@@ -18,6 +18,7 @@ export class MealThumbnailComponent implements OnChanges {
       if(isNaN(this.rating)) {
         this.rating = 0;
       } else {
+        console.log(this.rating)
         this.rating = this.rating/this.meal.reviews.length;
       }
     

@@ -63,6 +63,9 @@ export class MealDetailsComponent implements OnInit {
       submitter: null,
       submissionTime: null
     }
+    setTimeout(function() {
+      window.location.reload()
+    }, 3000)
 
     this.service.addMealReview(this.meal.id, review);
   }

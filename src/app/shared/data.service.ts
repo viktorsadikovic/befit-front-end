@@ -61,7 +61,7 @@ export class DataService {
   }
 
   createWorkoutPlan(workoutPlan) {
-    this.http.post<WorkoutPlan>(this.api + "workouts/add", workoutPlan, this.options).subscribe();
+    this.http.post<any>(this.api + "workouts/add", workoutPlan, {observe: 'response' }).subscribe();
   }
 
   deleteWorkoutPlan(id) {
@@ -100,6 +100,15 @@ export class DataService {
 
   addWorkoutReviews(id, review) {
     this.http.post(this.api + "reviews/add/workout-plan/" + id, review).subscribe();
+  }
+
+  updateViews(id) {
+    console.log("increment service")
+    this.http.post(this.api + "forum/increment-views/" + id, new Object()).subscribe();
+  }
+
+  addComment(id, comment) {
+    this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'}).subscribe();
   }
 
 }

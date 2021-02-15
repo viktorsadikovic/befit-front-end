@@ -86,8 +86,6 @@
           <!-- List group-->
           <ul class="list-group shadow">
             <app-exercise-thumbnail *ngFor="let exercise of exercises" [exercise]="exercise" (eventClick)="addExercise($event)"></app-exercise-thumbnail>
-            <app-exercise-thumbnail (eventClick)="addExercise($event)"></app-exercise-thumbnail>
-            <app-exercise-thumbnail></app-exercise-thumbnail>
 
 
           </ul>

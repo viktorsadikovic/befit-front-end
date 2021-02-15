@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Article } from 'src/app/shared/data.model';
+import { DataService } from 'src/app/shared/data.service';
 
 @Component({
   selector: 'app-article-content',
@@ -8,11 +9,13 @@ import { Article } from 'src/app/shared/data.model';
 })
 export class ArticleContentComponent implements OnChanges {
 
-  constructor() { }
+  constructor(private service: DataService) { }
   @Input() article: Article;
 
   ngOnChanges(): void {
     console.log(this.article)
+    console.log("zgolemi")
+
   }
 
 }

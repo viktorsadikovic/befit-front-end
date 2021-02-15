@@ -31,5 +31,4 @@ export class ForumComponent implements OnInit {
     console.log(currArticle)
     this.currentArticle = currArticle
   }
-
 }

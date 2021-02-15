@@ -23,6 +23,7 @@ export class ExerciseThumbnailComponent implements OnInit {
 
   onSubmit() {
     let exercise = {
+      id: null,
       exercise: this.exercise,
       series: this.exerciseForm.value.series,
       reps: this.exerciseForm.value.reps,
