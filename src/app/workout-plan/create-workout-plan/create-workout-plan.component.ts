@@ -1,6 +1,6 @@
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/shared/data.service';
 
 
@@ -27,21 +27,28 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
   constructor(private service: DataService) {
     this.selectedExercises = []
+    this.workout = new FormGroup({
+      title : new FormControl('', [Validators.required]),
+      description: new FormControl('', [Validators.required]),
+      equipment : new FormControl(null,[Validators.required]),
+      workoutType : new FormControl(null, [Validators.required]),
+      bodyPart: new FormControl(null, [Validators.required]),
+      muscleGroups: new FormControl(null, [Validators.required])
+    })
   }
+  workout: FormGroup;
 
-  test = true;
-  workout = new FormGroup({
-    id : new FormControl(null),
-    title : new FormControl(),
-    description: new FormControl(),
-    username : new FormControl(null),
-    equipment : new FormControl(),
-    workoutType : new FormControl(null),
-    bodyPart: new FormControl(null),
-    muscleGroups: new FormControl(),
-    exercises: new FormControl(),
-    reviews : new FormControl(null)
-  })
+  get title() { return this.workout.get('title'); }
+
+  get workoutType() { return this.workout.get('workoutType'); }
+
+  get bodyPart() { return this.workout.get('bodyPart')}
+
+  get muscleGroups() { return this.workout.get('muscleGroups')}
+
+  get equipment() { return this.workout.get('equipment')}
+
+  get description() { return this.workout.get('description')}
 
 
   ngOnInit(): void {

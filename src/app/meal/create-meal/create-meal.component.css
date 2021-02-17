@@ -1,10 +1,11 @@
 .container {
   width: 80%;
   margin: auto!important;
+  padding-top: 100px;
 }
 
 .create-meal-background {
-  background: url('../../../assets/img/fruits.jpg') top center;
+  background: url('../../../assets/img/nutrition.cms') top center;
   background-size: cover;
   min-height: 125vh;
 }
@@ -28,6 +29,12 @@ input:focus {
   border-color:  rgba(45, 201, 151, 0.81);
   box-shadow:  rgba(45, 201, 151, 0.81);
   outline: 0 none;
+}
+
+form {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
 }
 
 

@@ -12,6 +12,7 @@ export class MealThumbnailComponent implements OnChanges {
   @Input() meal: Meal
   rating = 0;
   stars = [1,2,3,4,5]
+  shortDescription = null;
 
   ngOnChanges(): void {
       this.meal.reviews?.forEach(rev => this.rating += rev.score);
@@ -21,7 +22,10 @@ export class MealThumbnailComponent implements OnChanges {
         console.log(this.rating)
         this.rating = this.rating/this.meal.reviews.length;
       }
-    
+
+      this.shortDescription = this.meal.description.split('.', 3);
+
+
 
   }
 

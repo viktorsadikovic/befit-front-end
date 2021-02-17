@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 
@@ -13,21 +13,36 @@ export class CreateMealComponent implements OnInit {
   constructor(private service: DataService, private router: Router) { }
 
   mealForm = new FormGroup({
-    id : new FormControl(),
-    title : new FormControl(),
-    username : new FormControl(),
-    mealTypes : new FormControl(),
+    title : new FormControl('',[Validators.required]),
+    mealTypes : new FormControl(null, Validators.required),
     dietaryType : new FormControl('VEGAN'),
-    preparationTime : new FormControl(),
-    cookingTime : new FormControl(),
-    servings : new FormControl(),
-    description : new FormControl(),
-    ingredients : new FormControl(),
-    preparation : new FormControl(),
-    reviews : new FormControl(null)
+    preparationTime : new FormControl('', Validators.required),
+    cookingTime : new FormControl('', Validators.required),
+    servings : new FormControl('', Validators.required),
+    description : new FormControl('', Validators.required),
+    ingredients : new FormControl('', Validators.required),
+    preparation : new FormControl('', Validators.required),
   })
   selectedFile: File;
   meal;
+
+  get title() { return this.mealForm.get('title'); }
+
+  get mealTypes() { return this.mealForm.get('mealTypes'); }
+
+  get dietaryType() { return this.mealForm.get('dietaryType'); }
+
+  get preparationTime() { return this.mealForm.get('preparationTime'); }
+
+  get cookingTime() { return this.mealForm.get('cookingTime'); }
+
+  get servings() { return this.mealForm.get('servings'); }
+
+  get description() { return this.mealForm.get('description'); }
+
+  get ingredients() { return this.mealForm.get('ingredients'); }
+
+  get preparation() { return this.mealForm.get('preparation'); }
 
   ngOnInit(): void {
   }
