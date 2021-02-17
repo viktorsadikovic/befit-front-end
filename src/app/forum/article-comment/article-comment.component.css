@@ -6,3 +6,19 @@
 .hidden {
   display: none;
 }
+
+#voting{
+  width:30px;
+  height:40px;
+}
+.upvote{
+  width:30px;
+  height: 20px;
+  cursor: pointer;
+}
+.downvote{
+  width:30px;
+  height: 20px;
+  /* background: url('') 0 0 no-repeat; */
+  cursor: pointer;
+}
