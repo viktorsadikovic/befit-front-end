@@ -23,6 +23,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
   selectedWorkoutType: any;
   selectedBodyPart: any;
   selectedMuscleGroups: any;
+  selectedEquipment: any;
   wTypeDisabled = false;
   selectedFile: File;
   retrieveResponse: any;
@@ -39,6 +40,11 @@ export class CreateWorkoutPlanComponent implements OnInit {
       bodyPart: new FormControl(null, [Validators.required]),
       muscleGroups: new FormControl(null, [Validators.required])
     })
+
+    this.selectedWorkoutType = null;
+    this.selectedBodyPart = null;
+    this.selectedMuscleGroups = null;
+    this.selectedEquipment = null;
   }
   workout: FormGroup;
 
@@ -65,13 +71,14 @@ export class CreateWorkoutPlanComponent implements OnInit {
     if(this.selectedWorkoutType === "BODYBUILDING"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
         this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
+        this.retrieveData()
     } else {
       this.workout.controls.muscleGroups.reset()
       this.bPart = {'' : ''}
       this.mGroups = {'' : ''}
       this.workout.controls.muscleGroups.setValue(null)
       this.workout.controls.bodyPart.setValue(null)
-
+      this.retrieveData()
       console.log(this.wTypeDisabled)
     }
   }
@@ -80,16 +87,20 @@ export class CreateWorkoutPlanComponent implements OnInit {
   changeBodyPart() {
     if(this.selectedBodyPart === "FULL_BODY"){
       this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
+      this.retrieveData()
     } else if(this.selectedBodyPart === "LOWER_BODY"){
         this.mGroups = {'Legs' : 'LEGS'}
+        this.retrieveData()
       console.log(this.wTypeDisabled)
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
+        this.retrieveData()
     }
   }
 
   changeMuscleGroup() {
     console.log(this.selectedMuscleGroups)
+    this.retrieveData()
   }
 
   onFileChanged(event) {
@@ -120,7 +131,6 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     console.log(uploadImageData.get('imageFile'))
     console.log(workoutPlan)
-    // this.service.uploadImage(uploadImageData);
     this.service.createWorkoutPlan(uploadImageData)
   }
 
@@ -155,6 +165,10 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     let params = {};
 
+    params['workoutType'] = this.selectedWorkoutType;
+    params['muscleGroup'] = this.selectedMuscleGroups;
+    params['equipment'] = this.selectedEquipment;
+
     if (page) {
       params[`page`] = page - 1;
     }
@@ -165,6 +179,5 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     return params;
   }
-
 
 }
