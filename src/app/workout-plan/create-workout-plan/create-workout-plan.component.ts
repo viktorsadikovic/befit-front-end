@@ -15,7 +15,11 @@ export class CreateWorkoutPlanComponent implements OnInit {
           'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
+  
   exercises: any[];
+  totalExercises: Number
+  page: Number = 1
+
   selectedWorkoutType: any;
   selectedBodyPart: any;
   selectedMuscleGroups: any;
@@ -55,6 +59,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
     this.service.getExercises().subscribe(data => {
       console.log(data)
       this.exercises = data;
+      this.totalExercises = data.length
     });
   }
 

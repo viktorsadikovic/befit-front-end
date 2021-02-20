@@ -32,11 +32,6 @@ input:focus {
   outline: 0 none;
 }
 
-.scroll {
-  overflow: scroll;
-  height: 690px;
-}
-
 .form-group {
   width: 100%;
 }
