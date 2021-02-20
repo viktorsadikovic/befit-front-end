@@ -39,3 +39,48 @@ mat-slider {
   overflow: scroll;
   height: 600px;
 }
+
+
+.filters-button {
+  width: 100%;
+  margin: auto;
+  color: black;
+  border: none;
+}
+
+.filters-button:active {
+  border: none!important;
+  background-color: white!important;
+  color: black!important;
+}
+
+@media (max-width: 768px) {
+  .left {
+    float: none!important;
+    width: 100%!important;
+    margin: auto!important;
+  }
+
+  .right {
+    float: none!important;
+    width: 100%!important;
+    margin: auto!important;
+  }
+
+  .filters-button {
+    display: inline-block!important;
+  }
+
+  .create-button {
+    width: 40%;
+  }
+
+  .search-button {
+    width: 60%;
+  }
+
+  .buttons {
+    float: none!important;
+    width: 100%!important;
+  }
+}

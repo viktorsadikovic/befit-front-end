@@ -1,107 +1,121 @@
 <div class="workout">
   <div class="container py-5" data-aos="zoom-in" data-aos-delay="100">
 
-    <!-- <a [routerLink]="['/workout-plans/create-workout-plan']" class="btn-get-started btn">Create Workout Program</a> -->
-
     <br>
     <br>
     <br>
     <br>
     <br>
-
 
     <div class="container left" style="float: left; width: 28%; background-color: white;" [formGroup]="workout">
-      <div class="form-row">
-        <div class="form-group">
-          <label for="workoutType">Workout type</label>
-          <select class="form-control" id="workoutType" formControlName="workoutType" [(ngModel)]="selectedWorkoutType" (change)="changeWorkoutType()">
-            <option *ngFor="let type of wType | keyvalue" [value]="type.value">{{ type.key }}</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="bodyPart">Body part</label>
-          <select class="form-control" id="bodyPart" formControlName="bodyPart"
-          [(ngModel)]="selectedBodyPart"
-          (change)="changeBodyPart()">
-            <option [value]='null'></option>
-            <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
-          </select>
-        </div>
-      </div>
-
-      <label for="muscleGroups">Muscle groups</label>
-      <div class="form-row">
-
-        <div class="form-check form-check-inline" *ngFor='let group of mGroups | keyvalue'>
-          <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]='group.value' formControlName="muscleGroups">
-          <label class="form-check-label" for="inlineCheckbox1">{{group.key}}</label>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label for="bodyPart">Sort by</label>
-          <select class="form-control" id="bodyPart" formControlName="sort" [(ngModel)]="selectedFilter" (change)="selectedFilter()">
-            <option [value]='null'></option>
-            <option value="None">None</option>
-            <option value="AlphabeticalAsc">Alphabetical Ascending</option>
-            <option value="AlphabeticalDesc">Alphabetical Descending</option>
-            <option value="PriceAsc" >Price Ascending</option>
-            <option value="PriceDesc" >Price Descending</option>
-            <option value="DateAsc" >Date Ascending</option>
-            <option value="DateDesc" >Date Descending</option>
-            <option value="RateAsc" >Rating Ascending</option>
-            <option value="RateDesc" >Rating Descending</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="equipment">Equipment</label>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="equipment" id="exampleRadios1" [value]="true">
-            <label class="form-check-label" for="yes">
-              Yes
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="equipment" id="exampleRadios2" [value]="false">
-            <label class="form-check-label" for="no">
-              No
-            </label>
+      <button style="display: none;" class="btn filters-button" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="true" aria-controls="filters">
+        Filters
+      </button>
+      <div id="filters" class="collapse show">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="workoutType">Workout type</label>
+            <select class="form-control" id="workoutType" formControlName="workoutType" [(ngModel)]="selectedWorkoutType" (change)="changeWorkoutType()">
+              <option *ngFor="let type of wType | keyvalue" [value]="type.value">{{ type.key }}</option>
+            </select>
           </div>
         </div>
-      </div>
 
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bodyPart">Body part</label>
+            <select class="form-control" id="bodyPart" formControlName="bodyPart"
+            [(ngModel)]="selectedBodyPart"
+            (change)="changeBodyPart()">
+              <option [value]='null'></option>
+              <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="muscleGroups">Muscle groups</label>
+        <div class="form-row">
+
+          <div class="form-check form-check-inline" *ngFor='let group of mGroups | keyvalue'>
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]='group.value' formControlName="muscleGroups">
+            <label class="form-check-label" for="inlineCheckbox1">{{group.key}}</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bodyPart">Sort by</label>
+            <select class="form-control" id="bodyPart" formControlName="sort" [(ngModel)]="selectedFilter" (change)="selectedFilter()">
+              <option [value]='null'></option>
+              <option value="None">None</option>
+              <option value="AlphabeticalAsc">Alphabetical Ascending</option>
+              <option value="AlphabeticalDesc">Alphabetical Descending</option>
+              <option value="PriceAsc" >Price Ascending</option>
+              <option value="PriceDesc" >Price Descending</option>
+              <option value="DateAsc" >Date Ascending</option>
+              <option value="DateDesc" >Date Descending</option>
+              <option value="RateAsc" >Rating Ascending</option>
+              <option value="RateDesc" >Rating Descending</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="equipment">Equipment</label>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="equipment" id="exampleRadios1" [value]="true">
+              <label class="form-check-label" for="yes">
+                Yes
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="equipment" id="exampleRadios2" [value]="false">
+              <label class="form-check-label" for="no">
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="container" style="float: right; width: 70%;">
+    <div class="container buttons" style="float: right; width: 70%;">
       <div class="form-row">
-        <div class="form-group col-md-11" style="padding: 0;">
+        <div class="form-group col-md-11 search-button" style="padding: 0;">
           <input type="text" class="form-control" id="title" placeholder="Search">
         </div>
-        <div class="col-md-1" style="padding-left: 15px;">
+        <div class="col-md-1 create-button" style="padding-left: 15px;">
           <a [routerLink]="['/workout-plans/create-workout-plan']" class="btn btn-light" style="background-color: white;color: black; border-radius: 50%;">+</a>
         </div>
       </div>
     </div>
 
-    <div class="container" style="float: right; width: 70%;">
+    <div class="container right" style="float: right; width: 70%;">
       <div class="row">
         <div class="mx-auto" data-aos="zoom-in" data-aos-delay="100">
 
           <!-- List group-->
           <ul class="list-group shadow" >
-            <app-workout-plan-thumbnail *ngFor="let program of workoutPrograms" [workoutPlan]="program"></app-workout-plan-thumbnail>
+            <app-workout-plan-thumbnail *ngFor="let program of workoutPrograms | paginate: {
+              id: 'workout_pagination',
+              itemsPerPage: 5,
+              currentPage: page,
+              totalItems: totalPrograms }" [workoutPlan]="program"></app-workout-plan-thumbnail>
           </ul>
         </div>
       </div>
+      <pagination-controls  id="workout_pagination"
+                      (pageChange)="page = $event"
+                      maxSize="5"
+                      directionLinks="true"
+                      autoHide="true"
+                      responsive="true"
+                      previousLabel="Previous"
+                      nextLabel="Next">
+      </pagination-controls>
 
     </div>
 

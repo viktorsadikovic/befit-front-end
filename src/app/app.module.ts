@@ -37,7 +37,7 @@ import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 import { StarComponent } from './shared/star/star.component';
 import { ArticleCommentComponent } from './forum/article-comment/article-comment.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -72,7 +72,8 @@ import { ArticleCommentComponent } from './forum/article-comment/article-comment
     SocialLoginModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatSliderModule
+    MatSliderModule,
+    NgxPaginationModule
   ],
   providers: [
     DataService,

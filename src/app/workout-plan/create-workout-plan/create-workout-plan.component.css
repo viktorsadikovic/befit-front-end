@@ -40,3 +40,17 @@ input:focus {
 .form-group {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .left {
+    float: none!important;
+    width: 100%!important;
+    margin: auto!important;
+  }
+
+  .right {
+    float: none!important;
+    width: 100%!important;
+    margin: auto!important;
+  }
+}

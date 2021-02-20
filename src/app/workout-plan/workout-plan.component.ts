@@ -22,6 +22,8 @@ export class WorkoutPlanComponent implements OnInit {
   wTypeDisabled = false;
 
   workoutPrograms: WorkoutPlan[]
+  totalPrograms: Number
+  page: Number = 1
 
   workout = new FormGroup({
     username : new FormControl(null),
@@ -41,6 +43,7 @@ export class WorkoutPlanComponent implements OnInit {
 
     this.service.getWorkoutPlans().subscribe(data => {
       this.workoutPrograms = data;
+      this.totalPrograms = data.length
     })
   }
 
