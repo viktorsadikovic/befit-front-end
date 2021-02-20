@@ -51,14 +51,14 @@
             <label for="equipment">Equipment</label>
             <div class="form-check">
               <em *ngIf="equipment.invalid && (equipment.dirty || equipment.touched) && equipment.errors.required" class="text-danger"><br>Required</em>
-              <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" [(ngModel)]="selectedEquipment" id="exampleRadios1" [value]="true">
+              <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" [(ngModel)]="selectedEquipment" (change)="changeEquipment()" id="exampleRadios1" [value]="true">
               <label class="form-check-label" for="yes">
                 Yes
               </label>
             </div>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" id="exampleRadios2" [value]="false">
+              <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" [(ngModel)]="selectedEquipment" (change)="changeEquipment()" id="exampleRadios2" [value]="false">
               <label class="form-check-label" for="no">
                 No
               </label>

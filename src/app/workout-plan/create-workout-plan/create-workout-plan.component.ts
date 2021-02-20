@@ -62,7 +62,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
 
   ngOnInit(): void {
-   this.retrieveData();
+    this.retrieveData();
   }
 
   changeWorkoutType() {
@@ -100,6 +100,10 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
   changeMuscleGroup() {
     console.log(this.selectedMuscleGroups)
+    this.retrieveData()
+  }
+
+  changeEquipment() {
     this.retrieveData()
   }
 
@@ -165,8 +169,9 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     let params = {};
 
+   
     params['workoutType'] = this.selectedWorkoutType;
-    params['muscleGroup'] = this.selectedMuscleGroups;
+    params['muscleGroups'] = this.selectedMuscleGroups;
     params['equipment'] = this.selectedEquipment;
 
     if (page) {
