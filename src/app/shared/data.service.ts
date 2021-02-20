@@ -13,7 +13,12 @@ export class DataService {
   optionsImage = { headers: new HttpHeaders({'Content-Type': 'multipart/form-data; charset=UTF-8'})}
 
   getExercises(params){
+    console.log(params)
     return this.http.get<any>(this.api + "exercises/all", { params });
+  }
+
+  getExercisesCount() {
+    return this.http.get(this.api + "exercises/count");
   }
 
   getSingleExercise(id) {

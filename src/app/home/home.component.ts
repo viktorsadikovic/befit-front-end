@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
       }
     );
 
-    this.dataService.getExercises().subscribe(data => {
-      this.exercisesCount = data.length
+    this.dataService.getExercisesCount().subscribe(data => {
+      this.exercisesCount = data
     })
 
     this.dataService.getWorkoutPlans().subscribe(data => {

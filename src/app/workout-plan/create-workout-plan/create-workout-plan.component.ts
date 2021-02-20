@@ -143,6 +143,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
           const { exercises, totalItems } = response;
           this.exercises = exercises;
           this.totalExercises = totalItems;
+          console.log("response")
           console.log(response);
         },
         error => {
