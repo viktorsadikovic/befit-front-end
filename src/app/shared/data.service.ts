@@ -12,8 +12,8 @@ export class DataService {
   options = { headers: new HttpHeaders({'Content-Type': 'application/json; charset=UTF-8'})}
   optionsImage = { headers: new HttpHeaders({'Content-Type': 'multipart/form-data; charset=UTF-8'})}
 
-  getExercises(){
-    return this.http.get<any>(this.api + "exercises/all");
+  getExercises(params){
+    return this.http.get<any>(this.api + "exercises/all", { params });
   }
 
   getSingleExercise(id) {

@@ -15,7 +15,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
           'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
-  
+
   exercises: any[];
   totalExercises: Number
   page: Number = 1
@@ -56,11 +56,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.service.getExercises().subscribe(data => {
-      console.log(data)
-      this.exercises = data;
-      this.totalExercises = data.length
-    });
+   this.retrieveData();
   }
 
   changeWorkoutType() {
@@ -128,18 +124,46 @@ export class CreateWorkoutPlanComponent implements OnInit {
     this.service.createWorkoutPlan(uploadImageData)
   }
 
-  getImage() {
-    let image = null;
-
-    this.service.getImage(null).subscribe(res => {
-      this.retrieveResponse = res;
-      image = 'data:image/jpeg;base64,' + this.retrieveResponse.picByte;
-    })
-  }
-
   addExercise(exerciseWrapper) {
     this.selectedExercises.push(exerciseWrapper)
     console.log(this.selectedExercises)
   }
+
+  handlePageChange(event) {
+    this.page = event;
+    this.retrieveData();
+  }
+
+  retrieveData() {
+    const params = this.getRequestParams(this.page, 3);
+
+    this.service.getExercises(params)
+      .subscribe(
+        response => {
+          const { exercises, totalItems } = response;
+          this.exercises = exercises;
+          this.totalExercises = totalItems;
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  getRequestParams(page, pageSize) {
+
+    let params = {};
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    return params;
+  }
+
 
 }

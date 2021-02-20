@@ -97,16 +97,14 @@
               currentPage: page,
               totalItems: totalExercises }" [exercise]="exercise" (eventClick)="addExercise($event)"></app-exercise-thumbnail>
 
-
           </ul>
         </div>
       </div>
       <pagination-controls  id="exercises_pagination"
-                      (pageChange)="page = $event"
+                      (pageChange)="handlePageChange($event)"
                       maxSize="3"
-                      directionLinks="true"
                       responsive="true"
-                      previousLabel="Previous"
+                      previousLabel="Prev"
                       nextLabel="Next">
       </pagination-controls>
 
