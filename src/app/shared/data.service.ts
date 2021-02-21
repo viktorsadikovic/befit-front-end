@@ -103,7 +103,7 @@ export class DataService {
   }
 
   getUsers() {
-    return this.http.get<User[]>(this.api + 'users/all');
+    return this.http.get<User[]>(this.api + 'users/count');
   }
 
   uploadImage(imageData) {
