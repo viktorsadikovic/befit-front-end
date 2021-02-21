@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   trendingWorkoutPlans: WorkoutPlan[];
 
   constructor(
+    private authService: SocialAuthService,
+    private tokenService: TokenService,
     private dataService: DataService
   ) { }
 
