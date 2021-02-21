@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
   trendingWorkoutPlans: WorkoutPlan[];
 
   constructor(
-    private authService: SocialAuthService,
-    private tokenService: TokenService,
     private dataService: DataService
   ) { }
 
@@ -33,22 +31,22 @@ export class HomeComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.authService.authState.subscribe(
-      data => {
-        this.userLogged = data;
-        this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
-      }
-    );
+    // this.authService.authState.subscribe(
+    //   data => {
+    //     this.userLogged = data;
+    //     this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
+    //   }
+    // );
 
     this.dataService.getExercisesCount().subscribe(data => {
       this.exercisesCount = data
     })
 
-    this.dataService.getWorkoutPlans().subscribe(data => {
+    this.dataService.getWorkoutPlansCount().subscribe(data => {
       this.workoutProgramsCount = data.length
     })
 
-    this.dataService.getMeals().subscribe(data => {
+    this.dataService.getMealsCount().subscribe(data => {
       this.mealsCount = data.length
     })
 

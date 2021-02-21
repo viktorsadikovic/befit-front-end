@@ -22,6 +22,7 @@ export class WorkoutPlanComponent implements OnInit {
   wTypeDisabled = false;
 
   workoutPrograms: WorkoutPlan[]
+  activeWorkoutPrograms: WorkoutPlan[]
   totalPrograms: Number
   page: Number = 1
 
@@ -41,10 +42,7 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.service.getWorkoutPlans().subscribe(data => {
-      this.workoutPrograms = data;
-      this.totalPrograms = data.length
-    })
+    this.retrieveData();
   }
 
   onSubmit() {
@@ -86,6 +84,44 @@ export class WorkoutPlanComponent implements OnInit {
 
   selectedFilter() {
 
+  }
+
+  handlePageChange(event) {
+    this.page = event;
+    this.retrieveData();
+  }
+
+  retrieveData() {
+    const params = this.getRequestParams(this.page, 3);
+
+    this.service.getMeals(params)
+      .subscribe(
+        response => {
+          const { exercises, totalItems } = response;
+          this.workoutPrograms = exercises;
+          this.activeWorkoutPrograms = exercises
+          this.totalPrograms = totalItems;
+          console.log("response")
+          console.log(response);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  getRequestParams(page, pageSize) {
+
+    let params = {};
+
+    if (page) {
+      params[`page`] = page - 1;
+    }
+
+    if (pageSize) {
+      params[`size`] = pageSize;
+    }
+
+    return params;
   }
 
 }

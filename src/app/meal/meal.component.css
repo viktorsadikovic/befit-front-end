@@ -35,11 +35,6 @@ mat-slider {
   background-color: #2dc997;
 }
 
-.scroll {
-  overflow: scroll;
-  height: 600px;
-}
-
 
 .filters-button {
   width: 100%;

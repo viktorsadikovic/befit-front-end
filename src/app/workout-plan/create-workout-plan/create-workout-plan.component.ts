@@ -1,4 +1,3 @@
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/shared/data.service';
@@ -78,11 +77,11 @@ export class CreateWorkoutPlanComponent implements OnInit {
       this.mGroups = {'' : ''}
       this.workout.controls.muscleGroups.setValue(null)
       this.workout.controls.bodyPart.setValue(null)
+      this.selectedMuscleGroups = null
       this.retrieveData()
       console.log(this.wTypeDisabled)
     }
   }
-
 
   changeBodyPart() {
     if(this.selectedBodyPart === "FULL_BODY"){
@@ -109,33 +108,6 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
   onFileChanged(event) {
      this.selectedFile = event.target.files[0];
-  }
-
-  onSubmit() {
-    console.log(this.workout.value)
-    const uploadImageData = new FormData();
-
-    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-
-    let workoutPlan = {
-      id : null,
-      title : this.workout.value.title,
-      description: this.workout.value.description,
-      username : null,
-      equipment : this.workout.value.equipment,
-      workoutType : this.workout.value.workoutType,
-      bodyPart: this.workout.value.bodyPart,
-      muscleGroups: this.workout.value.muscleGroups,
-      exercises: this.selectedExercises,
-      submissionTime: null,
-      reviews : null,
-      image: null
-    }
-    uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
-
-    console.log(uploadImageData.get('imageFile'))
-    console.log(workoutPlan)
-    this.service.createWorkoutPlan(uploadImageData)
   }
 
   addExercise(exerciseWrapper) {
@@ -169,7 +141,6 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     let params = {};
 
-   
     params['workoutType'] = this.selectedWorkoutType;
     params['muscleGroups'] = this.selectedMuscleGroups;
     params['equipment'] = this.selectedEquipment;
@@ -183,6 +154,33 @@ export class CreateWorkoutPlanComponent implements OnInit {
     }
 
     return params;
+  }
+
+  onSubmit() {
+    console.log(this.workout.value)
+    const uploadImageData = new FormData();
+
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+
+    let workoutPlan = {
+      id : null,
+      title : this.workout.value.title,
+      description: this.workout.value.description,
+      username : null,
+      equipment : this.workout.value.equipment,
+      workoutType : this.workout.value.workoutType,
+      bodyPart: this.workout.value.bodyPart,
+      muscleGroups: this.workout.value.muscleGroups,
+      exercises: this.selectedExercises,
+      submissionTime: null,
+      reviews : null,
+      image: null
+    }
+    uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
+
+    console.log(uploadImageData.get('imageFile'))
+    console.log(workoutPlan)
+    this.service.createWorkoutPlan(uploadImageData)
   }
 
 }

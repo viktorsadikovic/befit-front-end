@@ -108,11 +108,12 @@
         </div>
       </div>
       <pagination-controls  id="workout_pagination"
-                      (pageChange)="page = $event"
+                      (pageChange)="handlePageChange($event)"
                       maxSize="5"
                       directionLinks="true"
                       responsive="true"
-                      previousLabel="Previous"
+                      autoHide="true"
+                      previousLabel="Prev"
                       nextLabel="Next">
       </pagination-controls>
 

@@ -33,8 +33,12 @@ export class DataService {
     this.http.post(this.api + "exercises/add", ExerciseDto,  {observe: 'response' }).subscribe();
   }
 
-  getMeals() {
-    return this.http.get<any>(this.api + "meals/all");
+  getMeals(params) {
+    return this.http.get<any>(this.api + "meals/all", { params });
+  }
+
+  getMealsCount() {
+    return this.http.get<any>(this.api + "meals/count");
   }
 
   getSingleMeal(id) {
@@ -57,8 +61,12 @@ export class DataService {
     this.http.delete<Meal>(this.api + "meals/" + id + "/delete");
   }
 
-  getWorkoutPlans() {
-    return this.http.get<WorkoutPlan[]>(this.api + "workouts/all");
+  getWorkoutPlans(params) {
+    return this.http.get<WorkoutPlan[]>(this.api + "workouts/all", {params});
+  }
+
+  getWorkoutPlansCount() {
+    return this.http.get<WorkoutPlan[]>(this.api + "workouts/count");
   }
 
   getSingleWorkoutPlan(id) {
