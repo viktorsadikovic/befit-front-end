@@ -33,27 +33,28 @@ export class HomeComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    // this.authService.authState.subscribe(
-    //   data => {
-    //     this.userLogged = data;
-    //     this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
-    //   }
-    // );
+    this.authService.authState.subscribe(
+      data => {
+        this.userLogged = data;
+        console.log(data + " home-component")
+        this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
+      }
+    );
 
     this.dataService.getExercisesCount().subscribe(data => {
       this.exercisesCount = data
     })
 
     this.dataService.getWorkoutPlansCount().subscribe(data => {
-      this.workoutProgramsCount = data.length
+      this.workoutProgramsCount = data
     })
 
     this.dataService.getMealsCount().subscribe(data => {
-      this.mealsCount = data.length
+      this.mealsCount = data
     })
 
     this.dataService.getUsers().subscribe(data => {
-      this.usersCount = data.length
+      this.usersCount = data
     })
 
     this.dataService.getTrendingWorkoutPrograms(-1).subscribe(data => {
