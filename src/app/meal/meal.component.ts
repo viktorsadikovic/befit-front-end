@@ -57,9 +57,9 @@ export class MealComponent implements OnInit {
     this.service.getMeals(params)
       .subscribe(
         response => {
-          const { exercises, totalItems } = response;
-          this.meals = exercises;
-          this.activeMeals = exercises
+          const { meals, totalItems } = response;
+          this.meals = meals;
+          this.activeMeals = meals
           this.totalMeals = totalItems;
           console.log("response")
           console.log(response);

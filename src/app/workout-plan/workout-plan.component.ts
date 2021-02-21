@@ -97,9 +97,9 @@ export class WorkoutPlanComponent implements OnInit {
     this.service.getMeals(params)
       .subscribe(
         response => {
-          const { exercises, totalItems } = response;
-          this.workoutPrograms = exercises;
-          this.activeWorkoutPrograms = exercises
+          const { workouts, totalItems } = response;
+          this.workoutPrograms = workouts;
+          this.activeWorkoutPrograms = workouts
           this.totalPrograms = totalItems;
           console.log("response")
           console.log(response);
