@@ -12,6 +12,7 @@ export class OauthService {
 
   constructor(private http: HttpClient) { }
   user;
+  isLoggedIn = false;
 
 
   oauthURL = 'http://localhost:8080/oauth/';

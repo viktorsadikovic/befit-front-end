@@ -62,7 +62,7 @@ export class DataService {
   }
 
   getWorkoutPlans(params) {
-    return this.http.get<WorkoutPlan[]>(this.api + "workouts/all", {params});
+    return this.http.get<any>(this.api + "workouts/all", {params});
   }
 
   getWorkoutPlansCount() {
@@ -89,8 +89,8 @@ export class DataService {
     return this.http.get<any>(this.api + "workouts/latest/" + id);
   }
 
-  getArticles() {
-    return this.http.get<Article[]>(this.api + "forum/articles/all");
+  getArticles(params) {
+    return this.http.get<any>(this.api + "forum/articles/all", {params});
   }
 
   saveArticle(article) {

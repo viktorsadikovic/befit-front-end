@@ -108,7 +108,7 @@
 
           <!-- List group-->
           <ul class="list-group shadow" >
-            <app-meal-thumbnail *ngFor="let meal of activeMeals  | paginate: {
+            <app-meal-thumbnail *ngFor="let meal of meals | paginate: {
               id: 'meal_pagination',
               itemsPerPage: 3,
               currentPage: page,

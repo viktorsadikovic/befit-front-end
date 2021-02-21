@@ -34,7 +34,7 @@ export class MealComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
-
+    console.log("kralj")
     this.retrieveData();
   }
 
@@ -53,13 +53,13 @@ export class MealComponent implements OnInit {
 
   retrieveData() {
     const params = this.getRequestParams(this.page, 3);
-
+    console.log("lool sprdnja")
     this.service.getMeals(params)
       .subscribe(
         response => {
-          const { exercises, totalItems } = response;
-          this.meals = exercises;
-          this.activeMeals = exercises
+          const { meals, totalItems } = response;
+          this.meals = meals;
+          this.activeMeals = meals
           this.totalMeals = totalItems;
           console.log("response")
           console.log(response);

@@ -94,12 +94,12 @@ export class WorkoutPlanComponent implements OnInit {
   retrieveData() {
     const params = this.getRequestParams(this.page, 3);
 
-    this.service.getMeals(params)
+    this.service.getWorkoutPlans(params)
       .subscribe(
         response => {
-          const { exercises, totalItems } = response;
-          this.workoutPrograms = exercises;
-          this.activeWorkoutPrograms = exercises
+          const { workoutPlans, totalItems } = response;
+          this.workoutPrograms = workoutPlans;
+          this.activeWorkoutPrograms = workoutPlans
           this.totalPrograms = totalItems;
           console.log("response")
           console.log(response);

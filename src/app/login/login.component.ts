@@ -43,14 +43,17 @@ export class LoginComponent implements OnInit {
       data => {
         this.socialUser = data;
         const tokenGoogle = new TokenDto(this.socialUser.idToken);
-        console.log(this.socialUser + " login-component")
+        console.log(this.socialUser)
         console.log(tokenGoogle + " login-component")
         this.oauthService.google(tokenGoogle).subscribe(
           res => {
+            console.log(res)
             this.tokenService.setToken(res.value);
             this.isLogged = true;
             console.log(this.isLogged)
-            // this.oauthService.user = this.socialUser
+            this.oauthService.user = res.user
+            this.oauthService.isLoggedIn = true;
+            console.log(this.socialUser)
             this.router.navigate(['/home']);
           },
           err => {

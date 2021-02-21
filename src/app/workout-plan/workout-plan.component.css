@@ -80,3 +80,9 @@
   }
 }
 
+ul .ngx-pagination{
+  display: inline-flex!important;
+  background-color: white!important;
+  width: 30%!important;
+  margin-left: 33%!important;
+}

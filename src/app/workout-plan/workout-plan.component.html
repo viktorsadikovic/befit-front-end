@@ -107,15 +107,18 @@
           </ul>
         </div>
       </div>
-      <pagination-controls  id="workout_pagination"
-                      (pageChange)="handlePageChange($event)"
-                      maxSize="5"
-                      directionLinks="true"
-                      responsive="true"
-                      autoHide="true"
-                      previousLabel="Prev"
-                      nextLabel="Next">
-      </pagination-controls>
+      <div class="row">
+        <pagination-controls  id="workout_pagination"
+        (pageChange)="handlePageChange($event)"
+        maxSize="5"
+        directionLinks="true"
+        autoHide="true"
+        responsive="true"
+        previousLabel="Prev"
+        nextLabel="Next">
+</pagination-controls>
+      </div>
+     
 
     </div>
 
