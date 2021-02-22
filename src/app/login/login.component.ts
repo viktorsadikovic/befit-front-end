@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
+            this.oauthService.user = res.user
             console.log(this.isLogged)
             // this.oauthService.user = this.socialUser
             this.router.navigate(['/home']);

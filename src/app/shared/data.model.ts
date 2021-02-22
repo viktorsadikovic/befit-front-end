@@ -85,7 +85,7 @@ export interface Article {
 
 export class TokenDto {
   value: string;
-
+  user: any;
   constructor(value: string) {
       this.value = value;
   }

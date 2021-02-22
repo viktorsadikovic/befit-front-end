@@ -22,7 +22,6 @@ export class WorkoutPlanComponent implements OnInit {
   wTypeDisabled = false;
 
   workoutPrograms: WorkoutPlan[]
-  activeWorkoutPrograms: WorkoutPlan[]
   totalPrograms: Number
   page: Number = 1
 
@@ -94,12 +93,11 @@ export class WorkoutPlanComponent implements OnInit {
   retrieveData() {
     const params = this.getRequestParams(this.page, 3);
 
-    this.service.getMeals(params)
+    this.service.getWorkoutPlans(params)
       .subscribe(
         response => {
-          const { workouts, totalItems } = response;
-          this.workoutPrograms = workouts;
-          this.activeWorkoutPrograms = workouts
+          const { workoutPlans, totalItems } = response;
+          this.workoutPrograms = workoutPlans;
           this.totalPrograms = totalItems;
           console.log("response")
           console.log(response);

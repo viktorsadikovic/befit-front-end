@@ -101,7 +101,7 @@
           <ul class="list-group shadow" >
             <app-workout-plan-thumbnail *ngFor="let program of workoutPrograms | paginate: {
               id: 'workout_pagination',
-              itemsPerPage: 5,
+              itemsPerPage: 3,
               currentPage: page,
               totalItems: totalPrograms }" [workoutPlan]="program"></app-workout-plan-thumbnail>
           </ul>

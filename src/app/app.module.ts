@@ -14,6 +14,8 @@ import { MealComponent } from './meal/meal.component';
 import { CreateMealComponent } from './meal/create-meal/create-meal.component';
 import { ForumComponent } from './forum/forum.component';
 import { DataService } from '../app/shared/data.service';
+import { OauthService } from '../app/shared/oauth.service';
+import { TokenService } from '../app/shared/token.service'
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MealThumbnailComponent } from './meal/meal-thumbnail/meal-thumbnail.component';
@@ -25,7 +27,6 @@ import {MatSliderModule} from '@angular/material/slider';
 import {
   GoogleLoginProvider,
   FacebookLoginProvider,
-  AmazonLoginProvider,
 } from 'angularx-social-login';
 import { mealsInterceptor } from './interceptors/meals.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -95,7 +96,9 @@ import { NgxPaginationModule } from 'ngx-pagination';
         ],
       }  as SocialAuthServiceConfig,
     },
-    mealsInterceptor
+    mealsInterceptor,
+    TokenService,
+    OauthService
   ],
   bootstrap: [AppComponent]
 })
