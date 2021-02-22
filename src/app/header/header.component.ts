@@ -25,18 +25,21 @@ export class HeaderComponent implements OnInit {
     this.authService.authState.subscribe(
       data => {
         this.userLogged = data;
-        this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
+        // this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
+
       }
     );
+    if(sessionStorage.getItem("user") !== null){
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
+
   }
 
   logOut() {
-    this.authService.signOut().then(
-      data => {
-        this.tokenService.logOut();
+    this.tokenService.logOut();
         this.router.navigate(['/login']);
-      }
-    );
   }
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Meal, WorkoutPlan } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
+import { OauthService } from '../shared/oauth.service';
 import { TokenService } from '../shared/token.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private authService: SocialAuthService,
     private tokenService: TokenService,
-    private dataService: DataService
+    private dataService: DataService,
+    private oauthService: OauthService
   ) { }
 
   ngOnInit(): void {
@@ -64,6 +66,8 @@ export class HomeComponent implements OnInit {
     this.dataService.getTrendingMeals(-1).subscribe(data => {
       this.trendingMeals = data;
     })
+
+    console.log(this.oauthService.isLoggedIn)
   }
 
 }

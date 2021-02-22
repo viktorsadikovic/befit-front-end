@@ -32,7 +32,7 @@
         </li>
         <li id="login-nav">
           <a *ngIf="!isLogged" [routerLink]='["/login"]'>Log in</a>
-          <a *ngIf="isLogged" [routerLink]='["/login"]' (click)="logOut()">Logout</a>
+          <button type="button" *ngIf="isLogged" (click)="logOut()">Logout</button>
         </li>
 
       </ul>

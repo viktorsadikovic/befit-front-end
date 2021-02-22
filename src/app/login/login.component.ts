@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocialAuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { TokenDto } from '../shared/data.model';
@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-            this.oauthService.user = res.user
-            console.log(this.isLogged)
-            // this.oauthService.user = this.socialUser
-            this.router.navigate(['/home']);
+
+            sessionStorage.setItem("user", JSON.stringify(res.user))
+            this.oauthService.isLoggedIn = true;
+            this.router.navigate(['/home'])
           },
           err => {
             console.log(err);
