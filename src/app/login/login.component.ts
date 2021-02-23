@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithGoogle(): void {
+
     this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       data => {
         this.socialUser = data;
@@ -50,8 +51,9 @@ export class LoginComponent implements OnInit {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
 
+            this.oauthService.userLoggedIn()
             sessionStorage.setItem("user", JSON.stringify(res.user))
-            this.oauthService.isLoggedIn = true;
+
             this.router.navigate(['/home'])
           },
           err => {

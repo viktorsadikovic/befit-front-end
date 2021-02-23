@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter, Output } from '@angular/core';
 import { TokenDto } from './data.model';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};
 
@@ -13,6 +13,7 @@ export class OauthService {
   constructor(private http: HttpClient) { }
   user;
   isLoggedIn = false;
+  @Output() event: EventEmitter<any> = new EventEmitter();
 
 
   oauthURL = 'http://localhost:8080/oauth/';
@@ -25,5 +26,10 @@ export class OauthService {
   public facebook(tokenDto: TokenDto): Observable<TokenDto> {
     console.log(tokenDto + " oauth-service")
     return this.http.post<TokenDto>(this.oauthURL + 'facebook', tokenDto, options);
+  }
+
+  userLoggedIn(): Observable<any> {
+    this.event.emit(true);
+    return of(true)
   }
 }

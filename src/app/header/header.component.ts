@@ -14,7 +14,9 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: SocialAuthService,
               private router: Router,
               private tokenService: TokenService,
-              private oauthService: OauthService) { }
+              private oauthService: OauthService) {
+                  oauthService.userLoggedIn().subscribe(data => this.changeLoggedInValue(data))
+               }
 
   isLogged: boolean;
   userLogged: SocialUser;
@@ -40,6 +42,10 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.tokenService.logOut();
         this.router.navigate(['/login']);
+  }
+
+  changeLoggedInValue(value) {
+    this.isLogged = value
   }
 
 }
