@@ -132,4 +132,12 @@ export class DataService {
     this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'}).subscribe();
   }
 
+  addMealToFavorites(id) {
+    return this.http.post<any>(this.api, id);
+  }
+
+  addWorkoutProgramToFavorites(id) {
+    return this.http.post<any>(this.api, id);
+  }
+
 }

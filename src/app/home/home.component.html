@@ -126,7 +126,7 @@
           <div class="portfolio-info">
             <h4>{{workout?.title}}</h4>
             <p>{{workout?.workoutType}}</p>
-            <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i class="bx bx-plus"></i></a>
+            <a href="assets/img/portfolio/portfolio-3.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="App 2"><i [ngClass]="{'fa-heart' : isFavoriteWorkout(workout?.id), 'fa-heart-o' : !isFavoriteWorkout(workout?.id)}" class="fa"></i></a>
             <a [routerLink]="['/workout-plans/workout-details', workout?.id]" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
           </div>
         </div>
@@ -136,16 +136,10 @@
           <div class="portfolio-info">
             <h4>{{meal?.title}}</h4>
             <p>{{meal?.dietaryType}}</p>
-            <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i class="bx bx-plus"></i></a>
+            <a href="assets/img/portfolio/portfolio-4.jpg" data-gall="portfolioGallery" class="venobox preview-link" title="Card 2"><i [ngClass]="{'fa-heart' : isFavoriteMeal(meal?.id), 'fa-heart-o' : !isFavoriteMeal(meal?.id)}" class="fa"></i></a>
             <a [routerLink]="['/meals/meal-details', meal?.id]" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
           </div>
         </div>
-
-
-
-
-
-        
 
       </div>
 

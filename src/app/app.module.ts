@@ -39,6 +39,7 @@ import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/ex
 import { StarComponent } from './shared/star/star.component';
 import { ArticleCommentComponent } from './forum/article-comment/article-comment.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CommentThumbnailComponent } from './forum/comment-thumbnail/comment-thumbnail.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AddExerciseComponent,
     ExerciseThumbnailComponent,
     StarComponent,
-    ArticleCommentComponent
+    ArticleCommentComponent,
+    CommentThumbnailComponent
   ],
   imports: [
     BrowserModule,

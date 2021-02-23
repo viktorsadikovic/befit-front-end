@@ -15,7 +15,6 @@ export class LoginComponent implements OnInit {
   socialUser: SocialUser;
   userLogged: SocialUser;
   isLogged: boolean;
-  @Output() event = new EventEmitter<any>()
 
   constructor(
     private authService: SocialAuthService,
@@ -45,15 +44,14 @@ export class LoginComponent implements OnInit {
       data => {
         this.socialUser = data;
         const tokenGoogle = new TokenDto(this.socialUser.idToken);
-        console.log(this.socialUser + " login-component")
-        console.log(tokenGoogle + " login-component")
+
         this.oauthService.google(tokenGoogle).subscribe(
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-            
+
             sessionStorage.setItem("user", JSON.stringify(res.user))
-            this.event.emit(true)
+
             this.router.navigateByUrl("/home").then( () => {
               window.location.reload();
             })
@@ -81,7 +79,11 @@ export class LoginComponent implements OnInit {
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-            this.router.navigate(['/']);
+            sessionStorage.setItem("user", JSON.stringify(res.user))
+
+            this.router.navigateByUrl("/home").then( () => {
+              window.location.reload();
+            })
           },
           err => {
             console.log(err);

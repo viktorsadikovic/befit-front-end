@@ -10,3 +10,15 @@
 #facts .counters p {
   padding: 15px;
 }
+
+.fa-heart {
+  color: red;
+}
+
+.fa-heart-o:hover {
+  color: red!important;
+}
+
+.fa-heart:hover {
+  color: white;
+}

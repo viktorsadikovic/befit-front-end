@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
-import { Meal, WorkoutPlan } from '../shared/data.model';
+import { Meal, User, WorkoutPlan } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
 import { OauthService } from '../shared/oauth.service';
 import { TokenService } from '../shared/token.service';
@@ -12,7 +12,7 @@ import { TokenService } from '../shared/token.service';
 })
 export class HomeComponent implements OnInit {
 
-  userLogged: SocialUser;
+  userLogged: User;
   isLogged: boolean;
   exercisesCount;
   workoutProgramsCount;
@@ -34,14 +34,8 @@ export class HomeComponent implements OnInit {
     document.getElementById('nutrition-nav').className = ''
     document.getElementById('forum-nav').className = ''
     document.getElementById('login-nav').className = ''
-
-    this.authService.authState.subscribe(
-      data => {
-        this.userLogged = data;
-        console.log(data + " home-component")
-        this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
-      }
-    );
+    
+    this.userLogged = <User>JSON.parse(sessionStorage.getItem("user"))
 
     this.dataService.getExercisesCount().subscribe(data => {
       this.exercisesCount = data
@@ -68,6 +62,30 @@ export class HomeComponent implements OnInit {
     })
 
     console.log(this.oauthService.isLoggedIn)
+  }
+
+  isFavoriteWorkout(id) {
+    return this.userLogged?.favoriteWorkoutPlans.filter(elem => elem.id === id).length !== undefined
+  }
+
+  isFavoriteMeal(id) {
+    return this.userLogged?.favoriteMeals.filter(elem => elem.id === id).length !== undefined
+  }
+
+  addToFavoriteWorkoutPrograms(id) {
+    this.dataService.addWorkoutProgramToFavorites(id).subscribe(data => {
+      this.userLogged = data;
+      sessionStorage.removeItem("user")
+      sessionStorage.setItem("user", data)
+    })
+  }
+
+  addToFavoriteMeals(id) {
+    this.dataService.addMealToFavorites(id).subscribe(data => {
+      this.userLogged = data;
+      sessionStorage.removeItem("user")
+      sessionStorage.setItem("user", data)
+    })
   }
 
 }
