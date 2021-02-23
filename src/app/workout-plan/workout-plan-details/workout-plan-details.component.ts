@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
-import { WorkoutPlan } from 'src/app/shared/data.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { User, WorkoutPlan } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
+import { OauthService } from 'src/app/shared/oauth.service';
 
 @Component({
   selector: 'app-workout-plan-details',
@@ -11,7 +12,10 @@ import { DataService } from 'src/app/shared/data.service';
 })
 export class WorkoutPlanDetailsComponent implements OnInit {
 
-  constructor(private service: DataService, private route: ActivatedRoute) { }
+  constructor(private service: DataService, 
+              private route: ActivatedRoute,
+              private router: Router,
+              private oauthService: OauthService) { }
   workoutProgram : WorkoutPlan
   id;
   stars = [1,2,3,4,5];
@@ -19,6 +23,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   latest: WorkoutPlan[];
   trending: WorkoutPlan[];
   rating;
+  userLogged;
 
   reviewForm = new FormGroup({
     description: new FormControl('')
@@ -30,7 +35,6 @@ export class WorkoutPlanDetailsComponent implements OnInit {
       this.id = params['id']
       this.service.getSingleWorkoutPlan(this.id).subscribe(data => {
         this.workoutProgram = data;
-        console.log(this.workoutProgram)
 
         this.service.getLatestWorkoutPrograms(this.workoutProgram.id).subscribe(data => {
           this.latest = data;
@@ -42,6 +46,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
       })
     })
 
+    this.userLogged = this.oauthService.getCurrentUser();
   }
 
   onStarEnter(starId: number){
@@ -72,5 +77,36 @@ export class WorkoutPlanDetailsComponent implements OnInit {
     console.log(review);
     this.service.addWorkoutReviews(this.workoutProgram.id, review);
   }
+
+
+  isFavoriteWorkout(id) {
+
+    if(this.oauthService.checkUserLoggedIn()){
+      return this.userLogged?.favoriteWorkoutPlans.filter(elemId => elemId === id).length !== 0
+    }
+    return false;
+  }
+
+  addToFavoriteWorkoutPrograms(id) {
+
+    if(this.oauthService.checkUserLoggedIn()) {
+      
+      if(this.isFavoriteWorkout(id)) {
+        this.service.removeWorkoutProgramFromFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      } else {
+        this.service.addWorkoutProgramToFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      }
+
+    } else {
+      this.router.navigate(['/login'])
+    } 
+  }
+
 
 }

@@ -405,3 +405,16 @@ img {
   min-height: 125vh;
 }
 
+.fa-heart {
+  color: red;
+}
+
+.fa-heart-o:hover {
+  color: red!important;
+}
+
+.fa-heart:hover {
+  color: white;
+}
+
+

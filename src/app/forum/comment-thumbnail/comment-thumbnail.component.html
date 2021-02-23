@@ -13,13 +13,13 @@
           </div>
           <div>
             <div class="text-muted small text-center">
-                <span class="d-none d-sm-inline-block upvote" (click)="upVote()"><i class="fa fa-chevron-up"></i></span>
+                <div class="d-none d-sm-inline-block upvote" (click)="upVote()"><i [ngClass]="{'already-voted-up' : alreadyUpVoted(), '' : !alreadyUpVoted()}" class="fa fa-chevron-up"></i></div>
             </div>
             <div class="text-muted small text-center">
-                <span class="d-none d-sm-inline-block upvote">0</span>
+                <span class="d-none d-sm-inline-block upvote">{{comment?.rating}}</span>
             </div>
             <div class="text-muted small text-center">
-                <span class="d-none d-sm-inline-block downvote" (click)="downVote()"><i class="fa fa-chevron-down"></i></span>
+                <div class="d-none d-sm-inline-block downvote" (click)="downVote()"><i [ngClass]="{'already-voted-down' : alreadyDownVoted(), '' : !alreadyDownVoted()}" class="fa fa-chevron-down"></i></div>
             </div>
           </div>
 

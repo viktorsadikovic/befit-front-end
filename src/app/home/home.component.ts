@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
     this.dataService.addMealToFavorites(id).subscribe(data => {
       this.userLogged = data;
       sessionStorage.removeItem("user")
-      sessionStorage.setItem("user", data)
+      sessionStorage.setItem("user", JSON.stringify(this.userLogged))
     })
   }
 

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
-import { Meal } from 'src/app/shared/data.model';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Meal, User } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
+import { OauthService } from 'src/app/shared/oauth.service';
 
 @Component({
   selector: 'app-meal-details',
@@ -11,7 +12,10 @@ import { DataService } from 'src/app/shared/data.service';
 })
 export class MealDetailsComponent implements OnInit {
 
-  constructor(private service: DataService, private route: ActivatedRoute) { }
+  constructor(private service: DataService,
+              private route: ActivatedRoute,
+              private oauthService: OauthService,
+              private router: Router) { }
   id;
   stars = [1,2,3,4,5];
   hoverState = 0;
@@ -19,6 +23,7 @@ export class MealDetailsComponent implements OnInit {
   latest: Meal[];
   trending: Meal[];
   rating;
+  userLogged;
 
   reviewForm = new FormGroup({
     description: new FormControl('')
@@ -40,6 +45,8 @@ export class MealDetailsComponent implements OnInit {
       })
     })
 
+    this.userLogged = this.oauthService.getCurrentUser();
+    console.log(this.userLogged)
 
   }
 
@@ -70,5 +77,37 @@ export class MealDetailsComponent implements OnInit {
 
     this.service.addMealReview(this.meal.id, review);
   }
+
+  isFavoriteMeal(id) {
+    
+    if(this.oauthService.checkUserLoggedIn()){
+      return this.userLogged?.favoriteMeals.filter(elemId => elemId === id).length !== 0
+    }
+    return false;
+  }
+
+  addToFavoriteMeals(id) {
+
+    if(this.oauthService.checkUserLoggedIn()) {
+      
+      if(this.isFavoriteMeal(id)) {
+        this.service.removeMealFromFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      } else {
+        this.service.addMealToFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      }
+
+    } else {
+      this.router.navigate(['/login'])
+    } 
+    
+    
+  }
+
 
 }

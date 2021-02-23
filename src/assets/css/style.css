@@ -344,7 +344,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.3s ease-in-out 0s;
 }
 
-.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before {
+.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .menu-active > a:before, .logout-button:before {
   visibility: visible;
   transform: scaleX(1);
 }
@@ -371,7 +371,7 @@ h1, h2, h3, h4, h5, h6 {
   text-transform: none;
 }
 
-.nav-menu ul li a:hover {
+.nav-menu ul li a:hover , .logout-button:hover{
   background: #2dc997;
   color: #fff;
 }

@@ -132,12 +132,32 @@ export class DataService {
     this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'}).subscribe();
   }
 
+  upVote(id) {
+    return this.http.post<any>(this.api + "forum/comments/" + id + "/change-rating/upVote", id)
+  }
+
+  downVote(id) {
+    return this.http.post<any>(this.api + "forum/comments/" + id + "/change-rating/downVote", id)
+  }
+
   addMealToFavorites(id) {
-    return this.http.post<any>(this.api, id);
+    return this.http.post<any>(this.api + "meals/" + id + "/add-to-favorites", id);
+  }
+
+  removeMealFromFavorites(id) {
+    return this.http.post<any>(this.api + "meals/" + id + "/remove-from-favorites", id)
   }
 
   addWorkoutProgramToFavorites(id) {
-    return this.http.post<any>(this.api, id);
+    return this.http.post<any>(this.api + "workouts/" + id + "/add-to-favorites", id);
+  }
+
+  removeWorkoutProgramFromFavorites(id) {
+    return this.http.post<any>(this.api + "workouts/" + id + "/remove-from-favorites", id)
+  }
+
+  getCurrentUser() {
+    return this.http.get(this.api + "oauth/current-user");
   }
 
 }

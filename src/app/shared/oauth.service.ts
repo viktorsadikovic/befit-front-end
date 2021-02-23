@@ -28,4 +28,21 @@ export class OauthService {
     return this.http.post<TokenDto>(this.oauthURL + 'facebook', tokenDto, options);
   }
 
+  checkUserLoggedIn() {
+    if(sessionStorage.getItem("user") === null || sessionStorage.getItem("user") ===  undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  getCurrentUser() {
+    return JSON.parse(sessionStorage.getItem("user"))
+  }
+
+  updateUser(newUser){
+    sessionStorage.removeItem("user")
+    sessionStorage.setItem("user", JSON.stringify(newUser))
+  }
+
 }

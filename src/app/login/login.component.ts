@@ -44,12 +44,12 @@ export class LoginComponent implements OnInit {
       data => {
         this.socialUser = data;
         const tokenGoogle = new TokenDto(this.socialUser.idToken);
-
+        console.log("Alo bre")
         this.oauthService.google(tokenGoogle).subscribe(
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-
+            console.log(res)
             sessionStorage.setItem("user", JSON.stringify(res.user))
 
             this.router.navigateByUrl("/home").then( () => {
@@ -79,6 +79,7 @@ export class LoginComponent implements OnInit {
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
+            console.log(res)
             sessionStorage.setItem("user", JSON.stringify(res.user))
 
             this.router.navigateByUrl("/home").then( () => {
@@ -102,9 +103,9 @@ export class LoginComponent implements OnInit {
     this.tokenService.logOut();
     this.isLogged = false;
     console.log("logout")
-    this.router.navigateByUrl("/home").then( () => {
-      window.location.reload();
-    })
+    // this.router.navigateByUrl("/home").then( () => {
+    //   window.location.reload();
+    // })
   }
 
 }

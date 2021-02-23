@@ -11,6 +11,8 @@
                     <div class="article-title">
                         <h6><a href="#">{{meal?.dietaryType}}</a></h6>
                         <h2>{{meal?.title}}</h2>
+                        <div style="cursor: pointer;" (click)="addToFavoriteMeals(meal?.id)" ><i [ngClass]="{'fa-heart' : isFavoriteMeal(meal?.id), 'fa-heart-o' : !isFavoriteMeal(meal?.id)}" class="fa"></i></div>
+
                         <div class="media">
                             <div class="avatar">
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">

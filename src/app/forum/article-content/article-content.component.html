@@ -22,7 +22,7 @@
           </div>
       </div>
   </div>
-  <div class="card mb-2" *ngFor="let comment of article?.comments">
+  <!-- <div class="card mb-2" *ngFor="let comment of article?.comments">
       <div class="card-body">
           <div class="media forum-item">
               <a href="javascript:void(0)" class="card-link">
@@ -49,6 +49,7 @@
               
           </div>
       </div>
-  </div>
+  </div> -->
+  <app-comment-thumbnail *ngFor="let comment of article?.comments" [comment]="comment"></app-comment-thumbnail>
 </div>
 <!-- /Forum Detail -->

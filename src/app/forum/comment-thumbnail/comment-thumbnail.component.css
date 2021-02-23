@@ -1,0 +1,15 @@
+.upvote:hover{
+    color: green;
+ }
+ 
+.downvote:hover{
+    color: red!important;
+ }
+
+ .already-voted-up {
+     color: green!important;
+ }
+
+ .already-voted-down {
+    color: red!important;
+}
