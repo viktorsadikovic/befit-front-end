@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   socialUser: SocialUser;
   userLogged: SocialUser;
   isLogged: boolean;
+  @Output() event = new EventEmitter<any>()
 
   constructor(
     private authService: SocialAuthService,
@@ -50,11 +51,13 @@ export class LoginComponent implements OnInit {
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-
-            this.oauthService.userLoggedIn()
+            
             sessionStorage.setItem("user", JSON.stringify(res.user))
+            this.event.emit(true)
+            this.router.navigateByUrl("/home").then( () => {
+              window.location.reload();
+            })
 
-            this.router.navigate(['/home'])
           },
           err => {
             console.log(err);
@@ -94,12 +97,12 @@ export class LoginComponent implements OnInit {
   }
 
   logOut(): void {
-    this.authService.signOut().then(
-      data => {
-        this.tokenService.logOut();
-        this.isLogged = false;
-      }
-    );
+    this.tokenService.logOut();
+    this.isLogged = false;
+    console.log("logout")
+    this.router.navigateByUrl("/home").then( () => {
+      window.location.reload();
+    })
   }
 
 }

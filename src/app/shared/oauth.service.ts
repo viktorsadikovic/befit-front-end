@@ -28,8 +28,4 @@ export class OauthService {
     return this.http.post<TokenDto>(this.oauthURL + 'facebook', tokenDto, options);
   }
 
-  userLoggedIn(): Observable<any> {
-    this.event.emit(true);
-    return of(true)
-  }
 }
