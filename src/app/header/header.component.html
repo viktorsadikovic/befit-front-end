@@ -31,10 +31,9 @@
           </ul>
         </li>
         <li id="login-nav">
-          <a *ngIf="!isLogged" [routerLink]='["/login"]'>Log in</a>
-          <a *ngIf="isLogged" (click)="logOut()" [routerLink]='["/login"]'>Log out</a>
+          <a *ngIf="!isUserLoggedIn()" [routerLink]='["/login"]'>Log in</a>
+          <a *ngIf="isUserLoggedIn()" (click)="logOut()" [routerLink]='["/login"]'>Log out</a>
 
-          <!-- <div class="logout-button" style="cursor: pointer;color: white; font-weight: 400; font-family: Poppins, sans-serif; text-transform: uppercase; font-size: 13px;"  *ngIf="isLogged" (click)="logOut()">LOG OUT</div> -->
         </li>
 
       </ul>

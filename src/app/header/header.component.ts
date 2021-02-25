@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
               private router: Router,
               private tokenService: TokenService,
               private oauthService: OauthService) {
-                
+
                }
 
   isLogged: boolean;
@@ -31,17 +31,17 @@ export class HeaderComponent implements OnInit {
 
       }
     );
-    if(sessionStorage.getItem("user") !== null){
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
 
+    this.isLogged = this.oauthService.checkUserLoggedIn()
   }
 
   logOut() {
     this.tokenService.logOut();
     this.isLogged = false;
+  }
+
+  isUserLoggedIn() {
+    return this.oauthService.checkUserLoggedIn()
   }
 
 }
