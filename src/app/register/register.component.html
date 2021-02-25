@@ -1,17 +1,26 @@
 
 <div class="register-page">
   <div class="login-form" data-aos="zoom-in" data-aos-delay="100">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <h2 class="text-center">Register</h2>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required">
+          <input type="text" class="form-control" formControlName="name" placeholder="Name" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required">
+          <input type="text" class="form-control" formControlName="surname" placeholder="Surname" required="required">
         </div>
         <div class="form-group">
+            <input type="text" class="form-control" formControlName="email" placeholder="Email" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" required="required">
+        </div>
+        <!-- <div class="form-group">
+          <input type="file" class="form-control">
+        </div> -->
+        <!-- <div class="form-group">
           <input type="password" class="form-control" placeholder="Confirm password" required="required">
-      </div>
+       </div> -->
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Register</button>
         </div>

@@ -5,11 +5,8 @@
   padding-top: 100px;
 }
 
-form {
+.login-form  {
   border-radius: 20px!important;
-}
-
-.login-form form {
   margin-bottom: 15px;
   background: #f7f7f7;
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -30,8 +27,8 @@ form {
   border: none;
 }
 
-.btn:hover, .btn:active:focus {
-  background-color: transparent;
+.btn:hover, .btn:active:focus, fb:hover, google:hover {
+  background-color: transparent!important;
   border: 2px solid;
   border-color: gray;
   color: gray;
@@ -47,5 +44,13 @@ input:focus {
   background: #00b09b!important;
   background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
   background: linear-gradient(to right, #00b09b, #96c93d)!important;
-  min-height: 80vh;
+  min-height: 100vh;
+  padding-top: 10%;
+}
+
+@media (max-width: 768px) {
+  .login-page {
+    padding-top: 30%;
+    min-height: 80vh;
+  }
 }

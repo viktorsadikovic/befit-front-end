@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Meal, User, WorkoutPlan } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
   trendingWorkoutPlans: WorkoutPlan[];
 
   constructor(
-    private authService: SocialAuthService,
+    private router: Router,
     private tokenService: TokenService,
     private dataService: DataService,
     private oauthService: OauthService
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
     document.getElementById('forum-nav').className = ''
     document.getElementById('login-nav').className = ''
     
-    this.userLogged = <User>JSON.parse(sessionStorage.getItem("user"))
+    this.userLogged = this.oauthService.getCurrentUser()
 
     this.dataService.getExercisesCount().subscribe(data => {
       this.exercisesCount = data
@@ -65,27 +66,57 @@ export class HomeComponent implements OnInit {
   }
 
   isFavoriteWorkout(id) {
-    return this.userLogged?.favoriteWorkoutPlans.filter(elem => elem.id === id).length !== undefined
+    if(this.oauthService.checkUserLoggedIn()){
+      return this.userLogged?.favoriteWorkoutPlans?.filter(elemId => elemId === id).length !== 0
+    }
+    return false;
   }
 
   isFavoriteMeal(id) {
-    return this.userLogged?.favoriteMeals.filter(elem => elem.id === id).length !== undefined
+    if(this.oauthService.checkUserLoggedIn()){
+      return this.userLogged?.favoriteMeals?.filter(elemId => elemId === id).length !== 0
+    }
+    return false;
   }
 
   addToFavoriteWorkoutPrograms(id) {
-    this.dataService.addWorkoutProgramToFavorites(id).subscribe(data => {
-      this.userLogged = data;
-      sessionStorage.removeItem("user")
-      sessionStorage.setItem("user", data)
-    })
+    if(this.oauthService.checkUserLoggedIn()) {
+      
+      if(this.isFavoriteWorkout(id)) {
+        this.dataService.removeWorkoutProgramFromFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      } else {
+        this.dataService.addWorkoutProgramToFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      }
+
+    } else {
+      this.router.navigate(['/login'])
+    } 
   }
 
   addToFavoriteMeals(id) {
-    this.dataService.addMealToFavorites(id).subscribe(data => {
-      this.userLogged = data;
-      sessionStorage.removeItem("user")
-      sessionStorage.setItem("user", JSON.stringify(this.userLogged))
-    })
+    if(this.oauthService.checkUserLoggedIn()) {
+      
+      if(this.isFavoriteMeal(id)) {
+        this.dataService.removeMealFromFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      } else {
+        this.dataService.addMealToFavorites(id).subscribe(data => {
+          this.userLogged = data;
+          this.oauthService.updateUser(data)
+        })
+      }
+
+    } else {
+      this.router.navigate(['/login'])
+    } 
   }
 
 }

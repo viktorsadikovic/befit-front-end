@@ -416,3 +416,7 @@ img {
 .fa-heart:hover {
   color: white;
 }
+
+.article-content p {
+  text-align: justify;
+}

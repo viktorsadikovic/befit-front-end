@@ -1,7 +1,10 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocialAuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { TokenDto } from '../shared/data.model';
+import { DataService } from '../shared/data.service';
 import { OauthService } from '../shared/oauth.service';
 import { TokenService } from '../shared/token.service';
 
@@ -15,13 +18,20 @@ export class LoginComponent implements OnInit {
   socialUser: SocialUser;
   userLogged: SocialUser;
   isLogged: boolean;
+  loginForm: FormGroup;
 
   constructor(
     private authService: SocialAuthService,
     private router: Router,
     private oauthService: OauthService,
-    private tokenService: TokenService
-  ) { }
+    private tokenService: TokenService,
+    private service: DataService
+  ) { 
+    this.loginForm = new FormGroup({
+      email: new FormControl(),
+      password: new FormControl()
+    })
+  }
 
   ngOnInit(): void {
     document.getElementById('login-nav').className = 'menu-active'
@@ -50,7 +60,7 @@ export class LoginComponent implements OnInit {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
             console.log(res)
-            sessionStorage.setItem("user", JSON.stringify(res.user))
+            localStorage.setItem("user", JSON.stringify(res.user))
 
             // this.router.navigateByUrl("/home").then( () => {
             //   window.location.reload();
@@ -77,12 +87,13 @@ export class LoginComponent implements OnInit {
       data => {
         this.socialUser = data;
         const tokenFace = new TokenDto(this.socialUser.authToken);
+        console.log(data)
         this.oauthService.facebook(tokenFace).subscribe(
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
             console.log(res)
-            sessionStorage.setItem("user", JSON.stringify(res.user))
+            localStorage.setItem("user", JSON.stringify(res.user))
 
             this.router.navigate(['/home'])
           },
@@ -106,6 +117,18 @@ export class LoginComponent implements OnInit {
     // this.router.navigateByUrl("/home").then( () => {
     //   window.location.reload();
     // })
+  }
+
+  onSubmit() {
+    let loginDto = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    }
+                
+    this.service.login(loginDto).subscribe(data => {
+      console.log(data)
+      this.oauthService.updateUser(data)
+    })
   }
 
 }

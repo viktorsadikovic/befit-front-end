@@ -417,4 +417,6 @@ img {
   color: white;
 }
 
-
+.article-content p {
+  text-align: justify;
+}

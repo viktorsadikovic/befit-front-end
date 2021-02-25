@@ -29,7 +29,7 @@ export class OauthService {
   }
 
   checkUserLoggedIn() {
-    if(sessionStorage.getItem("user") === null || sessionStorage.getItem("user") ===  undefined) {
+    if(localStorage.getItem("user") === null || localStorage.getItem("user") ===  undefined) {
       return false;
     } else {
       return true;
@@ -37,12 +37,12 @@ export class OauthService {
   }
 
   getCurrentUser() {
-    return JSON.parse(sessionStorage.getItem("user"))
+    return JSON.parse(localStorage.getItem("user"))
   }
 
   updateUser(newUser){
-    sessionStorage.removeItem("user")
-    sessionStorage.setItem("user", JSON.stringify(newUser))
+    localStorage.removeItem("user")
+    localStorage.setItem("user", JSON.stringify(newUser))
   }
 
 }

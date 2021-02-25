@@ -1,33 +1,23 @@
 <div class="login-page">
   <div class="login-form" data-aos="zoom-in" data-aos-delay="100">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h2 class="text-center">Log in</h2>
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required">
+            <input type="text" class="form-control" formControlName="email" placeholder="Email" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" required="required">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
-        <div class="form-group">
-          <button class="btn btn-outline-danger btn-lg btn-block" (click)="signInWithGoogle()">
-            <i class="fa fa-google"></i> Sign in with Google</button>
-          <button class="btn btn-outline-primary btn-lg btn-block" (click)="signInWithFB()">
-            <i class="fa fa-facebook"></i> Sign in with Facebook</button>
-        </div>
-        <div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>
+        <p class="text-center"><a [routerLink]='["/register"]'>Create an Account</a></p>
+
     </form>
-    <div class="card-body">
-      <button class="btn btn-outline-danger btn-lg btn-block" (click)="signInWithGoogle()">
+
+    <button class="btn btn-primary btn-lg btn-block google" style="background-color: #de5246;" (click)="signInWithGoogle()">
         <i class="fa fa-google"></i> Sign in with Google </button>
-      <button class="btn btn-outline-primary btn-lg btn-block" (click)="signInWithFB()">
+      <button class="btn btn-primary btn-lg btn-block fb" style="background-color: #3b5998;" (click)="signInWithFB()">
         <i class="fa fa-facebook"></i> Sign in with Facebook</button>
-    </div>
-    <p class="text-center"><a [routerLink]='["/register"]'>Create an Account</a></p>
   </div>
 </div>

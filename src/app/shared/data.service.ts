@@ -157,7 +157,18 @@ export class DataService {
   }
 
   getCurrentUser() {
-    return this.http.get(this.api + "oauth/current-user");
+    return this.http.get(this.api + "auth/current-user");
   }
 
+  login(loginDto) {
+    return this.http.post<any>(this.api + "auth/login", loginDto)
+  }
+
+  register(user) {
+    return this.http.post<any>(this.api + "auth/register", user, {observe: 'response' });
+  }
+
+  logout() {
+    return this.http.post<any>(this.api + "auth/logout", null).subscribe()
+  }
 }
