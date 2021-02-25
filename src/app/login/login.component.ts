@@ -52,9 +52,11 @@ export class LoginComponent implements OnInit {
             console.log(res)
             sessionStorage.setItem("user", JSON.stringify(res.user))
 
-            this.router.navigateByUrl("/home").then( () => {
-              window.location.reload();
-            })
+            // this.router.navigateByUrl("/home").then( () => {
+            //   window.location.reload();
+            // })
+            this.router.navigate(['/home'])
+
 
           },
           err => {
@@ -82,9 +84,7 @@ export class LoginComponent implements OnInit {
             console.log(res)
             sessionStorage.setItem("user", JSON.stringify(res.user))
 
-            this.router.navigateByUrl("/home").then( () => {
-              window.location.reload();
-            })
+            this.router.navigate(['/home'])
           },
           err => {
             console.log(err);
