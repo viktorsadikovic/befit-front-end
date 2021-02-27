@@ -61,8 +61,8 @@ export class DataService {
     this.http.delete<Meal>(this.api + "meals/" + id + "/delete");
   }
 
-  getWorkoutPlans(params) {
-    return this.http.get<any>(this.api + "workouts/all", {params});
+  getWorkoutPlans(params, criteria) {
+    return this.http.get<any>(this.api + "workouts/all/" + criteria, {params});
   }
 
   getWorkoutPlansCount() {

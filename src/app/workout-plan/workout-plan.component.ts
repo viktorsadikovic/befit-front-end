@@ -20,7 +20,7 @@ export class WorkoutPlanComponent implements OnInit {
   selectedBodyPart: any;
   selectedMuscleGroups: any;
   selectedEquipment: any;
-  selectedFilter: any;
+  selectedFilter = "None";
   wTypeDisabled = false;
 
   workoutPrograms: WorkoutPlan[]
@@ -43,7 +43,7 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.retrieveData();
+    this.retrieveData(this.selectedFilter);
   }
 
   onSubmit() {
@@ -65,7 +65,7 @@ export class WorkoutPlanComponent implements OnInit {
 
       console.log(this.wTypeDisabled)
     }
-    this.retrieveData()
+    this.retrieveData(this.selectedFilter)
   }
 
 
@@ -78,32 +78,32 @@ export class WorkoutPlanComponent implements OnInit {
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
     }
-    this.retrieveData()
+    this.retrieveData(this.selectedFilter)
   }
 
   changeMuscleGroup(data) {
     console.log(data.checked)
     console.log(this.workout.value)
-    this.retrieveData()
+    this.retrieveData(this.selectedFilter)
   }
 
   changedEquipment() {
-    this.retrieveData()
+    this.retrieveData(this.selectedFilter)
   }
 
   selectedCriteria() {
-    this.retrieveData()
+    this.retrieveData(this.selectedFilter)
   }
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData();
+    this.retrieveData(this.selectedFilter);
   }
 
-  retrieveData() {
+  retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 3);
 
-    this.service.getWorkoutPlans(params)
+    this.service.getWorkoutPlans(params, criteria)
       .subscribe(
         response => {
           const { workoutPlans, totalItems } = response;
@@ -140,7 +140,7 @@ export class WorkoutPlanComponent implements OnInit {
     if (this.selectedMuscleGroups) {
       params[`muscleGroups`] = this.selectedMuscleGroups;
     }
-    
+
     if (this.selectedEquipment !== undefined) {
       params[`equipment`] = this.selectedEquipment;
     }
