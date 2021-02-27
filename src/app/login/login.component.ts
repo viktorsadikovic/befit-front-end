@@ -66,11 +66,9 @@ export class LoginComponent implements OnInit {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
             console.log(res)
-            localStorage.setItem("user", JSON.stringify(res.user))
+            this.oauthService.updateUser(res.user)
 
             this.router.navigate(['/home'])
-
-
           },
           err => {
             console.log(err);
@@ -96,7 +94,7 @@ export class LoginComponent implements OnInit {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
             console.log(res)
-            localStorage.setItem("user", JSON.stringify(res.user))
+            this.oauthService.updateUser(res.user)
 
             this.router.navigate(['/home'])
           },
