@@ -14,7 +14,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="dietaryType">Dietary type</label>
-          <select class="form-control" id="dietaryType" formControlName="dietaryType">
+          <select class="form-control" id="dietaryType" formControlName="dietaryType" [(ngModel)]="selectedDietaryType" (change)="changeDietaryType()">
             <option value="VEGAN">Vegan</option>
             <option value="VEGETARIAN">Vegetarian</option>
             <option value="PESCATARIAN">Pescatarian</option>
@@ -26,7 +26,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="mealType">Meal type</label>
-          <select multiple class="form-control" id="mealTypes" formControlName="mealTypes">
+          <select multiple class="form-control" id="mealTypes" formControlName="mealTypes" [(ngModel)]="selectedMealTypes" (change)="changeMuscleGroups()">
             <option value="BREAKFAST">Breakfast</option>
             <option value="LUNCH">Lunch</option>
             <option value="DINNER">Dinner</option>
@@ -57,7 +57,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="preparationTime">Preparation time</label>
-          <select class="form-control" id="preparationTime">
+          <select class="form-control" id="preparationTime" formControlName="preparationTime" [(ngModel)]="selectedPreparationTime" (change)="changePrepTime()">
             <option value="LESS_THAN_30">Less than 30 minutes</option>
             <option value="BETWEEN_30_60">Between 30 and 60 minutes</option>
             <option value="MORE_THAN_60">More than 60 minutes</option>
@@ -85,6 +85,8 @@
         min="1"
         max="10"
         formControlName='servings'
+        [(ngModel)]="selectedServings"
+        (change)="changeServings()"
         #matSlider
         >
       </mat-slider>

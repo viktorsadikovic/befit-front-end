@@ -33,8 +33,8 @@ export class DataService {
     this.http.post(this.api + "exercises/add", ExerciseDto,  {observe: 'response' }).subscribe();
   }
 
-  getMeals(params) {
-    return this.http.get<any>(this.api + "meals/all", { params });
+  getMeals(params, criteria) {
+    return this.http.get<any>(this.api + "meals/all/" + criteria, { params });
   }
 
   getMealsCount() {
