@@ -89,8 +89,12 @@ export class DataService {
     return this.http.get<any>(this.api + "workouts/latest/" + id);
   }
 
-  getArticles(params) {
-    return this.http.get<any>(this.api + "forum/articles/all", {params});
+  getArticles(params, criteria) {
+    return this.http.get<any>(this.api + "forum/articles/all/" + criteria, {params});
+  }
+
+  getSortedArticles(params, criteria) {
+    return this.http.get<any>(this.api)
   }
 
   saveArticle(article) {
@@ -171,4 +175,5 @@ export class DataService {
   logout() {
     return this.http.post<any>(this.api + "auth/logout", null).subscribe()
   }
+
 }

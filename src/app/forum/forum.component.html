@@ -14,12 +14,10 @@
 
                     NEW DISCUSSION
                   </button>
-                  <select class="custom-select custom-select-sm w-auto mr-1" style="margin-left: 1rem;">
-                      <option selected="">Latest</option>
-                      <option value="1">Popular</option>
-                      <option value="3">Solved</option>
-                      <option value="3">Unsolved</option>
-                      <option value="3">No Replies Yet</option>
+                  <select class="custom-select custom-select-sm w-auto mr-1" [(ngModel)]="criteria" (change)="sortArticles()" style="margin-left: 1rem;">
+                    <option value="All">All</option>
+                    <option value="Latest">Latest</option>
+                    <option value="Most popular">Most popular</option>
                   </select>
                   <span class="input-icon input-icon-sm ml-auto w-auto">
                       <input type="text" class="form-control form-control-sm bg-gray-200 border-gray-200 shadow-none mb-4 mt-4" placeholder="Search forum" />

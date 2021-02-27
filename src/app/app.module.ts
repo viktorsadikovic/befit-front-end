@@ -17,7 +17,7 @@ import { DataService } from '../app/shared/data.service';
 import { OauthService } from '../app/shared/oauth.service';
 import { TokenService } from '../app/shared/token.service'
 import { HttpClientModule } from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MealThumbnailComponent } from './meal/meal-thumbnail/meal-thumbnail.component';
 import { ArticleThumbnailComponent } from './forum/article-thumbnail/article-thumbnail.component';
 import { ArticleContentComponent } from './forum/article-content/article-content.component';
@@ -70,6 +70,7 @@ import { CommentThumbnailComponent } from './forum/comment-thumbnail/comment-thu
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     SocialLoginModule,

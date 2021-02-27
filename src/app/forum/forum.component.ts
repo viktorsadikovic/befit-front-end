@@ -14,6 +14,7 @@ export class ForumComponent implements OnInit {
   currentArticle: Article;
   totalArticles: Number;
   page = 1;
+  criteria = "All";
 
   ngOnInit(): void {
     document.getElementById('nutrition-nav').className = ''
@@ -22,7 +23,7 @@ export class ForumComponent implements OnInit {
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.retrieveData()
+    this.retrieveData(this.criteria)
   }
 
   changeCurrentArticle(currArticle) {
@@ -32,13 +33,13 @@ export class ForumComponent implements OnInit {
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData();
+    this.retrieveData(this.criteria);
   }
 
-  retrieveData() {
+  retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 5);
 
-    this.service.getArticles(params)
+    this.service.getArticles(params, criteria)
       .subscribe(
         response => {
           const { articles, totalItems } = response;
@@ -66,5 +67,10 @@ export class ForumComponent implements OnInit {
     }
 
     return params;
+  }
+
+  sortArticles() {
+    console.log(this.criteria)
+    this.retrieveData(this.criteria)
   }
 }
