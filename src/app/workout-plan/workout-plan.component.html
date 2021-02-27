@@ -37,15 +37,15 @@
         <div class="form-row">
 
           <div class="form-check form-check-inline" *ngFor='let group of mGroups | keyvalue'>
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]='group.value' formControlName="muscleGroups">
+            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]='group.value' [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()" formControlName="muscleGroups">
             <label class="form-check-label" for="inlineCheckbox1">{{group.key}}</label>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group">
-            <label for="bodyPart">Sort by</label>
-            <select class="form-control" id="bodyPart" formControlName="sort" [(ngModel)]="selectedFilter" (change)="selectedFilter()">
+            <label for="filter">Sort by</label>
+            <select class="form-control" id="filter" formControlName="sort" [(ngModel)]="selectedFilter" (change)="selectedCriteria()">
               <option [value]='null'></option>
               <option value="None">None</option>
               <option value="AlphabeticalAsc">Alphabetical Ascending</option>
@@ -65,14 +65,14 @@
             <label for="equipment">Equipment</label>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="equipment" id="exampleRadios1" [value]="true">
+              <input class="form-check-input"  type="radio" name="equipment" id="exampleRadios1" formControlName="equipment" [value]="true" [(ngModel)]="selectedEquipment" (change)="changedEquipment()">
               <label class="form-check-label" for="yes">
                 Yes
               </label>
             </div>
 
             <div class="form-check">
-              <input class="form-check-input" type="radio" name="equipment" id="exampleRadios2" [value]="false">
+              <input class="form-check-input" type="radio" name="equipment" id="exampleRadios2" formControlName="equipment" [value]="false" [(ngModel)]="selectedEquipment" (change)="changedEquipment()">
               <label class="form-check-label" for="no">
                 No
               </label>

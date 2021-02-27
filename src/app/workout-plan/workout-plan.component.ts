@@ -19,6 +19,8 @@ export class WorkoutPlanComponent implements OnInit {
   selectedWorkoutType: any;
   selectedBodyPart: any;
   selectedMuscleGroups: any;
+  selectedEquipment: any;
+  selectedFilter: any;
   wTypeDisabled = false;
 
   workoutPrograms: WorkoutPlan[]
@@ -27,7 +29,7 @@ export class WorkoutPlanComponent implements OnInit {
 
   workout = new FormGroup({
     username : new FormControl(null),
-    equipment : new FormControl(),
+    equipment : new FormControl(true),
     workoutType : new FormControl(null),
     bodyPart: new FormControl(null),
     muscleGroups: new FormControl(),
@@ -63,6 +65,7 @@ export class WorkoutPlanComponent implements OnInit {
 
       console.log(this.wTypeDisabled)
     }
+    this.retrieveData()
   }
 
 
@@ -75,14 +78,21 @@ export class WorkoutPlanComponent implements OnInit {
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
     }
+    this.retrieveData()
   }
 
-  changeMuscleGroup() {
-    console.log(this.selectedMuscleGroups)
+  changeMuscleGroup(data) {
+    console.log(data.checked)
+    console.log(this.workout.value)
+    this.retrieveData()
   }
 
-  selectedFilter() {
+  changedEquipment() {
+    this.retrieveData()
+  }
 
+  selectedCriteria() {
+    this.retrieveData()
   }
 
   handlePageChange(event) {
@@ -118,6 +128,28 @@ export class WorkoutPlanComponent implements OnInit {
     if (pageSize) {
       params[`size`] = pageSize;
     }
+
+    if(this.selectedWorkoutType){
+      params['workoutType'] = this.selectedWorkoutType
+    }
+
+    if (this.selectedBodyPart) {
+      params[`bodyPart`] = this.selectedBodyPart;
+    }
+
+    if (this.selectedMuscleGroups) {
+      params[`muscleGroups`] = this.selectedMuscleGroups;
+    }
+    
+    if (this.selectedEquipment !== undefined) {
+      params[`equipment`] = this.selectedEquipment;
+    }
+
+    console.log(params)
+
+    // if (this.selectedFilter) {
+    //   params[`criteria`] = this.selectedFilter;
+    // }
 
     return params;
   }
