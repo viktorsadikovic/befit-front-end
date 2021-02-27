@@ -108,6 +108,16 @@ export class MealComponent implements OnInit {
       params['preparationTime'] = [60,300]
     }
 
+    if(this.selectedCookingTime === "LESS_THAN_30"){
+      params['cookingTime'] = [0,30]
+
+    } else if(this.selectedCookingTime === "BETWEEN_30_60"){
+      params['cookingTime'] = [30,60]
+
+    } else if(this.selectedCookingTime === "MORE_THAN_60"){
+      params['cookingTime'] = [60,300]
+    }
+
     console.log(params)
 
     return params;
@@ -117,7 +127,7 @@ export class MealComponent implements OnInit {
     this.retrieveData(this.criteria)
   }
 
-  changeMuscleGroups() {
+  changeMealTypes() {
     this.retrieveData(this.criteria)
   }
 

@@ -36,10 +36,14 @@
         <label for="muscleGroups">Muscle groups</label>
         <div class="form-row">
 
-          <div class="form-check form-check-inline" *ngFor='let group of mGroups | keyvalue'>
+          <!-- <div class="form-check form-check-inline" *ngFor='let group of mGroups | keyvalue'>
             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]='group.value' [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()" formControlName="muscleGroups">
             <label class="form-check-label" for="inlineCheckbox1">{{group.key}}</label>
-          </div>
+          </div> -->
+
+          <select multiple class="form-control" id="mus" formControlName="muscleGroups" [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()">
+            <option [value]="group.value" *ngFor='let group of mGroups | keyvalue'>{{group.key}}</option>
+          </select>
         </div>
 
         <div class="form-row">

@@ -15,6 +15,7 @@
         <div class="form-group">
           <label for="dietaryType">Dietary type</label>
           <select class="form-control" id="dietaryType" formControlName="dietaryType" [(ngModel)]="selectedDietaryType" (change)="changeDietaryType()">
+            <option value="ALL">All</option>
             <option value="VEGAN">Vegan</option>
             <option value="VEGETARIAN">Vegetarian</option>
             <option value="PESCATARIAN">Pescatarian</option>
@@ -26,7 +27,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="mealType">Meal type</label>
-          <select multiple class="form-control" id="mealTypes" formControlName="mealTypes" [(ngModel)]="selectedMealTypes" (change)="changeMuscleGroups()">
+          <select multiple class="form-control" id="mealTypes" formControlName="mealTypes" [(ngModel)]="selectedMealTypes" (change)="changeMealTypes()">
             <option value="BREAKFAST">Breakfast</option>
             <option value="LUNCH">Lunch</option>
             <option value="DINNER">Dinner</option>
@@ -68,7 +69,7 @@
       <div class="form-row">
         <div class="form-group">
           <label for="cookingTime">Cooking time</label>
-          <select class="form-control" id="cookingTime">
+          <select class="form-control" id="cookingTime" formControlName="cookingTime" [(ngModel)]="selectedCookingTime" (change)="changeCookTime()">
             <option value="LESS_THAN_30">Less than 30 minutes</option>
             <option value="BETWEEN_30_60">Between 30 and 60 minutes</option>
             <option value="MORE_THAN_60">More than 60 minutes</option>

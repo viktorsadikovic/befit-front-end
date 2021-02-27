@@ -81,9 +81,9 @@ export class WorkoutPlanComponent implements OnInit {
     this.retrieveData(this.selectedFilter)
   }
 
-  changeMuscleGroup(data) {
-    console.log(data.checked)
+  changeMuscleGroup() {
     console.log(this.workout.value)
+    console.log(this.selectedMuscleGroups)
     this.retrieveData(this.selectedFilter)
   }
 
