@@ -4,15 +4,21 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <h2 class="text-center">Register</h2>
         <div class="form-group">
+          <div *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required" class="alert alert-danger">Required</div>
           <input type="text" class="form-control" formControlName="name" placeholder="Name" required="required">
         </div>
         <div class="form-group">
+          <div *ngIf="surname.invalid && (surname.dirty || surname.touched) && surname.errors.required" class="alert alert-danger">Required</div>
           <input type="text" class="form-control" formControlName="surname" placeholder="Surname" required="required">
         </div>
         <div class="form-group">
+            <div *ngIf="email.invalid && (email.dirty || email.touched) && email.errors.required" class="alert alert-danger">Required</div>
+            <div *ngIf="email.invalid && (email.dirty || email.touched) && email.errors.email" class="alert alert-danger">Email must contain @ and .</div>
             <input type="text" class="form-control" formControlName="email" placeholder="Email" required="required">
         </div>
         <div class="form-group">
+            <div *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.required" class="alert alert-danger">Required</div>
+            <div *ngIf="password.invalid && (password.dirty || password.touched) && password.errors.pattern" class="alert alert-danger">Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number</div>
             <input type="password" class="form-control" formControlName="password" placeholder="Password" required="required">
         </div>
         <!-- <div class="form-group">
@@ -22,13 +28,9 @@
           <input type="password" class="form-control" placeholder="Confirm password" required="required">
        </div> -->
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="!registerForm.valid">Register</button>
         </div>
-        <div class="clearfix">
-            <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
-            <a href="#" class="float-right">Forgot Password?</a>
-        </div>
+        <p class="text-center"><a [routerLink]='["/login"]'>Already have an account?</a></p>
     </form>
-    <p class="text-center"><a [routerLink]='["/login"]'>Already have an account?</a></p>
   </div>
 </div>

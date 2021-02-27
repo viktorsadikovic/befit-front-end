@@ -1,6 +1,6 @@
 import { mergeNsAndName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../shared/data.service';
 
@@ -16,12 +16,22 @@ export class RegisterComponent implements OnInit {
   constructor(private service: DataService,
               private router: Router) {
     this.registerForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl(),
-      name: new FormControl(),
-      surname: new FormControl()
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,}')]),
+      name: new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required])
     })
    }
+
+   get name() { return this.registerForm.get('name'); }
+
+   get surname() { return this.registerForm.get('surname'); }
+
+   get email() { return this.registerForm.get('email'); }
+
+   get password() { return this.registerForm.get('password'); }
+
+   get confirmPassword() { return this.registerForm.get('confirmPassword'); }
 
 
   ngOnInit(): void {

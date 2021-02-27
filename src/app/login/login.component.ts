@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocialAuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { TokenDto } from '../shared/data.model';
@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit {
   userLogged: SocialUser;
   isLogged: boolean;
   loginForm: FormGroup;
+  loginSuccess = true;
+  errorMessage;
 
   constructor(
     private authService: SocialAuthService,
@@ -26,12 +28,16 @@ export class LoginComponent implements OnInit {
     private oauthService: OauthService,
     private tokenService: TokenService,
     private service: DataService
-  ) { 
+  ) {
     this.loginForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required])
     })
   }
+
+  get email() { return this.loginForm.get('email'); }
+
+  get password() { return this.loginForm.get('password'); }
 
   ngOnInit(): void {
     document.getElementById('login-nav').className = 'menu-active'
@@ -62,9 +68,6 @@ export class LoginComponent implements OnInit {
             console.log(res)
             localStorage.setItem("user", JSON.stringify(res.user))
 
-            // this.router.navigateByUrl("/home").then( () => {
-            //   window.location.reload();
-            // })
             this.router.navigate(['/home'])
 
 
@@ -114,9 +117,6 @@ export class LoginComponent implements OnInit {
     this.tokenService.logOut();
     this.isLogged = false;
     console.log("logout")
-    // this.router.navigateByUrl("/home").then( () => {
-    //   window.location.reload();
-    // })
   }
 
   onSubmit() {
@@ -124,10 +124,16 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     }
-                
+
     this.service.login(loginDto).subscribe(data => {
       console.log(data)
-      this.oauthService.updateUser(data)
+      if(data.statusCode === 200) {
+        this.oauthService.updateUser(data.user)
+        this.router.navigate(['/home'])
+      } else if (data.statusCode === 401) {
+        this.loginSuccess = false
+        this.errorMessage = data.message
+      }
     })
   }
 
