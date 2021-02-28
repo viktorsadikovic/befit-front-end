@@ -36,11 +36,6 @@
         <label for="muscleGroups">Muscle groups</label>
         <div class="form-row">
 
-          <!-- <div class="form-check form-check-inline" *ngFor='let group of mGroups | keyvalue'>
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox1" [value]='group.value' [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()" formControlName="muscleGroups">
-            <label class="form-check-label" for="inlineCheckbox1">{{group.key}}</label>
-          </div> -->
-
           <select multiple class="form-control" id="mus" formControlName="muscleGroups" [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()">
             <option [value]="group.value" *ngFor='let group of mGroups | keyvalue'>{{group.key}}</option>
           </select>
@@ -49,7 +44,7 @@
         <div class="form-row">
           <div class="form-group">
             <label for="filter">Sort by</label>
-            <select class="form-control" id="filter" formControlName="sort" [(ngModel)]="selectedFilter" (change)="selectedCriteria()">
+            <select class="form-control" id="filter" formControlName="sort" [(ngModel)]="criteria" (change)="selectedCriteria()">
               <option [value]='null'></option>
               <option value="None">None</option>
               <option value="AlphabeticalAsc">Alphabetical Ascending</option>
@@ -89,7 +84,7 @@
     <div class="container buttons" style="float: right; width: 70%;">
       <div class="form-row">
         <div class="form-group col-md-11 search-button" style="padding: 0;">
-          <input type="text" class="form-control" id="title" placeholder="Search">
+          <input type="text" class="form-control" id="title" placeholder="Search" [(ngModel)]="searchTerm" (change)="searchWorkoutPlans()">
         </div>
         <div class="col-md-1 create-button" style="padding-left: 15px;">
           <a [routerLink]="['/workout-plans/create-workout-plan']" class="btn btn-light" style="background-color: white;color: black; border-radius: 50%;">+</a>

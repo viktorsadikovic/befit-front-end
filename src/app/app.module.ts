@@ -40,6 +40,8 @@ import { StarComponent } from './shared/star/star.component';
 import { ArticleCommentComponent } from './forum/article-comment/article-comment.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommentThumbnailComponent } from './forum/comment-thumbnail/comment-thumbnail.component';
+import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
+import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
 
 
 @NgModule({
@@ -66,7 +68,9 @@ import { CommentThumbnailComponent } from './forum/comment-thumbnail/comment-thu
     ExerciseThumbnailComponent,
     StarComponent,
     ArticleCommentComponent,
-    CommentThumbnailComponent
+    CommentThumbnailComponent,
+    EditMealComponent,
+    EditWorkoutPlanComponent
   ],
   imports: [
     BrowserModule,

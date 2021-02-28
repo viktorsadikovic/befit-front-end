@@ -20,8 +20,9 @@ export class WorkoutPlanComponent implements OnInit {
   selectedBodyPart: any;
   selectedMuscleGroups: any;
   selectedEquipment: any;
-  selectedFilter = "None";
+  criteria = "None";
   wTypeDisabled = false;
+  searchTerm = '';
 
   workoutPrograms: WorkoutPlan[]
   totalPrograms: Number
@@ -43,7 +44,7 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.retrieveData(this.selectedFilter);
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
   onSubmit() {
@@ -65,7 +66,7 @@ export class WorkoutPlanComponent implements OnInit {
 
       console.log(this.wTypeDisabled)
     }
-    this.retrieveData(this.selectedFilter)
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
 
@@ -78,32 +79,32 @@ export class WorkoutPlanComponent implements OnInit {
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
     }
-    this.retrieveData(this.selectedFilter)
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
   changeMuscleGroup() {
     console.log(this.workout.value)
     console.log(this.selectedMuscleGroups)
-    this.retrieveData(this.selectedFilter)
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
   changedEquipment() {
-    this.retrieveData(this.selectedFilter)
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
   selectedCriteria() {
-    this.retrieveData(this.selectedFilter)
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData(this.selectedFilter);
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
-  retrieveData(criteria) {
+  retrieveData(criteria, searchTerm) {
     const params = this.getRequestParams(this.page, 3);
 
-    this.service.getWorkoutPlans(params, criteria)
+    this.service.getWorkoutPlans(params, criteria, searchTerm)
       .subscribe(
         response => {
           const { workoutPlans, totalItems } = response;
@@ -147,11 +148,11 @@ export class WorkoutPlanComponent implements OnInit {
 
     console.log(params)
 
-    // if (this.selectedFilter) {
-    //   params[`criteria`] = this.selectedFilter;
-    // }
-
     return params;
+  }
+
+  searchWorkoutPlans(){
+    this.retrieveData(this.criteria, this.searchTerm);
   }
 
 }

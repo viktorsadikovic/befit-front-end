@@ -2,15 +2,16 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { ForumComponent } from './forum/forum.component';
-import { MealsGuard } from './guards/meals.guard';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CreateMealComponent } from './meal/create-meal/create-meal.component';
+import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
 import { MealDetailsComponent } from './meal/meal-details/meal-details.component';
 import { MealComponent } from './meal/meal.component';
 import { RegisterComponent } from './register/register.component';
 import { CreateWorkoutPlanComponent } from './workout-plan/create-workout-plan/create-workout-plan.component';
+import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
 import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 import { WorkoutPlanComponent } from './workout-plan/workout-plan.component';
@@ -21,9 +22,11 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'workout-plans/create-workout-plan', component: CreateWorkoutPlanComponent },
+  { path: 'workout-plans/edit-workout-plan/:id', component: EditWorkoutPlanComponent },
   { path: 'workout-plans/workout-details/:id', component: WorkoutPlanDetailsComponent },
   { path: 'workout-plans', component: WorkoutPlanComponent },
   { path: 'meals/create-meal', component: CreateMealComponent },
+  { path: 'meals/edit-meal/:id', component: EditMealComponent },
   { path: 'meals/meal-details/:id', component: MealDetailsComponent },
   { path: 'meals', component: MealComponent},
   { path: 'forum', component: ForumComponent },

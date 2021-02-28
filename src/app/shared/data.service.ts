@@ -33,8 +33,8 @@ export class DataService {
     this.http.post(this.api + "exercises/add", ExerciseDto,  {observe: 'response' }).subscribe();
   }
 
-  getMeals(params, criteria) {
-    return this.http.get<any>(this.api + "meals/all/" + criteria, { params });
+  getMeals(params, criteria, searchTerm) {
+    return this.http.get<any>(this.api + "meals/all/" + criteria + "/" + searchTerm, { params });
   }
 
   getMealsCount() {
@@ -57,12 +57,16 @@ export class DataService {
     this.http.post(this.api + "meals/add", meal, {observe: 'response' }).subscribe();
   }
 
+  editMeal(meal) {
+    this.http.post(this.api + "meals/edit", meal, {observe: 'response' }).subscribe();
+  }
+
   deleteMeal(id) {
     this.http.delete<Meal>(this.api + "meals/" + id + "/delete");
   }
 
-  getWorkoutPlans(params, criteria) {
-    return this.http.get<any>(this.api + "workouts/all/" + criteria, {params});
+  getWorkoutPlans(params, criteria, searchTerm) {
+    return this.http.get<any>(this.api + "workouts/all/" + criteria + "/" + searchTerm, {params});
   }
 
   getWorkoutPlansCount() {
@@ -77,6 +81,10 @@ export class DataService {
     this.http.post<any>(this.api + "workouts/add", workoutPlan, {observe: 'response' }).subscribe();
   }
 
+  editWorkoutPlan(workoutPlan) {
+    this.http.post<any>(this.api + "workouts/edit", workoutPlan, {observe: 'response' }).subscribe();
+  }
+
   deleteWorkoutPlan(id) {
     this.http.delete<WorkoutPlan>(this.api + "workouts/" + id + "/delete");
   }
@@ -89,8 +97,8 @@ export class DataService {
     return this.http.get<any>(this.api + "workouts/latest/" + id);
   }
 
-  getArticles(params, criteria) {
-    return this.http.get<any>(this.api + "forum/articles/all/" + criteria, {params});
+  getArticles(params, criteria, searchTerm) {
+    return this.http.get<any>(this.api + "forum/articles/all/" + criteria + "/" + searchTerm, {params});
   }
 
   getSortedArticles(params, criteria) {

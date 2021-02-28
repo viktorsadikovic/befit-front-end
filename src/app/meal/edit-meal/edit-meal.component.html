@@ -1,0 +1,99 @@
+<div class="create-meal-background">
+
+  <div class="container">
+    <form [formGroup]="mealForm" (ngSubmit)="onSubmit()" style="margin: auto; width: 50%" data-aos="zoom-in" data-aos-delay="100">
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="title">Title</label>
+          <div *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.required" class="alert alert-danger">Required</div>
+          <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div *ngIf="dietaryType.invalid && (dietaryType.dirty || dietaryType.touched) && dietaryType.errors.required" class="alert alert-danger">Required</div>
+        <div class="form-group col-md-6">
+          <label for="dietaryType">Dietary type</label>
+          <select class="form-control" id="dietaryType" formControlName="dietaryType">
+            <option value="VEGAN">Vegan</option>
+            <option value="VEGETARIAN">Vegetarian</option>
+            <option value="PESCATARIAN">Pescatarian</option>
+            <option value="CARNIVORE">Carnivore</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="mealTypes">Meal type</label>
+          <div *ngIf="mealTypes.invalid && (mealTypes.dirty || mealTypes.touched) && mealTypes.errors.required" class="alert alert-danger">Required</div>
+          <select multiple class="form-control" id="mealTypes" formControlName="mealTypes">
+            <option value="BREAKFAST">Breakfast</option>
+            <option value="LUNCH">Lunch</option>
+            <option value="DINNER">Dinner</option>
+            <option value="SNACK">Snack</option>
+            <option value="DESSERT">Dessert</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="form-row">
+
+        <div class="form-group col-md-4">
+          <label for="preparationTime">Preparation time</label>
+          <div *ngIf="preparationTime.invalid && (preparationTime.dirty || preparationTime.touched) && preparationTime.errors.required" class="text-danger">Required</div>
+          <input type="text" class="form-control" id="preparationTime" placeholder="Preparation time" formControlName="preparationTime">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="cookingTime">Cooking time</label>
+          <div *ngIf="cookingTime.invalid && (cookingTime.dirty || cookingTime.touched) && cookingTime.errors.required" class="text-danger">Required</div>
+          <input type="text" class="form-control" id="cookingTime" placeholder="Cooking time" formControlName="cookingTime">
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="servings">Servings</label>
+          <div *ngIf="servings.invalid && (servings.dirty || servings.touched) && servings.errors.required" class="text-danger">Required</div>
+          <input type="text" class="form-control" id="servings" placeholder="Servings" formControlName="servings">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="description">Description</label>
+          <div *ngIf="description.invalid && (description.dirty || description.touched) && description.errors.required" class="alert alert-danger">Required</div>
+
+          <textarea type="text" class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="ingredients">Ingredients</label>
+          <div *ngIf="ingredients.invalid && (ingredients.dirty || ingredients.touched) && ingredients.errors.required" class="alert alert-danger">Required</div>
+          <textarea type="text" class="form-control" id="ingredients" placeholder="Ingredients" formControlName="ingredients"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="preparation">Preparation</label>
+          <div *ngIf="preparation.invalid && (preparation.dirty || preparation.touched) && preparation.errors.required" class="alert alert-danger">Required</div>
+          <textarea type="text" class="form-control" id="preparation" placeholder="Preparation" formControlName="preparation"></textarea>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="description">Add photo</label>
+          <br>
+          <input type="file" (change)="onFileChanged($event)" formControlName="image">
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary col-md-6" style="background-color: #de5246;" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn btn-primary col-md-6" [disabled]="!mealForm.valid">Create</button>
+
+    </form>
+  </div>
+
+</div>

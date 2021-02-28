@@ -1,0 +1,114 @@
+<div class="create-workout-plan-page">
+  <div class="container py-5">
+
+  <br>
+  <br>
+  <br>
+
+    <div class="container left" style="float: left; width: 55%; background-color: white; padding: 40px; border-radius: 20px;" [formGroup]="workout">
+      <form [formGroup]="workout" (ngSubmit)="onSubmit()" data-aos="zoom-in" data-aos-delay="100">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <div *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.required" class="alert alert-danger">Required</div>
+            <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="workoutType">Workout type</label>
+            <em *ngIf="workoutType.invalid && (workoutType.dirty || workoutType.touched) && workoutType.errors.required" class="text-danger"><br>Required</em>
+            <select class="form-control" id="workoutType" formControlName="workoutType" [(ngModel)]="selectedWorkoutType" (change)="changeWorkoutType()">
+              <option *ngFor="let type of wType | keyvalue" [value]="type.value">{{ type.key }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="bodyPart">Body part</label>
+            <em *ngIf="bodyPart.invalid && (bodyPart.dirty || bodyPart.touched) && bodyPart.errors.required" class="text-danger"><br>Required</em>
+            <select class="form-control" id="bodyPart" formControlName="bodyPart"
+                    [(ngModel)]="selectedBodyPart"
+                    (change)="changeBodyPart()">
+              <option [value]='null'></option>
+              <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
+            </select>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="muscleGroups">Muscle groups</label>
+            <em *ngIf="muscleGroups.invalid && (muscleGroups.dirty || muscleGroups.touched) && muscleGroups.errors.required" class="text-danger"><br>Required</em>
+            <select multiple class="form-control" id="muscleGroups" formControlName="muscleGroups" [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()">
+              <option [value]='null'></option>
+              <option *ngFor='let group of mGroups | keyvalue' [value]='group.value'>{{ group.key }}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+
+         <div class="form-group">
+            <label for="equipment">Equipment</label>
+            <div class="form-check">
+              <em *ngIf="equipment.invalid && (equipment.dirty || equipment.touched) && equipment.errors.required" class="text-danger"><br>Required</em>
+              <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" [(ngModel)]="selectedEquipment" (change)="changeEquipment()" id="exampleRadios1" [value]="true">
+              <label class="form-check-label" for="yes">
+                Yes
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="equipment" formControlName="equipment" [(ngModel)]="selectedEquipment" (change)="changeEquipment()" id="exampleRadios2" [value]="false">
+              <label class="form-check-label" for="no">
+                No
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <div *ngIf="description.invalid && (description.dirty || description.touched) && description.errors.required" class="alert alert-danger">Required</div>
+            <textarea type="text" class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="description">Add photo</label><br>
+            <input type="file" (change)="onFileChanged($event)" formControlName="image">
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary col-md-6" style="background-color: #de5246;" (click)="cancel()">Cancel</button>
+        <button type="submit" class="btn btn-primary col-md-6" [disabled]="!workout.valid">Create</button>
+      </form>
+
+    </div>
+
+    <div class="container right" style="float: right; width: 40%;">
+      <div class="row">
+        <div class="mx-auto scroll" data-aos="zoom-in" data-aos-delay="100">
+
+          <!-- List group-->
+          <ul class="list-group shadow">
+            <app-exercise-thumbnail *ngFor="let exercise of exercises | paginate: {
+              id: 'exercises_pagination',
+              itemsPerPage: 3,
+              currentPage: page,
+              totalItems: totalExercises }" [exercise]="exercise" (eventClick)="addExercise($event)"></app-exercise-thumbnail>
+
+          </ul>
+        </div>
+      </div>
+      <pagination-controls  id="exercises_pagination"
+                      (pageChange)="handlePageChange($event)"
+                      maxSize="3"
+                      responsive="true"
+                      previousLabel="Prev"
+                      nextLabel="Next">
+      </pagination-controls>
+
+
+  </div>
+</div>
