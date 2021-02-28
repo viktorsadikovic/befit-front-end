@@ -97,8 +97,8 @@ export class DataService {
     return this.http.get<any>(this.api + "workouts/latest/" + id);
   }
 
-  getArticles(params, criteria) {
-    return this.http.get<any>(this.api + "forum/articles/all/" + criteria, {params});
+  getArticles(params, criteria, searchTerm) {
+    return this.http.get<any>(this.api + "forum/articles/all/" + criteria + "/" + searchTerm, {params});
   }
 
   getSortedArticles(params, criteria) {

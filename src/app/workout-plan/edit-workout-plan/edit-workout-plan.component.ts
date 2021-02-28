@@ -29,7 +29,8 @@ wTypeDisabled = false;
 selectedFile: File;
 retrieveResponse: any;
 selectedExercises: any[];
-
+workout: FormGroup;
+newImage = false;
 
 constructor(private service: DataService,
             private router: Router,
@@ -49,7 +50,6 @@ constructor(private service: DataService,
   this.selectedMuscleGroups = null;
   this.selectedEquipment = null;
 }
-workout: FormGroup;
 
 get title() { return this.workout.get('title'); }
 
@@ -69,6 +69,7 @@ ngOnInit(): void {
   this.route.params.forEach((params: Params) => {
     this.service.getSingleWorkoutPlan(+params['id']).subscribe(data => {
       this.currentWorkout = data
+      this.selectedExercises = data.exercises
       this.initializeForm()
       this.retrieveData();
     })
@@ -146,6 +147,7 @@ onFileChanged(event) {
   this.selectedFile = event.target.files[0];
 }
 
+
 addExercise(exerciseWrapper) {
   this.selectedExercises.push(exerciseWrapper)
   console.log(this.selectedExercises)
@@ -195,23 +197,44 @@ getRequestParams(page, pageSize) {
 onSubmit() {
   console.log(this.workout.value)
   const uploadImageData = new FormData();
+  let workoutPlan;
 
-  uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+  if(this.newImage) {
+    workoutPlan = {
+      id : this.currentWorkout.id,
+      title : this.workout.value.title,
+      description: this.workout.value.description,
+      username : this.currentWorkout.username,
+      equipment : this.workout.value.equipment,
+      workoutType : this.workout.value.workoutType,
+      bodyPart: this.workout.value.bodyPart,
+      muscleGroups: this.workout.value.muscleGroups,
+      exercises: this.selectedExercises,
+      submissionTime: this.currentWorkout.submissionTime,
+      reviews : this.currentWorkout.reviews,
+      image: this.currentWorkout.image
+      }
+  } else {
 
-  let workoutPlan = {
-  id : null,
-  title : this.workout.value.title,
-  description: this.workout.value.description,
-  username : null,
-  equipment : this.workout.value.equipment,
-  workoutType : this.workout.value.workoutType,
-  bodyPart: this.workout.value.bodyPart,
-  muscleGroups: this.workout.value.muscleGroups,
-  exercises: this.selectedExercises,
-  submissionTime: null,
-  reviews : null,
-  image: null
+    uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+
+    workoutPlan = {
+      id : this.currentWorkout.id,
+      title : this.workout.value.title,
+      description: this.workout.value.description,
+      username : this.currentWorkout.username,
+      equipment : this.workout.value.equipment,
+      workoutType : this.workout.value.workoutType,
+      bodyPart: this.workout.value.bodyPart,
+      muscleGroups: this.workout.value.muscleGroups,
+      exercises: this.selectedExercises,
+      submissionTime: this.currentWorkout.submissionTime,
+      reviews : this.currentWorkout.reviews,
+      image: null
+    }
   }
+
+
   uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
 
   console.log(uploadImageData.get('imageFile'))
