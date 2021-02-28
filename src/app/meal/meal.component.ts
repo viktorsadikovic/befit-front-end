@@ -41,7 +41,7 @@ export class MealComponent implements OnInit {
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   formatLabel(value: number) {
@@ -54,13 +54,13 @@ export class MealComponent implements OnInit {
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
-  retrieveData(criteria, searchTerm) {
+  retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 3);
 
-    this.service.getMeals(params, criteria, searchTerm)
+    this.service.getMeals(params, criteria)
       .subscribe(
         response => {
           const { meals, totalItems } = response;
@@ -119,38 +119,40 @@ export class MealComponent implements OnInit {
       params['cookingTime'] = [60,300]
     }
 
+    params['title'] = this.searchTerm
+
     console.log(params)
 
     return params;
   }
 
   changeDietaryType() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   changeMealTypes() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   changeServings() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   changePrepTime() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   changeCookTime() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   sortMeals() {
     console.log(this.criteria)
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   searchMeals() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
 

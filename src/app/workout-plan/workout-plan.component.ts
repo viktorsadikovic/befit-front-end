@@ -44,7 +44,7 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('home-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   onSubmit() {
@@ -66,7 +66,7 @@ export class WorkoutPlanComponent implements OnInit {
 
       console.log(this.wTypeDisabled)
     }
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
 
@@ -79,32 +79,32 @@ export class WorkoutPlanComponent implements OnInit {
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
     }
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   changeMuscleGroup() {
     console.log(this.workout.value)
     console.log(this.selectedMuscleGroups)
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   changedEquipment() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   selectedCriteria() {
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
-  retrieveData(criteria, searchTerm) {
+  retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 3);
 
-    this.service.getWorkoutPlans(params, criteria, searchTerm)
+    this.service.getWorkoutPlans(params, criteria)
       .subscribe(
         response => {
           const { workoutPlans, totalItems } = response;
@@ -146,13 +146,15 @@ export class WorkoutPlanComponent implements OnInit {
       params[`equipment`] = this.selectedEquipment;
     }
 
+    params['title'] = this.searchTerm;
+
     console.log(params)
 
     return params;
   }
 
   searchWorkoutPlans(){
-    this.retrieveData(this.criteria, this.searchTerm);
+    this.retrieveData(this.criteria);
   }
 
 }
