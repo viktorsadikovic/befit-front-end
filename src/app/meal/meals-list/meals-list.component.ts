@@ -18,7 +18,7 @@ export class MealsListComponent implements OnInit {
   meals: Meal[]
   totalMeals: Number
   page: Number = 1
-  criteria = "None";
+  criteria = "none";
   searchTerm = '';
   routeParam;
 
@@ -47,13 +47,15 @@ export class MealsListComponent implements OnInit {
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData(this.criteria);
+    this.retrieveData(this.searchTerm);
   }
 
   retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 3);
+    
     if(this.routeParam === "favorites") {
-      this.service.getFavoriteMeals(params, criteria, this.oauthService.getUserEmail())
+      console.log("favoritessss")
+      this.service.getFavoriteMeals(params, this.oauthService.getUserEmail())
       .subscribe(
         response => {
           const { meals, totalItems } = response;
@@ -66,7 +68,7 @@ export class MealsListComponent implements OnInit {
           console.log(error);
         });
     } else {
-      this.service.getMyMeals(params, criteria, this.oauthService.getUserEmail())
+      this.service.getMyMeals(params, this.oauthService.getUserEmail())
       .subscribe(
         response => {
           const { meals, totalItems } = response;
@@ -93,7 +95,7 @@ export class MealsListComponent implements OnInit {
       params[`size`] = pageSize;
     }
 
-    params['title'] = this.searchTerm
+    params['text'] = this.searchTerm
 
     console.log(params)
 
@@ -101,7 +103,7 @@ export class MealsListComponent implements OnInit {
   }
 
   searchMeals() {
-    this.retrieveData(this.criteria);
+    this.retrieveData(this.searchTerm);
   }
 
 }

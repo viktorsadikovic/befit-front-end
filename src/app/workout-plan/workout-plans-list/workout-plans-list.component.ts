@@ -54,7 +54,7 @@ export class WorkoutPlansListComponent implements OnInit {
     const params = this.getRequestParams(this.page, 3);
 
     if(this.routeParam === "favorites") {
-      this.service.getFavoriteWorkoutPlans(params, criteria, this.oauthService.getUserEmail())
+      this.service.getFavoriteWorkoutPlans(params, this.oauthService.getUserEmail())
       .subscribe(
         response => {
           const { workoutPlans, totalItems } = response;
@@ -67,7 +67,7 @@ export class WorkoutPlansListComponent implements OnInit {
           console.log(error);
         });
     } else {
-      this.service.getMyWorkoutPlans(params, criteria, this.oauthService.getUserEmail())
+      this.service.getMyWorkoutPlans(params, this.oauthService.getUserEmail())
       .subscribe(
         response => {
           const { workoutPlans, totalItems } = response;
@@ -96,7 +96,7 @@ export class WorkoutPlansListComponent implements OnInit {
       params[`size`] = pageSize;
     }
 
-    params['title'] = this.searchTerm;
+    params['text'] = this.searchTerm;
 
     console.log(params)
 

@@ -185,7 +185,7 @@
                                           <div class="card">
                                               <div class="card-body">
                                                 <h4 class="card-title">{{meal?.reviews[0]?.submitter?.username}}</h4>
-                                                  <h3 class="card-title">{{meal?.reviews[0].description}}</h3>
+                                                  <h3 class="card-title">{{meal?.reviews[0]?.description}}</h3>
                                                   <ng-container *ngFor="let star of stars">
                                                     <app-star [starId]="star" [rating]="meal?.reviews[0]?.score"></app-star>
                                                   </ng-container>
