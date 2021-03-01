@@ -42,7 +42,9 @@ constructor(private service: DataService,
   equipment : new FormControl(null,[Validators.required]),
   workoutType : new FormControl(null, [Validators.required]),
   bodyPart: new FormControl(null, [Validators.required]),
-  muscleGroups: new FormControl(null, [Validators.required])
+  muscleGroups: new FormControl(null, [Validators.required]),
+  newImage: new FormControl(),
+  price: new FormControl('', Validators.required)
   })
 
   this.selectedWorkoutType = null;
@@ -63,6 +65,7 @@ get equipment() { return this.workout.get('equipment')}
 
 get description() { return this.workout.get('description')}
 
+get price() { return this.workout.get('price')}
 
 ngOnInit(): void {
 
@@ -85,6 +88,7 @@ initializeForm() {
   let bodyPart = new FormControl(this.currentWorkout.bodyPart, [Validators.required])
   let muscleGroups = new FormControl(this.currentWorkout.muscleGroups, [Validators.required])
   let image = new FormControl(this.currentWorkout.image, Validators.required)
+  let price = new FormControl(this.currentWorkout.price, Validators.required)
 
   this.workout = new FormGroup({
     title : title,
@@ -93,7 +97,8 @@ initializeForm() {
     workoutType : workoutType,
     bodyPart: bodyPart,
     muscleGroups: muscleGroups,
-    image: image
+    image: image,
+    price: price
     })
 }
 
@@ -199,12 +204,18 @@ onSubmit() {
   const uploadImageData = new FormData();
   let workoutPlan;
 
+
   if(this.newImage) {
+
+    // this.selectedExercises.forEach(exerciseWrapper => {
+    //   exerciseWrapper.exercise = null
+    // })
+
     workoutPlan = {
       id : this.currentWorkout.id,
       title : this.workout.value.title,
       description: this.workout.value.description,
-      username : this.currentWorkout.username,
+      username : this.currentWorkout.creator,
       equipment : this.workout.value.equipment,
       workoutType : this.workout.value.workoutType,
       bodyPart: this.workout.value.bodyPart,
@@ -212,7 +223,9 @@ onSubmit() {
       exercises: this.selectedExercises,
       submissionTime: this.currentWorkout.submissionTime,
       reviews : this.currentWorkout.reviews,
-      image: this.currentWorkout.image
+      image: this.currentWorkout.image,
+      favoriteForUsers: this.currentWorkout.favoriteForUsers,
+      price: this.workout.value.price
       }
   } else {
 
@@ -222,7 +235,7 @@ onSubmit() {
       id : this.currentWorkout.id,
       title : this.workout.value.title,
       description: this.workout.value.description,
-      username : this.currentWorkout.username,
+      username : this.currentWorkout.creator,
       equipment : this.workout.value.equipment,
       workoutType : this.workout.value.workoutType,
       bodyPart: this.workout.value.bodyPart,
@@ -230,7 +243,9 @@ onSubmit() {
       exercises: this.selectedExercises,
       submissionTime: this.currentWorkout.submissionTime,
       reviews : this.currentWorkout.reviews,
-      image: null
+      image: null,
+      favoriteForUsers: this.currentWorkout.favoriteForUsers,
+      price: this.workout.value.price
     }
   }
 
@@ -239,8 +254,12 @@ onSubmit() {
 
   console.log(uploadImageData.get('imageFile'))
   console.log(workoutPlan)
-  this.service.editMeal(uploadImageData)
+  this.service.editWorkoutPlan(uploadImageData)
   this.router.navigate(['/workout-plans'])
+}
+
+addNewImage(){
+  console.log(this.newImage)
 }
 
 }

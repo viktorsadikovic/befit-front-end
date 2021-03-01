@@ -37,7 +37,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
       equipment : new FormControl(null,[Validators.required]),
       workoutType : new FormControl(null, [Validators.required]),
       bodyPart: new FormControl(null, [Validators.required]),
-      muscleGroups: new FormControl(null, [Validators.required])
+      muscleGroups: new FormControl(null, [Validators.required]),
+      price: new FormControl('', Validators.required)
     })
 
     this.selectedWorkoutType = null;
@@ -58,6 +59,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
   get equipment() { return this.workout.get('equipment')}
 
   get description() { return this.workout.get('description')}
+
+  get price() { return this.workout.get('price')}
 
 
   ngOnInit(): void {
@@ -174,7 +177,9 @@ export class CreateWorkoutPlanComponent implements OnInit {
       exercises: this.selectedExercises,
       submissionTime: null,
       reviews : null,
-      image: null
+      image: null,
+      favoriteForUsers: null,
+      price: this.workout.value.price
     }
     uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
 

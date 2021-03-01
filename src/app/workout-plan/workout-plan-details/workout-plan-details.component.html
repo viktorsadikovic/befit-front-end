@@ -18,7 +18,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
                             </div>
                             <div class="media-body">
-                                <label>{{workoutProgram?.username}}</label>
+                                <label>{{workoutProgram?.creator}}</label>
                                 <span>{{workoutProgram?.submissionTime | date}}</span>
                             </div>
                         </div>
@@ -57,11 +57,11 @@
                               </div>
                               <div class="col-12">
                                   <div id="carouselExampleIndicators3" class="carousel slide" data-ride="carousel">
-        
+
                                       <div class="carousel-inner">
                                           <div class="carousel-item active">
                                               <div class="row">
-        
+
                                                   <div class="col">
                                                       <div class="card">
                                                         <img class="img-fluid" alt="100%x280" [src]="'data:image/gif;base64,'+ workoutProgram?.exercises[0]?.exercise?.image.pictureBytes">
@@ -70,18 +70,18 @@
                                                             <h4 class="card-title">{{workoutProgram?.exercises[0]?.exercise?.name}}</h4>
                                                               <h3 class="card-title">Sets: {{workoutProgram?.exercises[0]?.numberOfSets}}</h3>
                                                               <h3 class="card-title">Reps per set: {{workoutProgram?.exercises[0]?.numberOfReps}}</h3>
-                                                              
+
                                                           </div>
-        
+
                                                       </div>
                                                   </div>
-        
+
                                               </div>
                                           </div>
-        
+
                                           <div *ngFor="let exercise of workoutProgram?.exercises | slice:1:workoutProgram?.exercises.length" class="carousel-item">
                                               <div class="row">
-        
+
                                                   <div class="col">
                                                       <div class="card">
                                                         <img class="img-fluid" alt="100%x280" [src]="'data:image/gif;base64,'+ exercise?.exercise?.image.pictureBytes">
@@ -90,12 +90,12 @@
                                                             <h4 class="card-title">{{exercise?.exercise?.name}}</h4>
                                                             <h3 class="card-title">Sets: {{exercise?.numberOfSets}}</h3>
                                                             <h3 class="card-title">Reps: {{exercise?.numberOfReps}}</h3>
-                                                              
+
                                                           </div>
-        
+
                                                       </div>
                                                   </div>
-        
+
                                               </div>
                                           </div>
                                       </div>
@@ -106,7 +106,7 @@
                       </section>
                 </div>
 
-                
+
 
                 <div class="contact-form article-comment">
                     <h4>Leave a Reply</h4>
@@ -147,7 +147,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar6.png" title="" alt="">
                             </div>
                             <div class="media-body">
-                                <h6>Hello, I'm<br>{{workoutProgram?.username}}</h6>
+                                <h6>Hello, I'm<br>{{workoutProgram?.creator}}</h6>
                             </div>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
                               </div>
                               <div class="lpa-meta">
                                   <a class="name">
-                                    {{trendingPlan?.username}}
+                                    {{trendingPlan?.creator}}
                                   </a>
                                   <a class="date">
                                     {{trendingPlan?.submissionTime | date}}
@@ -194,7 +194,7 @@
                               </div>
                               <div class="lpa-meta">
                                   <a class="name">
-                                    {{latestPlan?.username}}
+                                    {{latestPlan?.creator}}
                                   </a>
                                   <a class="date">
                                     {{latestPlan?.submissionTime | date}}

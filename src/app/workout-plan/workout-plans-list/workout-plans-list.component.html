@@ -1,0 +1,52 @@
+<div class="workout">
+  <div class="container py-5" data-aos="zoom-in" data-aos-delay="100">
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container buttons" style="width: 100%;">
+      <div class="form-row">
+        <div class="form-group col-md-11 search-button" style="padding: 0;">
+          <input type="text" class="form-control" id="title" placeholder="Search" [(ngModel)]="searchTerm" (change)="searchWorkoutPlans()">
+        </div>
+        <div class="col-md-1 create-button" style="padding-left: 15px;">
+          <a [routerLink]="['/workout-plans/create-workout-plan']" class="btn btn-light" style="background-color: white;color: black; border-radius: 50%;">+</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container right" style="width: 100%;">
+      <div class="row">
+        <div class="mx-auto" data-aos="zoom-in" data-aos-delay="100">
+
+          <!-- List group-->
+          <ul class="list-group shadow" >
+            <app-workout-plan-thumbnail *ngFor="let program of workoutPrograms | paginate: {
+              id: 'workout_pagination',
+              itemsPerPage: 3,
+              currentPage: page,
+              totalItems: totalPrograms }" [workoutPlan]="program"></app-workout-plan-thumbnail>
+          </ul>
+        </div>
+      </div>
+      <pagination-controls  id="workout_pagination"
+                      (pageChange)="handlePageChange($event)"
+                      maxSize="5"
+                      directionLinks="true"
+                      responsive="true"
+                      autoHide="true"
+                      previousLabel="Prev"
+                      nextLabel="Next">
+      </pagination-controls>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+

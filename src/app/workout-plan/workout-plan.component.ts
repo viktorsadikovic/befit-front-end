@@ -42,6 +42,7 @@ export class WorkoutPlanComponent implements OnInit {
     document.getElementById('nutrition-nav').className = ''
     document.getElementById('forum-nav').className = ''
     document.getElementById('home-nav').className = ''
+    document.getElementById('dropdown-nav').className = ''
     document.getElementById('login-nav').className = ''
 
     this.retrieveData(this.criteria);
