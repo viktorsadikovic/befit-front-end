@@ -22,6 +22,7 @@ export class CreateMealComponent implements OnInit {
     description : new FormControl('', Validators.required),
     ingredients : new FormControl('', Validators.required),
     preparation : new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required)
   })
   selectedFile: File;
   meal;
@@ -43,6 +44,9 @@ export class CreateMealComponent implements OnInit {
   get ingredients() { return this.mealForm.get('ingredients'); }
 
   get preparation() { return this.mealForm.get('preparation'); }
+
+  get price() { return this.mealForm.get('price'); }
+
 
   ngOnInit(): void {
   }
@@ -68,7 +72,9 @@ export class CreateMealComponent implements OnInit {
       preparation : this.mealForm.value.preparation,
       submissionTime: null,
       reviews : null,
-      image: null
+      image: null,
+      favoriteForUsers: null,
+      price: this.mealForm.value.price
     }
 
     uploadImageData.append('meal', JSON.stringify(this.meal));
@@ -76,7 +82,7 @@ export class CreateMealComponent implements OnInit {
     console.log(this.meal)
     console.log(uploadImageData.get('imageFile'))
     this.service.createMeal(uploadImageData);
-    // this.router.navigate(['/meals']);
+    this.router.navigate(['/meals']);
   }
 
   onFileChanged(event) {

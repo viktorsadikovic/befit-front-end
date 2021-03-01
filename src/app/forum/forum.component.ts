@@ -22,6 +22,7 @@ export class ForumComponent implements OnInit {
     document.getElementById('workout-nav').className = ''
     document.getElementById('forum-nav').className = 'menu-active'
     document.getElementById('home-nav').className = ''
+    document.getElementById('dropdown-nav').className = ''
     document.getElementById('login-nav').className = ''
 
     this.retrieveData(this.criteria, this.searchTerm)

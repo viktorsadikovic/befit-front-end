@@ -42,6 +42,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CommentThumbnailComponent } from './forum/comment-thumbnail/comment-thumbnail.component';
 import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
 import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
+import { MealsListComponent } from './meal/meals-list/meals-list.component';
+import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/workout-plans-list.component';
 
 
 @NgModule({
@@ -70,7 +72,9 @@ import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-
     ArticleCommentComponent,
     CommentThumbnailComponent,
     EditMealComponent,
-    EditWorkoutPlanComponent
+    EditWorkoutPlanComponent,
+    MealsListComponent,
+    WorkoutPlansListComponent
   ],
   imports: [
     BrowserModule,

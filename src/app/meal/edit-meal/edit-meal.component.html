@@ -84,6 +84,14 @@
 
       <div class="form-row">
         <div class="form-group col-md-12">
+          <label for="price">Price</label>
+          <div *ngIf="price.invalid && (price.dirty || price.touched) && price.errors.required" class="alert alert-danger">Required</div>
+          <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
           <label for="description">Add photo</label>
           <br>
           <input type="file" (change)="onFileChanged($event)" formControlName="image">

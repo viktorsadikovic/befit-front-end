@@ -37,6 +37,14 @@ export class DataService {
     return this.http.get<any>(this.api + "meals/all/" + criteria, { params });
   }
 
+  getFavoriteMeals(params, criteria, email) {
+    return this.http.get<any>(this.api + "users/" + email + "/favorite-meals/" + criteria, { params });
+  }
+
+  getMyMeals(params, criteria, email) {
+    return this.http.get<any>(this.api + "users/" + email + "/meals/" + criteria, { params });
+  }
+
   getMealsCount() {
     return this.http.get<any>(this.api + "meals/count");
   }
@@ -67,6 +75,14 @@ export class DataService {
 
   getWorkoutPlans(params, criteria) {
     return this.http.get<any>(this.api + "workouts/all/" + criteria, {params});
+  }
+
+  getFavoriteWorkoutPlans(params, criteria, email) {
+    return this.http.get<any>(this.api + "users/" + email + "/favorite-workout-plans/" + criteria, { params });
+  }
+
+  getMyWorkoutPlans(params, criteria, email) {
+    return this.http.get<any>(this.api + "users/" + email + "/workout-plans/" + criteria, { params });
   }
 
   getWorkoutPlansCount() {

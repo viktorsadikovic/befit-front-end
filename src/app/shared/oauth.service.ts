@@ -45,4 +45,9 @@ export class OauthService {
     localStorage.setItem("user", JSON.stringify(newUser))
   }
 
+  getUserEmail() {
+    let user = this.getCurrentUser()
+    return user.email
+  }
+
 }

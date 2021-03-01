@@ -1,0 +1,81 @@
+.container {
+  width: 90%;
+  margin: auto!important;
+
+}
+
+.meal {
+  background: url('../../../assets/img/nutrition.cms') top center;
+  background-size: cover;
+  min-height: 135vh;
+}
+
+.form-group {
+  width: 100%;
+  padding: 10px
+}
+
+.left {
+  border-radius: 15px;
+}
+
+mat-slider {
+  width: 100%;
+}
+
+:host ::ng-deep .average .mat-slider-thumb{
+  background-color: #2dc997;
+}
+
+:host ::ng-deep .average .mat-slider-track-fill {
+  background-color: #2dc997;
+}
+
+:host ::ng-deep .average .mat-slider-thumb-label {
+  background-color: #2dc997;
+}
+
+
+.filters-button {
+  width: 100%;
+  margin: auto;
+  color: black;
+  border: none;
+}
+
+.filters-button:active {
+  border: none!important;
+  background-color: white!important;
+  color: black!important;
+}
+
+@media (max-width: 768px) {
+  .left {
+    float: none!important;
+    width: 100%!important;
+    margin: auto!important;
+  }
+
+  .right {
+    float: none!important;
+    width: 100%!important;
+    margin: auto!important;
+  }
+
+  .filters-button {
+    display: inline-block!important;
+  }
+
+  .create-button {
+    width: 40%;
+  }
+
+  .search-button {
+    width: 60%;
+  }
+
+  .buttons {
+    float: none!important;
+    width: 100%!important;
+  }
+}

@@ -13,21 +13,21 @@
         <li id="workout-nav"><a [routerLink]='["/workout-plans"]'>Workout Programs</a></li>
         <li id="nutrition-nav"><a [routerLink]='["/meals"]'>Nutrition</a></li>
         <li id="forum-nav"><a [routerLink]='["/forum"]'>Forum</a></li>
-        <li class="menu-has-children"><a href="">Drop Down</a>
+        <li class="menu-has-children" id="dropdown-nav"><a href="">Drop Down</a>
           <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="menu-has-children"><a href="#">Drop Down 2</a>
+            <li class="menu-has-children"><a href="#">Favorites</a>
               <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
+                <li><a [routerLink]='["/workout-plans", "favorites"]'>Favorite workout plans</a></li>
+                <li><a [routerLink]='["/meals", "favorites"]'>Favorite meals</a></li>
               </ul>
             </li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
-            <li><a href="#">Drop Down 5</a></li>
+            <li class="menu-has-children"><a href="#">Created</a>
+              <ul>
+                <li><a [routerLink]='["/workout-plans", "my-workout-plans"]'>My workout plans</a></li>
+                <li><a [routerLink]='["/meals", "my-meals"]'>My meals</a></li>
+              </ul>
+            </li>
+
           </ul>
         </li>
         <li id="login-nav">

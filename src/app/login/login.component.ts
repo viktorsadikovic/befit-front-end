@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
     document.getElementById('nutrition-nav').className = ''
     document.getElementById('workout-nav').className = ''
     document.getElementById('forum-nav').className = ''
+    document.getElementById('dropdown-nav').className = ''
     document.getElementById('home-nav').className = ''
 
     this.authService.authState.subscribe(

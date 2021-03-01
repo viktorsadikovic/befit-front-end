@@ -25,6 +25,7 @@ export class EditMealComponent implements OnInit {
     description : new FormControl('', Validators.required),
     ingredients : new FormControl('', Validators.required),
     preparation : new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required)
   })
 
   selectedFile: File;
@@ -48,6 +49,8 @@ export class EditMealComponent implements OnInit {
 
   get preparation() { return this.mealForm.get('preparation'); }
 
+  get price() { return this.mealForm.get('price')}
+
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
       this.service.getSingleMeal(+params['id']).subscribe(data => {
@@ -68,6 +71,7 @@ export class EditMealComponent implements OnInit {
     let ingredients = new FormControl(this.meal.ingredients, Validators.required)
     let preparation = new FormControl(this.meal.preparation, Validators.required)
     let image = new FormControl(this.meal.image, Validators.required)
+    let price = new FormControl(this.meal.price, Validators.required)
 
     this.mealForm = new FormGroup({
       title : title,
@@ -79,7 +83,8 @@ export class EditMealComponent implements OnInit {
       description : description,
       ingredients : ingredients,
       preparation : preparation,
-      image : image
+      image : image,
+      price : price
     })
   }
 
@@ -97,7 +102,7 @@ export class EditMealComponent implements OnInit {
     this.meal = {
       id: null,
       title: this.mealForm.value.title,
-      username: null,
+      creator: null,
       mealTypes: this.mealForm.value.mealTypes,
       dietaryType: this.mealForm.value.dietaryType,
       preparationTime: this.mealForm.value.preparationTime,
@@ -106,9 +111,11 @@ export class EditMealComponent implements OnInit {
       description : this.mealForm.value.description,
       ingredients : this.mealForm.value.ingredients,
       preparation : this.mealForm.value.preparation,
-      submissionTime: null,
-      reviews : null,
-      image: null
+      submissionTime: this.meal.submissionTime,
+      reviews : this.meal.reviews,
+      image: null,
+      favoriteForUsers: this.meal.favoriteForUsers,
+      price: this.meal.price
     }
 
     console.log(this.meal)

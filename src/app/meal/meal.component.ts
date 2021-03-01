@@ -39,6 +39,7 @@ export class MealComponent implements OnInit {
     document.getElementById('workout-nav').className = ''
     document.getElementById('forum-nav').className = ''
     document.getElementById('home-nav').className = ''
+    document.getElementById('dropdown-nav').className = ''
     document.getElementById('login-nav').className = ''
 
     this.retrieveData(this.criteria);

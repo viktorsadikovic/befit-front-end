@@ -1,0 +1,51 @@
+<div class="meal">
+  <div class="container py-5" data-aos="zoom-in" data-aos-delay="100">
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container buttons" style="width: 100%;">
+      <div class="form-row">
+        <div class="form-group col-md-11 search-button" style="padding: 0;">
+          <input type="text" class="form-control" id="title" placeholder="Search" [(ngModel)]="searchTerm" (change)="searchMeals()">
+        </div>
+        <div class="col-md-1 create-button" style="padding-left: 15px;">
+          <a [routerLink]="['/meals/create-meal']" class="btn btn-light" style="background-color: white;color: black; border-radius: 50%;">+</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container right" style="width: 100%;">
+      <div class="row">
+        <div class="mx-auto scroll" data-aos="zoom-in" data-aos-delay="100">
+
+          <!-- List group-->
+          <ul class="list-group shadow" >
+            <app-meal-thumbnail *ngFor="let meal of meals  | paginate: {
+              id: 'meal_pagination',
+              itemsPerPage: 3,
+              currentPage: page,
+              totalItems: totalMeals }" [meal]="meal"></app-meal-thumbnail>
+
+          </ul>
+        </div>
+      </div>
+
+      <pagination-controls  id="meal_pagination"
+                      (pageChange)="handlePageChange($event)"
+                      maxSize="5"
+                      autoHide="true"
+                      directionLinks="true"
+                      responsive="true"
+                      previousLabel="Prev"
+                      nextLabel="Next">
+      </pagination-controls>
+
+    </div>
+
+
+  </div>
+
+</div>

@@ -18,7 +18,7 @@ export interface Review {
 
 export interface WorkoutPlan {
   id: number,
-  username: string,
+  creator: string,
   title: string,
   description: string,
   workoutType: string,
@@ -28,13 +28,15 @@ export interface WorkoutPlan {
   exercises: ExerciseWrapper[],
   submissionTime: Date,
   image: any,
-  reviews: Review[]
+  reviews: Review[],
+  favoriteForUsers: String[],
+  price: number
 }
 
 export interface Meal {
   id: number,
   title: string,
-  username: string,
+  creator: string,
   mealTypes: string[],
   dietaryType: string,
   preparationTime: number,
@@ -45,7 +47,9 @@ export interface Meal {
   preparation: string,
   submissionTime: Date,
   image: any,
-  reviews: Review[]
+  reviews: Review[],
+  favoriteForUsers: String[],
+  price: number
 }
 
 export interface Exercise {

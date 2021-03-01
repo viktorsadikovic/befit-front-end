@@ -9,12 +9,14 @@ import { CreateMealComponent } from './meal/create-meal/create-meal.component';
 import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
 import { MealDetailsComponent } from './meal/meal-details/meal-details.component';
 import { MealComponent } from './meal/meal.component';
+import { MealsListComponent } from './meal/meals-list/meals-list.component';
 import { RegisterComponent } from './register/register.component';
 import { CreateWorkoutPlanComponent } from './workout-plan/create-workout-plan/create-workout-plan.component';
 import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
 import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 import { WorkoutPlanComponent } from './workout-plan/workout-plan.component';
+import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/workout-plans-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -24,10 +26,12 @@ const routes: Routes = [
   { path: 'workout-plans/create-workout-plan', component: CreateWorkoutPlanComponent },
   { path: 'workout-plans/edit-workout-plan/:id', component: EditWorkoutPlanComponent },
   { path: 'workout-plans/workout-details/:id', component: WorkoutPlanDetailsComponent },
+  { path: 'workout-plans/:routeParam', component: WorkoutPlansListComponent },
   { path: 'workout-plans', component: WorkoutPlanComponent },
   { path: 'meals/create-meal', component: CreateMealComponent },
   { path: 'meals/edit-meal/:id', component: EditMealComponent },
   { path: 'meals/meal-details/:id', component: MealDetailsComponent },
+  { path: 'meals/:routeParam', component: MealsListComponent },
   { path: 'meals', component: MealComponent},
   { path: 'forum', component: ForumComponent },
   { path: 'exercise', component: AddExerciseComponent },

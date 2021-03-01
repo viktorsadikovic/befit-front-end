@@ -34,8 +34,9 @@ export class HomeComponent implements OnInit {
     document.getElementById('workout-nav').className = ''
     document.getElementById('nutrition-nav').className = ''
     document.getElementById('forum-nav').className = ''
+    document.getElementById('dropdown-nav').className = ''
     document.getElementById('login-nav').className = ''
-    
+
     this.userLogged = this.oauthService.getCurrentUser()
 
     this.dataService.getExercisesCount().subscribe(data => {
@@ -81,7 +82,7 @@ export class HomeComponent implements OnInit {
 
   addToFavoriteWorkoutPrograms(id) {
     if(this.oauthService.checkUserLoggedIn()) {
-      
+
       if(this.isFavoriteWorkout(id)) {
         this.dataService.removeWorkoutProgramFromFavorites(id).subscribe(data => {
           this.userLogged = data;
@@ -96,12 +97,12 @@ export class HomeComponent implements OnInit {
 
     } else {
       this.router.navigate(['/login'])
-    } 
+    }
   }
 
   addToFavoriteMeals(id) {
     if(this.oauthService.checkUserLoggedIn()) {
-      
+
       if(this.isFavoriteMeal(id)) {
         this.dataService.removeMealFromFavorites(id).subscribe(data => {
           this.userLogged = data;
@@ -116,7 +117,7 @@ export class HomeComponent implements OnInit {
 
     } else {
       this.router.navigate(['/login'])
-    } 
+    }
   }
 
 }

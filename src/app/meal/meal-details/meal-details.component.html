@@ -18,7 +18,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar1.png" title="" alt="">
                             </div>
                             <div class="media-body">
-                                <label>{{meal?.username}}</label>
+                                <label>{{meal?.creator}}</label>
                                 <span>{{meal?.submissionTime | date}}</span>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                         <a href="#" *ngFor="let type of meal?.mealTypes">{{type}}</a>
                     </div>
                 </article>
-                
+
                 <div class="contact-form article-comment">
                     <h4>Leave a Reply</h4>
                     <form id="contact-form" [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
@@ -78,7 +78,7 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar6.png" title="" alt="">
                             </div>
                             <div class="media-body">
-                                <h6>Hello, I'm<br> {{meal?.username}}</h6>
+                                <h6>Hello, I'm<br> {{meal?.creator}}</h6>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                               </div>
                               <div class="lpa-meta">
                                   <a class="name">
-                                    {{trendingMeal?.username}}
+                                    {{trendingMeal?.creator}}
                                   </a>
                                   <a class="date">
                                     {{trendingMeal?.submissionTime | date}}
@@ -125,7 +125,7 @@
                             </div>
                             <div class="lpa-meta">
                                 <a class="name">
-                                  {{latestMeal?.username}}
+                                  {{latestMeal?.creator}}
                                 </a>
                                 <a class="date">
                                   {{latestMeal?.submissionTime | date}}
