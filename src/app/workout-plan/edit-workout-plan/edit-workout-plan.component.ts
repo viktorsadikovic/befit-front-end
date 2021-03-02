@@ -210,7 +210,7 @@ onSubmit() {
     // this.selectedExercises.forEach(exerciseWrapper => {
     //   exerciseWrapper.exercise = null
     // })
-    
+
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
     workoutPlan = {
@@ -225,12 +225,14 @@ onSubmit() {
       exercises: this.selectedExercises,
       submissionTime: this.currentWorkout.submissionTime,
       reviews : this.currentWorkout.reviews,
-      image: null,
+      image: this.currentWorkout.image,
       favoriteForUsers: this.currentWorkout.favoriteForUsers,
       price: this.workout.value.price
     }
 
   } else {
+    uploadImageData.append('imageFile', null, null);
+
     workoutPlan = {
       id : this.currentWorkout.id,
       title : this.workout.value.title,

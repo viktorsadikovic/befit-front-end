@@ -116,12 +116,14 @@ export class EditMealComponent implements OnInit {
         preparation : this.mealForm.value.preparation,
         submissionTime: this.meal.submissionTime,
         reviews : this.meal.reviews,
-        image: null,
+        image: this.meal.image,
         favoriteForUsers: this.meal.favoriteForUsers,
         price: this.meal.price
       }
     } else {
       console.log("bez nova slika")
+      uploadImageData.append('imageFile', null, null);
+
       this.meal = {
         id: this.meal.id,
         title: this.mealForm.value.title,
