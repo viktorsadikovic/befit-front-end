@@ -210,25 +210,7 @@ onSubmit() {
     // this.selectedExercises.forEach(exerciseWrapper => {
     //   exerciseWrapper.exercise = null
     // })
-
-    workoutPlan = {
-      id : this.currentWorkout.id,
-      title : this.workout.value.title,
-      description: this.workout.value.description,
-      username : this.currentWorkout.creator,
-      equipment : this.workout.value.equipment,
-      workoutType : this.workout.value.workoutType,
-      bodyPart: this.workout.value.bodyPart,
-      muscleGroups: this.workout.value.muscleGroups,
-      exercises: this.selectedExercises,
-      submissionTime: this.currentWorkout.submissionTime,
-      reviews : this.currentWorkout.reviews,
-      image: this.currentWorkout.image,
-      favoriteForUsers: this.currentWorkout.favoriteForUsers,
-      price: this.workout.value.price
-      }
-  } else {
-
+    
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
 
     workoutPlan = {
@@ -247,12 +229,29 @@ onSubmit() {
       favoriteForUsers: this.currentWorkout.favoriteForUsers,
       price: this.workout.value.price
     }
+
+  } else {
+    workoutPlan = {
+      id : this.currentWorkout.id,
+      title : this.workout.value.title,
+      description: this.workout.value.description,
+      username : this.currentWorkout.creator,
+      equipment : this.workout.value.equipment,
+      workoutType : this.workout.value.workoutType,
+      bodyPart: this.workout.value.bodyPart,
+      muscleGroups: this.workout.value.muscleGroups,
+      exercises: this.selectedExercises,
+      submissionTime: this.currentWorkout.submissionTime,
+      reviews : this.currentWorkout.reviews,
+      image: this.currentWorkout.image,
+      favoriteForUsers: this.currentWorkout.favoriteForUsers,
+      price: this.workout.value.price
+      }
   }
 
 
   uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
 
-  console.log(uploadImageData.get('imageFile'))
   console.log(workoutPlan)
   this.service.editWorkoutPlan(uploadImageData)
   this.router.navigate(['/workout-plans'])

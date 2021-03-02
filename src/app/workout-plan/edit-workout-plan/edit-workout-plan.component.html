@@ -78,7 +78,7 @@
           <div class="form-group">
             <label for="price">Price</label>
             <div *ngIf="price.invalid && (price.dirty || price.touched) && price.errors.required" class="alert alert-danger">Required</div>
-            <input type="text" class="form-control" id="price" placeholder="Price" formControlName="price">
+            <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
           </div>
         </div>
 
@@ -92,7 +92,7 @@
                 Add new photo
               </label>
             </div>
-            <input type="file" (change)="onFileChanged($event)">
+            <input type="file" (change)="onFileChanged($event)" class="form-control">
           </div>
         </div>
         <button type="button" class="btn btn-primary col-md-6" style="background-color: #de5246;" (click)="cancel()">Cancel</button>

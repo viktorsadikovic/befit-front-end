@@ -91,10 +91,16 @@
       </div>
 
       <div class="form-row">
+        <img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" alt="Generic placeholder image" width="40%" class="ml-lg-5 order-1 order-lg-2">
+
         <div class="form-group col-md-12">
-          <label for="description">Add photo</label>
-          <br>
-          <input type="file" (change)="onFileChanged($event)" formControlName="image">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="newImage" [(ngModel)]="newImage" (change)="addNewImage()">
+            <label class="form-check-label" for="flexCheckDefault">
+              Add new photo
+            </label>
+          </div>
+          <input type="file" (change)="onFileChanged($event)" class="form-control">
         </div>
       </div>
 
