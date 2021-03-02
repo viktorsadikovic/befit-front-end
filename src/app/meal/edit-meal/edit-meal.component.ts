@@ -118,7 +118,7 @@ export class EditMealComponent implements OnInit {
         reviews : this.meal.reviews,
         image: this.meal.image,
         favoriteForUsers: this.meal.favoriteForUsers,
-        price: this.meal.price
+        price: this.mealForm.value.price
       }
     } else {
       console.log("bez nova slika")
@@ -140,7 +140,7 @@ export class EditMealComponent implements OnInit {
         reviews : this.meal.reviews,
         image: this.meal.image,
         favoriteForUsers: this.meal.favoriteForUsers,
-        price: this.meal.price
+        price: this.mealForm.value.price
       }
     }
 
