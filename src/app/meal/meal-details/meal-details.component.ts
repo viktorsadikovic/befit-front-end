@@ -125,8 +125,7 @@ export class MealDetailsComponent implements OnInit {
     if(!this.oauthService.checkUserLoggedIn()) {
       return false;
     }
-    return this.meal.creator === this.oauthService.getCurrentUser().email
+    return this.meal?.creator === this.oauthService.getCurrentUser().email
   }
-
 
 }

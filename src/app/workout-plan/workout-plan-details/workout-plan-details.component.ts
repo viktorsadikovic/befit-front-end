@@ -119,7 +119,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
       return false;
     }
 
-    return this.workoutProgram.creator === this.oauthService.getCurrentUser().email
+    return this.workoutProgram?.creator === this.oauthService.getCurrentUser().email
   }
 
   delete() {
