@@ -115,7 +115,11 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   }
 
   isCreator() {
-      return this.workoutProgram.creator === this.oauthService.getCurrentUser().email
+    if(!this.oauthService.checkUserLoggedIn()) {
+      return false;
+    }
+
+    return this.workoutProgram.creator === this.oauthService.getCurrentUser().email
   }
 
   delete() {
