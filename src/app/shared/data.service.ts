@@ -37,8 +37,8 @@ export class DataService {
     return this.http.get<any>(this.api + "meals/all/" + criteria, { params });
   }
 
-  getFavoriteMeals(params, email) {
-    return this.http.get<any>(this.api + "users/" + email + "/favorite-meals", { params });
+  getFavoriteMeals(params) {
+    return this.http.get<any>(this.api + "users/favorite-meals", { params });
   }
 
   getMyMeals(params, email) {
@@ -77,8 +77,8 @@ export class DataService {
     return this.http.get<any>(this.api + "workouts/all/" + criteria, {params});
   }
 
-  getFavoriteWorkoutPlans(params, email) {
-    return this.http.get<any>(this.api + "users/" + email + "/favorite-workout-plans" , { params });
+  getFavoriteWorkoutPlans(params) {
+    return this.http.get<any>(this.api + "users/favorite-workout-plans" , { params });
   }
 
   getMyWorkoutPlans(params, email) {
@@ -113,8 +113,8 @@ export class DataService {
     return this.http.get<any>(this.api + "workouts/latest/" + id);
   }
 
-  getArticles(params, criteria, searchTerm) {
-    return this.http.get<any>(this.api + "forum/articles/all/" + criteria + "/" + searchTerm, {params});
+  getArticles(params, criteria) {
+    return this.http.get<any>(this.api + "forum/articles/all/" + criteria, {params});
   }
 
   getSortedArticles(params, criteria) {

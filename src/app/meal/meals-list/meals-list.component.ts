@@ -52,10 +52,10 @@ export class MealsListComponent implements OnInit {
 
   retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 3);
-    
+
     if(this.routeParam === "favorites") {
       console.log("favoritessss")
-      this.service.getFavoriteMeals(params, this.oauthService.getUserEmail())
+      this.service.getFavoriteMeals(params)
       .subscribe(
         response => {
           const { meals, totalItems } = response;
@@ -96,6 +96,8 @@ export class MealsListComponent implements OnInit {
     }
 
     params['text'] = this.searchTerm
+
+    params['email'] = this.oauthService.getUserEmail()
 
     console.log(params)
 

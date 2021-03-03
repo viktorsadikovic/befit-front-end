@@ -54,7 +54,7 @@ export class WorkoutPlansListComponent implements OnInit {
     const params = this.getRequestParams(this.page, 3);
 
     if(this.routeParam === "favorites") {
-      this.service.getFavoriteWorkoutPlans(params, this.oauthService.getUserEmail())
+      this.service.getFavoriteWorkoutPlans(params)
       .subscribe(
         response => {
           const { workoutPlans, totalItems } = response;
@@ -97,6 +97,8 @@ export class WorkoutPlansListComponent implements OnInit {
     }
 
     params['text'] = this.searchTerm;
+
+    params['email'] = this.oauthService.getUserEmail()
 
     console.log(params)
 

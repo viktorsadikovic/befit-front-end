@@ -27,7 +27,7 @@ export class ForumComponent implements OnInit {
     document.getElementById('dropdown-nav').className = ''
     document.getElementById('login-nav').className = ''
 
-    this.retrieveData(this.criteria, this.searchTerm)
+    this.retrieveData(this.criteria)
   }
 
   changeCurrentArticle(currArticle) {
@@ -37,13 +37,13 @@ export class ForumComponent implements OnInit {
 
   handlePageChange(event) {
     this.page = event;
-    this.retrieveData(this.criteria, this.searchTerm)
+    this.retrieveData(this.criteria)
   }
 
-  retrieveData(criteria, searchTerm) {
+  retrieveData(criteria) {
     const params = this.getRequestParams(this.page, 5);
 
-    this.service.getArticles(params, criteria, searchTerm)
+    this.service.getArticles(params, criteria)
       .subscribe(
         response => {
           const { articles, totalItems } = response;
@@ -77,11 +77,11 @@ export class ForumComponent implements OnInit {
 
   sortArticles() {
     console.log(this.criteria)
-    this.retrieveData(this.criteria, this.searchTerm)
+    this.retrieveData(this.criteria)
   }
 
   searchArticles() {
-    this.retrieveData(this.criteria, this.searchTerm)
+    this.retrieveData(this.criteria)
   }
 
   isAuthenticated() {
