@@ -114,5 +114,15 @@ export class WorkoutPlanDetailsComponent implements OnInit {
     }
   }
 
+  isCreator() {
+      return this.workoutProgram.creator === this.oauthService.getCurrentUser().email
+  }
+
+  delete() {
+    this.service.deleteWorkoutPlan(this.workoutProgram.id).subscribe(data => {
+      this.router.navigate(['/workout-plans'])
+    })
+  }
+
 
 }

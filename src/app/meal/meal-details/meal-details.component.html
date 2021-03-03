@@ -11,7 +11,12 @@
                     <div class="article-title">
                         <h6><a href="#">{{meal?.dietaryType}}</a></h6>
                         <h2>{{meal?.title}}</h2>
-                        <div style="cursor: pointer;" (click)="addToFavoriteMeals(meal?.id)" ><i [ngClass]="{'fa-heart' : isFavoriteMeal(meal?.id), 'fa-heart-o' : !isFavoriteMeal(meal?.id)}" class="fa"></i></div>
+                        <div style="cursor: pointer;" >
+                          <i [ngClass]="{'fa-heart' : isFavoriteMeal(meal?.id), 'fa-heart-o' : !isFavoriteMeal(meal?.id)}" *ngIf="!isCreator()" (click)="addToFavoriteMeals(meal?.id)" class="fa"></i>
+                          <i class="fa fa-pencil" *ngIf="isCreator()" [routerLink]='["/meals/edit-meal", meal?.id]'></i>
+                          <i class="fa fa-trash" *ngIf="isCreator()" (click)="delete()"></i>
+                        </div>
+
 
                         <div class="media">
                             <div class="avatar">

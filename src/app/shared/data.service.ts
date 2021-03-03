@@ -70,7 +70,7 @@ export class DataService {
   }
 
   deleteMeal(id) {
-    this.http.delete<Meal>(this.api + "meals/" + id + "/delete");
+    return this.http.delete<Meal>(this.api + "meals/" + id + "/delete");
   }
 
   getWorkoutPlans(params, criteria) {
@@ -102,7 +102,7 @@ export class DataService {
   }
 
   deleteWorkoutPlan(id) {
-    this.http.delete<WorkoutPlan>(this.api + "workouts/" + id + "/delete");
+    return this.http.delete<WorkoutPlan>(this.api + "workouts/" + id + "/delete");
   }
 
   getTrendingWorkoutPrograms(id) {

@@ -11,7 +11,12 @@
                     <div class="article-title">
                         <h6><a>{{workoutProgram?.workoutType}}</a></h6>
                         <h2>{{workoutProgram?.title}}</h2>
-                        <div style="cursor: pointer;" (click)="addToFavoriteWorkoutPrograms(workoutProgram?.id)" ><i [ngClass]="{'fa-heart' : isFavoriteWorkout(workoutProgram?.id), 'fa-heart-o' : !isFavoriteWorkout(workoutProgram?.id)}" class="fa"></i></div>
+
+                        <div style="cursor: pointer;" >
+                          <i *ngIf="!isCreator()" [ngClass]="{'fa-heart' : isFavoriteWorkout(workoutProgram?.id), 'fa-heart-o' : !isFavoriteWorkout(workoutProgram?.id)}" class="fa"></i>
+                          <i class="fa fa-pencil" *ngIf="isCreator()" [routerLink]='["/workout-plans/edit-workout-plan", workoutProgram?.id]'></i>
+                          <i class="fa fa-trash" *ngIf="isCreator()" (click)="delete()"></i>
+                        </div>
 
                         <div class="media">
                             <div class="avatar">

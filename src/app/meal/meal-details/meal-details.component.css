@@ -409,6 +409,11 @@ img {
   color: red;
 }
 
+.fa-heart, .fa-trash, .fa-pencil, .fa-heart-o {
+  padding: 15px;
+  font-size: 20px;
+}
+
 .fa-heart-o:hover {
   color: red!important;
 }
@@ -419,4 +424,8 @@ img {
 
 .article-content p {
   text-align: justify;
+}
+
+.fa-trash:hover, .fa-pencil:hover {
+  color:#00b09b
 }

@@ -113,8 +113,16 @@ export class MealDetailsComponent implements OnInit {
     } else {
       this.router.navigate(['/login'])
     }
+  }
 
+  delete() {
+    this.service.deleteMeal(this.meal.id).subscribe(data => {
+      this.router.navigate(['/meals'])
+    })
+  }
 
+  isCreator() {
+    return this.meal.creator === this.oauthService.getCurrentUser().email
   }
 
 
