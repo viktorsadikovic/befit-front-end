@@ -23,7 +23,7 @@ export class MealThumbnailComponent implements OnChanges {
         this.rating = this.rating/this.meal.reviews.length;
       }
 
-      this.shortDescription = this.meal.description.split('.', 3);
+      this.shortDescription = this.meal.description.split('.', 3) + ".";
 
 
 

@@ -26,12 +26,12 @@ export class EditMealComponent implements OnInit {
     ingredients : new FormControl('', Validators.required),
     preparation : new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
-    newImage: new FormControl()
+    newImage: new FormControl('', Validators.required)
   })
 
   selectedFile: File;
   meal: Meal;
-  newImage;
+  newImage = false;
 
   get title() { return this.mealForm.get('title'); }
 
@@ -57,6 +57,7 @@ export class EditMealComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.service.getSingleMeal(+params['id']).subscribe(data => {
         this.meal = data
+        console.log(data)
         this.initializeForm()
       })
     })
@@ -74,6 +75,7 @@ export class EditMealComponent implements OnInit {
     let preparation = new FormControl(this.meal.preparation, Validators.required)
     let image = new FormControl(this.meal.image, Validators.required)
     let price = new FormControl(this.meal.price, Validators.required)
+    let newImage = new FormControl(false, Validators.required)
 
     this.mealForm = new FormGroup({
       title : title,
@@ -86,7 +88,8 @@ export class EditMealComponent implements OnInit {
       ingredients : ingredients,
       preparation : preparation,
       image : image,
-      price : price
+      price : price,
+      newImage: newImage
     })
   }
 
@@ -102,6 +105,7 @@ export class EditMealComponent implements OnInit {
     if(this.newImage) {
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
       console.log("so nova slika")
+      this.meal.image.pictureBytes = null
       this.meal = {
         id: this.meal.id,
         title: this.mealForm.value.title,
@@ -114,7 +118,7 @@ export class EditMealComponent implements OnInit {
         description : this.mealForm.value.description,
         ingredients : this.mealForm.value.ingredients,
         preparation : this.mealForm.value.preparation,
-        submissionTime: this.meal.submissionTime,
+        submissionTime: null,
         reviews : this.meal.reviews,
         image: this.meal.image,
         favoriteForUsers: this.meal.favoriteForUsers,
@@ -123,6 +127,7 @@ export class EditMealComponent implements OnInit {
     } else {
       console.log("bez nova slika")
       uploadImageData.append('imageFile', null, null);
+      this.meal.image.pictureBytes = null
 
       this.meal = {
         id: this.meal.id,
@@ -136,7 +141,7 @@ export class EditMealComponent implements OnInit {
         description : this.mealForm.value.description,
         ingredients : this.mealForm.value.ingredients,
         preparation : this.mealForm.value.preparation,
-        submissionTime: this.meal.submissionTime,
+        submissionTime: null,
         reviews : this.meal.reviews,
         image: this.meal.image,
         favoriteForUsers: this.meal.favoriteForUsers,
