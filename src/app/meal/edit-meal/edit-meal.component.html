@@ -95,12 +95,12 @@
 
         <div class="form-group col-md-12">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="newImage" [(ngModel)]="newImage" (change)="addNewImage()">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="newImage"  [(ngModel)]="newImage" (change)="addNewImage()">
             <label class="form-check-label" for="flexCheckDefault">
               Add new photo
             </label>
           </div>
-          <input type="file" (change)="onFileChanged($event)" class="form-control">
+          <input type="file" [disabled]="!addNewImage()" (change)="onFileChanged($event)" class="form-control">
         </div>
       </div>
 

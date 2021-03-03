@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { User, WorkoutPlan } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
@@ -12,7 +12,7 @@ import { OauthService } from 'src/app/shared/oauth.service';
 })
 export class WorkoutPlanDetailsComponent implements OnInit {
 
-  constructor(private service: DataService, 
+  constructor(private service: DataService,
               private route: ActivatedRoute,
               private router: Router,
               private oauthService: OauthService) { }
@@ -26,9 +26,10 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   userLogged;
 
   reviewForm = new FormGroup({
-    description: new FormControl('')
+    description: new FormControl('', Validators.required)
   })
 
+  get description() { return this.reviewForm.get('description'); }
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -62,20 +63,25 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    let review = {
-      id: null,
-      score: this.rating,
-      description: this.reviewForm.value.description,
-      submitter: null,
-      submissionTime: null
+    if(this.oauthService.checkUserLoggedIn()){
+      let review = {
+        id: null,
+        score: this.rating,
+        description: this.reviewForm.value.description,
+        submitter: null,
+        submissionTime: null
+      }
+
+      setTimeout(function() {
+        window.location.reload()
+      }, 3000)
+
+      console.log(review);
+      this.service.addWorkoutReviews(this.workoutProgram.id, review);
+    } else {
+      this.router.navigate(['/login'])
     }
 
-    setTimeout(function() {
-      window.location.reload()
-    }, 3000)
-
-    console.log(review);
-    this.service.addWorkoutReviews(this.workoutProgram.id, review);
   }
 
 
@@ -90,7 +96,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   addToFavoriteWorkoutPrograms(id) {
 
     if(this.oauthService.checkUserLoggedIn()) {
-      
+
       if(this.isFavoriteWorkout(id)) {
         this.service.removeWorkoutProgramFromFavorites(id).subscribe(data => {
           this.userLogged = data;
@@ -105,7 +111,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
 
     } else {
       this.router.navigate(['/login'])
-    } 
+    }
   }
 
 

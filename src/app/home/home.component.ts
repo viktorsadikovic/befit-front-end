@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private router: Router,
     private tokenService: TokenService,
-    private dataService: DataService,
+    private service: DataService,
     private oauthService: OauthService
   ) { }
 
@@ -39,27 +39,27 @@ export class HomeComponent implements OnInit {
 
     this.userLogged = this.oauthService.getCurrentUser()
 
-    this.dataService.getExercisesCount().subscribe(data => {
+    this.service.getExercisesCount().subscribe(data => {
       this.exercisesCount = data
     })
 
-    this.dataService.getWorkoutPlansCount().subscribe(data => {
+    this.service.getWorkoutPlansCount().subscribe(data => {
       this.workoutProgramsCount = data
     })
 
-    this.dataService.getMealsCount().subscribe(data => {
+    this.service.getMealsCount().subscribe(data => {
       this.mealsCount = data
     })
 
-    this.dataService.getUsers().subscribe(data => {
+    this.service.getUsers().subscribe(data => {
       this.usersCount = data
     })
 
-    this.dataService.getTrendingWorkoutPrograms(-1).subscribe(data => {
+    this.service.getTrendingWorkoutPrograms(-1).subscribe(data => {
       this.trendingWorkoutPlans = data;
     })
 
-    this.dataService.getTrendingMeals(-1).subscribe(data => {
+    this.service.getTrendingMeals(-1).subscribe(data => {
       this.trendingMeals = data;
     })
 
@@ -84,12 +84,12 @@ export class HomeComponent implements OnInit {
     if(this.oauthService.checkUserLoggedIn()) {
 
       if(this.isFavoriteWorkout(id)) {
-        this.dataService.removeWorkoutProgramFromFavorites(id).subscribe(data => {
+        this.service.removeWorkoutProgramFromFavorites(id).subscribe(data => {
           this.userLogged = data;
           this.oauthService.updateUser(data)
         })
       } else {
-        this.dataService.addWorkoutProgramToFavorites(id).subscribe(data => {
+        this.service.addWorkoutProgramToFavorites(id).subscribe(data => {
           this.userLogged = data;
           this.oauthService.updateUser(data)
         })
@@ -104,12 +104,12 @@ export class HomeComponent implements OnInit {
     if(this.oauthService.checkUserLoggedIn()) {
 
       if(this.isFavoriteMeal(id)) {
-        this.dataService.removeMealFromFavorites(id).subscribe(data => {
+        this.service.removeMealFromFavorites(id).subscribe(data => {
           this.userLogged = data;
           this.oauthService.updateUser(data)
         })
       } else {
-        this.dataService.addMealToFavorites(id).subscribe(data => {
+        this.service.addMealToFavorites(id).subscribe(data => {
           this.userLogged = data;
           this.oauthService.updateUser(data)
         })

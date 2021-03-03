@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
+import { OauthService } from '../shared/oauth.service';
 
 @Component({
   selector: 'app-forum',
@@ -9,7 +10,8 @@ import { DataService } from '../shared/data.service';
 })
 export class ForumComponent implements OnInit {
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService,
+              private oauthService: OauthService) { }
   articles: Article[]
   currentArticle: Article;
   totalArticles: Number;
@@ -80,5 +82,9 @@ export class ForumComponent implements OnInit {
 
   searchArticles() {
     this.retrieveData(this.criteria, this.searchTerm)
+  }
+
+  isAuthenticated() {
+    return this.oauthService.checkUserLoggedIn()
   }
 }

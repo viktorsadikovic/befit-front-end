@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Meal, User } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
@@ -26,8 +26,11 @@ export class MealDetailsComponent implements OnInit {
   userLogged;
 
   reviewForm = new FormGroup({
-    description: new FormControl('')
+    description: new FormControl('', Validators.required)
   })
+
+  get description() { return this.reviewForm.get('description'); }
+
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -63,23 +66,28 @@ export class MealDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    let review = {
-      id: null,
-      score: this.rating,
-      description: this.reviewForm.value.description,
-      submitter: null,
-      submissionTime: null
-    }
-    
-    setTimeout(function() {
-      window.location.reload()
-    }, 3000)
+    if(this.oauthService.checkUserLoggedIn()) {
+      let review = {
+        id: null,
+        score: this.rating,
+        description: this.reviewForm.value.description,
+        submitter: null,
+        submissionTime: null
+      }
 
-    this.service.addMealReview(this.meal.id, review);
+      setTimeout(function() {
+        window.location.reload()
+      }, 3000)
+
+      this.service.addMealReview(this.meal.id, review);
+    } else {
+      this.router.navigate(['/login'])
+    }
+
   }
 
   isFavoriteMeal(id) {
-    
+
     if(this.oauthService.checkUserLoggedIn()){
       return this.userLogged?.favoriteMeals.filter(elemId => elemId === id).length !== 0
     }
@@ -89,7 +97,7 @@ export class MealDetailsComponent implements OnInit {
   addToFavoriteMeals(id) {
 
     if(this.oauthService.checkUserLoggedIn()) {
-      
+
       if(this.isFavoriteMeal(id)) {
         this.service.removeMealFromFavorites(id).subscribe(data => {
           this.userLogged = data;
@@ -104,9 +112,9 @@ export class MealDetailsComponent implements OnInit {
 
     } else {
       this.router.navigate(['/login'])
-    } 
-    
-    
+    }
+
+
   }
 
 

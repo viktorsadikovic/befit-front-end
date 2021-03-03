@@ -92,7 +92,7 @@
                 Add new photo
               </label>
             </div>
-            <input type="file" (change)="onFileChanged($event)" class="form-control">
+            <input type="file" [disabled]="!addNewImage()" (change)="onFileChanged($event)" class="form-control">
           </div>
         </div>
         <button type="button" class="btn btn-primary col-md-6" style="background-color: #de5246;" (click)="cancel()">Cancel</button>

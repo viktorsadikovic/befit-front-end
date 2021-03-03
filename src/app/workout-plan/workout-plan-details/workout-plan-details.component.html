@@ -114,6 +114,7 @@
                       <div class="row">
                           <div class="col-md-12">
                               <div class="form-group">
+                                  <div *ngIf="description.invalid && (description.dirty || description.touched) && description.errors.required" class="alert alert-danger">Required</div>
                                   <textarea name="message" id="message" placeholder="Your message *" rows="4" formControlName="description" class="form-control"></textarea>
                               </div>
                           </div>
@@ -121,11 +122,12 @@
                             <div class="form-group">
                               <ng-container *ngFor="let star of stars">
                                 <app-star (starEnter)="onStarEnter($event)" (starLeave)="onStarLeave()" (starClicked)="onStarClicked($event)" [starId]="star" [rating]="hoverState || rating"></app-star>
-                              </ng-container>                              </div>
+                              </ng-container>
+                            </div>
                         </div>
                           <div class="col-md-12">
                               <div class="send">
-                                  <button type="submit" class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                                  <button type="submit" class="px-btn theme" [disabled]="!reviewForm.valid"><span>Submit</span> <i class="arrow"></i></button>
                               </div>
                           </div>
                       </div>

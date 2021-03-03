@@ -10,7 +10,8 @@ import { DataService } from 'src/app/shared/data.service';
 })
 export class CreateMealComponent implements OnInit {
 
-  constructor(private service: DataService, private router: Router) { }
+  constructor(private service: DataService,
+              private router: Router) { }
 
   mealForm = new FormGroup({
     title : new FormControl('',[Validators.required]),

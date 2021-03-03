@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { WorkoutPlan } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
+import { OauthService } from '../shared/oauth.service';
 
 @Component({
   selector: 'app-workout-plan',
@@ -10,7 +11,8 @@ import { DataService } from '../shared/data.service';
 })
 export class WorkoutPlanComponent implements OnInit {
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService,
+              private oauthService: OauthService) { }
   wType: {[key: string]: string} = { 'Cardio' : 'CARDIO_TRAINING', 'Bodybuilding' : 'BODYBUILDING', 'Yoga' : 'YOGA',
           'Pilates' : 'PILATES', 'Zumba' : 'ZUMBA'};
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
@@ -156,6 +158,10 @@ export class WorkoutPlanComponent implements OnInit {
 
   searchWorkoutPlans(){
     this.retrieveData(this.criteria);
+  }
+
+  isAuthenticated() {
+    return this.oauthService.checkUserLoggedIn()
   }
 
 }

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, UserAuthenticated } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -44,7 +44,6 @@ import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
 import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
 import { MealsListComponent } from './meal/meals-list/meals-list.component';
 import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/workout-plans-list.component';
-
 
 @NgModule({
   declarations: [
@@ -109,7 +108,8 @@ import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/wor
     },
     mealsInterceptor,
     TokenService,
-    OauthService
+    OauthService,
+    UserAuthenticated
   ],
   bootstrap: [AppComponent]
 })

@@ -89,6 +89,7 @@ initializeForm() {
   let muscleGroups = new FormControl(this.currentWorkout.muscleGroups, [Validators.required])
   let image = new FormControl(this.currentWorkout.image, Validators.required)
   let price = new FormControl(this.currentWorkout.price, Validators.required)
+  let newImage = new FormControl(false)
 
   this.workout = new FormGroup({
     title : title,
@@ -98,7 +99,8 @@ initializeForm() {
     bodyPart: bodyPart,
     muscleGroups: muscleGroups,
     image: image,
-    price: price
+    price: price,
+    newImage: newImage
     })
 }
 
@@ -206,12 +208,8 @@ onSubmit() {
 
 
   if(this.newImage) {
-
-    // this.selectedExercises.forEach(exerciseWrapper => {
-    //   exerciseWrapper.exercise = null
-    // })
-
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
+    this.currentWorkout.image.pictureBytes = null
 
     workoutPlan = {
       id : this.currentWorkout.id,
@@ -223,7 +221,7 @@ onSubmit() {
       bodyPart: this.workout.value.bodyPart,
       muscleGroups: this.workout.value.muscleGroups,
       exercises: this.selectedExercises,
-      submissionTime: this.currentWorkout.submissionTime,
+      submissionTime: null,
       reviews : this.currentWorkout.reviews,
       image: this.currentWorkout.image,
       favoriteForUsers: this.currentWorkout.favoriteForUsers,
@@ -232,6 +230,7 @@ onSubmit() {
 
   } else {
     uploadImageData.append('imageFile', null, null);
+    this.currentWorkout.image.pictureBytes = null
 
     workoutPlan = {
       id : this.currentWorkout.id,
@@ -243,7 +242,7 @@ onSubmit() {
       bodyPart: this.workout.value.bodyPart,
       muscleGroups: this.workout.value.muscleGroups,
       exercises: this.selectedExercises,
-      submissionTime: this.currentWorkout.submissionTime,
+      submissionTime: null,
       reviews : this.currentWorkout.reviews,
       image: this.currentWorkout.image,
       favoriteForUsers: this.currentWorkout.favoriteForUsers,
@@ -261,6 +260,7 @@ onSubmit() {
 
 addNewImage(){
   console.log(this.newImage)
+  return this.newImage
 }
 
 }

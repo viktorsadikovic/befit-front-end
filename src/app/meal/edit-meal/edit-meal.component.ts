@@ -106,6 +106,7 @@ export class EditMealComponent implements OnInit {
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
       console.log("so nova slika")
       this.meal.image.pictureBytes = null
+
       this.meal = {
         id: this.meal.id,
         title: this.mealForm.value.title,
@@ -165,5 +166,6 @@ export class EditMealComponent implements OnInit {
 
  addNewImage() {
    console.log(this.newImage)
+   return this.newImage
  }
 }

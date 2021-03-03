@@ -84,7 +84,7 @@
         <div class="form-group col-md-11 search-button" style="padding: 0;">
           <input type="text" class="form-control" id="title" placeholder="Search" [(ngModel)]="searchTerm" (change)="searchWorkoutPlans()">
         </div>
-        <div class="col-md-1 create-button" style="padding-left: 15px;">
+        <div class="col-md-1 create-button" style="padding-left: 15px;" [hidden]="!isAuthenticated()">
           <a [routerLink]="['/workout-plans/create-workout-plan']" class="btn btn-light" style="background-color: white;color: black; border-radius: 50%;">+</a>
         </div>
       </div>

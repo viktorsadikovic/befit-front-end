@@ -27,8 +27,6 @@ export class HeaderComponent implements OnInit {
     this.authService.authState.subscribe(
       data => {
         this.userLogged = data;
-        // this.isLogged = (this.userLogged != null && this.tokenService.getToken() != null);
-
       }
     );
 
@@ -40,7 +38,7 @@ export class HeaderComponent implements OnInit {
     this.isLogged = false;
   }
 
-  isUserLoggedIn() {
+  isAuthenticated() {
     return this.oauthService.checkUserLoggedIn()
   }
 

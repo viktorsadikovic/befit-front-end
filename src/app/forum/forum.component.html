@@ -10,7 +10,7 @@
               <!-- Inner main header -->
               <div class="inner-main-header">
                   <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="modal" data-target="#threadModal"><i class="fa fa-plus"></i></a>
-                  <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#threadModal" style="background-color: #2dc997;border:none">
+                  <button class="btn btn-primary" [disabled]="!isAuthenticated()" type="button" data-toggle="modal" data-target="#threadModal" style="background-color: #2dc997;border:none" >
 
                     NEW DISCUSSION
                   </button>

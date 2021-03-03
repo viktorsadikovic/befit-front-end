@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Meal } from '../shared/data.model';
 import { DataService } from '../shared/data.service';
+import { OauthService } from '../shared/oauth.service';
 
 @Component({
   selector: 'app-meal',
@@ -11,7 +12,8 @@ import { DataService } from '../shared/data.service';
 })
 export class MealComponent implements OnInit {
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService,
+              private oauthService: OauthService) { }
   meals: Meal[]
   totalMeals: Number
   page: Number = 1
@@ -154,6 +156,10 @@ export class MealComponent implements OnInit {
 
   searchMeals() {
     this.retrieveData(this.criteria);
+  }
+
+  isAuthenticated() {
+    return this.oauthService.checkUserLoggedIn()
   }
 
 

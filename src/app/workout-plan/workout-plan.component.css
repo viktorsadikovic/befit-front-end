@@ -80,3 +80,10 @@
   }
 }
 
+.authenticated {
+  visibility: initial;
+}
+
+.not-authenticated {
+  visibility: hidden;
+}

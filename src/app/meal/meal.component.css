@@ -79,3 +79,12 @@ mat-slider {
     width: 100%!important;
   }
 }
+
+.authenticated {
+  visibility: initial;
+}
+
+.not-authenticated {
+  visibility: hidden;
+}
+
