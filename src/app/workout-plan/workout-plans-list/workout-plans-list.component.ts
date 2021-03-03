@@ -98,7 +98,7 @@ export class WorkoutPlansListComponent implements OnInit {
 
     params['text'] = this.searchTerm;
 
-    params['email'] = this.oauthService.getUserEmail()
+    params['favoriteForUsers'] = this.oauthService.getUserEmail()
 
     console.log(params)
 
