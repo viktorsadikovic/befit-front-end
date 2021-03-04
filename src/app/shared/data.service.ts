@@ -127,7 +127,7 @@ export class DataService {
   }
 
   deleteArticle(id) {
-    this.http.delete<Article>(this.api + "forum/articles/" + id + "/delete");
+    return this.http.post<any>(this.api + "forum/articles/" + id + "/delete", null, {observe: 'response'});
   }
 
   getUsers() {
@@ -158,6 +158,10 @@ export class DataService {
 
   addComment(id, comment) {
     this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'}).subscribe();
+  }
+
+  deleteComment(id, comment) {
+    return this.http.post<any>(this.api + "forum/articles/" + id + "/delete-comment", comment, {observe: 'response'})
   }
 
   upVote(id) {

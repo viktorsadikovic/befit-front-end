@@ -51,7 +51,6 @@ const routes: Routes = [
   { path: 'meals', component: MealComponent},
   { path: 'forum', component: ForumComponent },
   { path: 'exercise', component: AddExerciseComponent },
-  { path: 'card', component: ExerciseThumbnailComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 

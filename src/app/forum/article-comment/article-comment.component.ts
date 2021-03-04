@@ -1,7 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Article } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
+import { OauthService } from 'src/app/shared/oauth.service';
 
 @Component({
   selector: 'app-article-comment',
@@ -10,12 +11,16 @@ import { DataService } from 'src/app/shared/data.service';
 })
 export class ArticleCommentComponent implements OnChanges {
 
-  constructor(private service: DataService) { }
+  constructor(private service: DataService,
+              private oauthService: OauthService) { }
   @Input()article: Article;
 
   commentForm = new FormGroup({
-    text: new FormControl('')
+    text: new FormControl('', Validators.required)
   })
+
+  get text() { return this.commentForm.get('text'); }
+
 
   ngOnChanges(): void {
   }
@@ -30,9 +35,13 @@ export class ArticleCommentComponent implements OnChanges {
     }
     setTimeout(function() {
       window.location.reload()
-    },5000)
+    },2000)
 
     this.service.addComment(this.article.id, comment);
+  }
+
+  isAuthenticated() {
+    return this.oauthService.checkUserLoggedIn()
   }
 
 }

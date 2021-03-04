@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Article } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
 import { OauthService } from 'src/app/shared/oauth.service';
 
@@ -10,6 +11,7 @@ import { OauthService } from 'src/app/shared/oauth.service';
 })
 export class CommentThumbnailComponent implements OnInit {
   @Input() comment: any;
+  @Input() article: Article;
 
 
   constructor(private service: DataService,
@@ -49,7 +51,7 @@ export class CommentThumbnailComponent implements OnInit {
             this.oauthService.updateUser(user)
           })
         })
-      }    
+      }
 
     } else {
       this.router.navigate(['/login'])
@@ -71,6 +73,23 @@ export class CommentThumbnailComponent implements OnInit {
     } else {
       this.router.navigate(['/login'])
     }
+  }
+
+  isCreator() {
+    if(!this.oauthService.checkUserLoggedIn()) {
+      return false;
+    }
+    return (this.comment?.submitter?.email === this.oauthService.getCurrentUser().email) || (this.article.submitter.email === this.oauthService.getCurrentUser())
+  }
+
+  delete() {
+    this.service.deleteComment(this.comment.id, this.comment).subscribe(data => {
+      // this.router.navigate(['/forum'])
+
+      setTimeout(function() {
+        window.location.reload()
+      }, 1000)
+    })
   }
 
 }
