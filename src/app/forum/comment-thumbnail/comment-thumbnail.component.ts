@@ -79,11 +79,15 @@ export class CommentThumbnailComponent implements OnInit {
     if(!this.oauthService.checkUserLoggedIn()) {
       return false;
     }
-    return (this.comment?.submitter?.email === this.oauthService.getCurrentUser().email) || (this.article.submitter.email === this.oauthService.getCurrentUser())
+    return (this.comment?.submitter?.email === this.oauthService.getCurrentUser().email) || (this.article.submitter?.email === this.oauthService.getCurrentUser())
+  }
+
+  isCreatorVoting() {
+    return this.comment?.submitter?.email === this.oauthService.getCurrentUser().email
   }
 
   delete() {
-    this.service.deleteComment(this.comment.id, this.comment).subscribe(data => {
+    this.service.deleteComment(this.comment.id, this.comment, this.article.id).subscribe(data => {
       // this.router.navigate(['/forum'])
 
       setTimeout(function() {

@@ -15,13 +15,13 @@
           </div>
           <div>
             <div class="text-muted small text-center">
-                <div class="d-none d-sm-inline-block upvote" style="cursor: pointer;" (click)="upVote()"><i [ngClass]="{'already-voted-up' : alreadyUpVoted(), '' : !alreadyUpVoted()}" class="fa fa-chevron-up"></i></div>
+                <div class="d-none d-sm-inline-block upvote" *ngIf="!isCreatorVoting()" style="cursor: pointer;" (click)="upVote()"><i [ngClass]="{'already-voted-up' : alreadyUpVoted(), '' : !alreadyUpVoted()}" class="fa fa-chevron-up"></i></div>
             </div>
             <div class="text-muted small text-center">
                 <span class="d-none d-sm-inline-block upvote">{{comment?.rating}}</span>
             </div>
             <div class="text-muted small text-center">
-                <div class="d-none d-sm-inline-block downvote" style="cursor: pointer;" (click)="downVote()"><i [ngClass]="{'already-voted-down' : alreadyDownVoted(), '' : !alreadyDownVoted()}" class="fa fa-chevron-down"></i></div>
+                <div class="d-none d-sm-inline-block downvote" *ngIf="!isCreatorVoting()" style="cursor: pointer;" (click)="downVote()"><i [ngClass]="{'already-voted-down' : alreadyDownVoted(), '' : !alreadyDownVoted()}" class="fa fa-chevron-down"></i></div>
             </div>
           </div>
 

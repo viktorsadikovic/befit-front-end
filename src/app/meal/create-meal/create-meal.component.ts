@@ -82,8 +82,9 @@ export class CreateMealComponent implements OnInit {
 
     console.log(this.meal)
     console.log(uploadImageData.get('imageFile'))
-    this.service.createMeal(uploadImageData);
-    this.router.navigate(['/meals']);
+    this.service.createMeal(uploadImageData).subscribe(data => {
+      this.router.navigate(['/meals']);
+    });
   }
 
   onFileChanged(event) {

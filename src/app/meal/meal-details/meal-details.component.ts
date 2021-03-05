@@ -116,7 +116,12 @@ export class MealDetailsComponent implements OnInit {
   }
 
   delete() {
-    this.service.deleteMeal(this.meal.id).subscribe(data => {
+    this.service.deleteMeal(this.meal.id).subscribe(
+      (data) => {
+      console.log("test")
+      this.router.navigate(['/meals'])
+    },
+    (error) => {
       this.router.navigate(['/meals'])
     })
   }

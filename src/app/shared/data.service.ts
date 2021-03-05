@@ -62,7 +62,7 @@ export class DataService {
   }
 
   createMeal(meal) {
-    this.http.post(this.api + "meals/add", meal, {observe: 'response' }).subscribe();
+    return this.http.post(this.api + "meals/add", meal, {observe: 'response' });
   }
 
   editMeal(meal) {
@@ -160,8 +160,8 @@ export class DataService {
     this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'}).subscribe();
   }
 
-  deleteComment(id, comment) {
-    return this.http.post<any>(this.api + "forum/articles/" + id + "/delete-comment", comment, {observe: 'response'})
+  deleteComment(id, comment, articleId) {
+    return this.http.post<any>(this.api + "forum/" + articleId + "/comments/" + id + "/delete", comment, {observe: 'response'})
   }
 
   upVote(id) {

@@ -144,9 +144,17 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     let params = {};
 
-    params['workoutType'] = this.selectedWorkoutType;
-    params['muscleGroups'] = this.selectedMuscleGroups;
-    params['equipment'] = this.selectedEquipment;
+    if(this.selectedWorkoutType !== null) {
+      params['workoutType'] = this.selectedWorkoutType;
+    } 
+
+    if(this.selectedMuscleGroups !== null) {
+      params['muscleGroup'] = this.selectedMuscleGroups;
+    }
+
+    if(this.selectedEquipment !== null) {
+      params['equipment'] = this.selectedEquipment;
+    }
 
     if (page) {
       params[`page`] = page - 1;

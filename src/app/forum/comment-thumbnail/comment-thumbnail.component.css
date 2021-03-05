@@ -13,3 +13,8 @@
  .already-voted-down {
     color: red!important;
 }
+
+.fa-trash:hover, .fa-pencil:hover {
+    color:#00b09b;
+    cursor: pointer
+  }
