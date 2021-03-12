@@ -44,6 +44,7 @@ import { EditMealComponent } from './meal/edit-meal/edit-meal.component';
 import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
 import { MealsListComponent } from './meal/meals-list/meals-list.component';
 import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/workout-plans-list.component';
+import { ExerciseWrapperThumbnailComponent } from './workout-plan/exercise-wrapper-thumbnail/exercise-wrapper-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/wor
     EditMealComponent,
     EditWorkoutPlanComponent,
     MealsListComponent,
-    WorkoutPlansListComponent
+    WorkoutPlansListComponent,
+    ExerciseWrapperThumbnailComponent
   ],
   imports: [
     BrowserModule,

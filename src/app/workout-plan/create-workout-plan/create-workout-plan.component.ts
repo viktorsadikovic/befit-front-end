@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/shared/data.service';
 
 
@@ -29,7 +30,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
   selectedExercises: any[];
 
 
-  constructor(private service: DataService) {
+  constructor(private service: DataService,
+              private router: Router) {
     this.selectedExercises = []
     this.workout = new FormGroup({
       title : new FormControl('', [Validators.required]),
@@ -146,7 +148,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     if(this.selectedWorkoutType !== null) {
       params['workoutType'] = this.selectedWorkoutType;
-    } 
+    }
 
     if(this.selectedMuscleGroups !== null) {
       params['muscleGroup'] = this.selectedMuscleGroups;
@@ -193,7 +195,9 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     console.log(uploadImageData.get('imageFile'))
     console.log(workoutPlan)
-    this.service.createWorkoutPlan(uploadImageData)
+    this.service.createWorkoutPlan(uploadImageData).subscribe(data => {
+      this.router.navigate(['/workout-plans'])
+    })
   }
 
 }

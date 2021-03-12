@@ -94,7 +94,7 @@ export class DataService {
   }
 
   createWorkoutPlan(workoutPlan) {
-    this.http.post<any>(this.api + "workouts/add", workoutPlan, {observe: 'response' }).subscribe();
+    return this.http.post<any>(this.api + "workouts/add", workoutPlan, {observe: 'response' });
   }
 
   editWorkoutPlan(workoutPlan) {
