@@ -68,17 +68,6 @@
 
         <div class="form-row">
           <div class="form-group">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="newExercises" [(ngModel)]="newExercises">
-              <label class="form-check-label" for="flexCheckDefault">
-                Do you want to add new exercises?
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group">
             <label for="description">Description</label>
             <div *ngIf="description.invalid && (description.dirty || description.touched) && description.errors.required" class="alert alert-danger">Required</div>
             <textarea type="text" class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
@@ -112,7 +101,7 @@
 
     </div>
 
-    <div class="container right" style="float: right; width: 40%;">
+    <div class="container right" style="float: right; width: 41%;">
       <div class="row">
         <div class="mx-auto scroll" data-aos="zoom-in" data-aos-delay="100">
 
@@ -122,7 +111,7 @@
               id: 'exercises_pagination',
               itemsPerPage: 3,
               currentPage: page,
-              totalItems: totalExercises }" [exercise]="exercise" (eventClick)="addExercise($event)"></app-exercise-thumbnail>
+              totalItems: totalExercises }" [exercise]="exercise" (deleteClick)="deleteExercise($event)" (eventClick)="addExercise($event)"></app-exercise-thumbnail>
 
           </ul>
 
@@ -131,7 +120,7 @@
               id: 'exercises_pagination',
               itemsPerPage: 3,
               currentPage: page,
-              totalItems: totalExercises }" [exerciseWrapper]="exercise" (eventClick)="deleteExercise($event)"></app-exercise-wrapper-thumbnail>
+              totalItems: totalExercises }" [exerciseWrapper]="exercise" (deleteClick)="deleteExercise($event)" (eventClick)="editExistingExercises($event)"></app-exercise-wrapper-thumbnail>
 
           </ul>
 
@@ -144,6 +133,8 @@
                       previousLabel="Prev"
                       nextLabel="Next">
       </pagination-controls>
+      <button type="button" class="btn btn-success" [hidden]="newExercises" (click)="changeNewExercisesFlag()">Add new exercises</button>
+      <button type="button" class="btn btn-danger" [hidden]="!newExercises" (click)="cancelNewExercises()">Cancel</button>
 
 
   </div>

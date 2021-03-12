@@ -9,13 +9,19 @@
                 <div class="form-group col-md-6" style="text-align: center;">
                   <label for="title">Series</label>
                   <input type="number" class="form-control" id="series" placeholder="Series" formControlName="series" min="0">
+                  <button type="submit" [disabled]="added" class="btn btn-primary col-md-12">Add</button>
+
                 </div>
 
                 <div class="form-group col-md-6" style="text-align: center;">
                   <label for="title">Reps</label>
                   <input type="number" class="form-control" id="reps" min="0" placeholder="Reps" formControlName="reps">
+                  <button type="submit" [disabled]="!added" (click)="delete()" class="btn btn-danger col-md-12">Remove</button>
+
                 </div>
-                <button type="submit" class="btn btn-primary col-md-6" >Add exercise</button>
+                
+               
+
 
               </form>
             </div><img [src]="'data:image/gif;base64,'+ exercise?.image.pictureBytes" alt="Generic placeholder image" width="200" class="order-1 order-lg-2">

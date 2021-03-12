@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { WorkoutPlan } from 'src/app/shared/data.model';
+import { ExerciseWrapper, WorkoutPlan } from 'src/app/shared/data.model';
 import { DataService } from 'src/app/shared/data.service';
 
 @Component({
@@ -28,15 +28,17 @@ export class EditWorkoutPlanComponent implements OnInit {
   wTypeDisabled = false;
   selectedFile: File;
   retrieveResponse: any;
-  selectedExercises: any[];
+  selectedExercises: ExerciseWrapper[];
   workout: FormGroup;
   newImage = false;
   newExercises = false;
+  additionalExercises : ExerciseWrapper[];
 
   constructor(private service: DataService,
               private router: Router,
               private route: ActivatedRoute) {
     this.selectedExercises = []
+    this.additionalExercises = []
     this.workout = new FormGroup({
     title : new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -45,7 +47,6 @@ export class EditWorkoutPlanComponent implements OnInit {
     bodyPart: new FormControl(null, [Validators.required]),
     muscleGroups: new FormControl(null, [Validators.required]),
     newImage: new FormControl(),
-    newExercises: new FormControl(),
     price: new FormControl('', Validators.required)
     })
 
@@ -92,7 +93,10 @@ export class EditWorkoutPlanComponent implements OnInit {
     let image = new FormControl(this.currentWorkout.image, Validators.required)
     let price = new FormControl(this.currentWorkout.price, Validators.required)
     let newImage = new FormControl(false)
-    let newExercises = new FormControl(false)
+    this.selectedWorkoutType = this.currentWorkout.workoutType
+    this.selectedEquipment = this.currentWorkout.equipment
+    this.selectedBodyPart = this.currentWorkout.bodyPart
+    this.selectedMuscleGroups = this.currentWorkout.muscleGroups
 
     this.workout = new FormGroup({
       title : title,
@@ -103,13 +107,17 @@ export class EditWorkoutPlanComponent implements OnInit {
       muscleGroups: muscleGroups,
       image: image,
       price: price,
-      newImage: newImage,
-      newExercises: newExercises
+      newImage: newImage
       })
   }
 
   cancel() {
     this.router.navigate(['/workout-plans'])
+  }
+
+  cancelNewExercises() {
+    this.additionalExercises = [];
+    this.newExercises = !this.newExercises
   }
 
   changeWorkoutType() {
@@ -159,11 +167,26 @@ export class EditWorkoutPlanComponent implements OnInit {
   }
 
   addExercise(exerciseWrapper) {
+    this.additionalExercises.push(exerciseWrapper)
+  }
+
+  editExistingExercises(exerciseWrapper) {
+    // this.selectedExercises.push(exerciseWrapper)
+    this.selectedExercises.forEach((element, index) => {
+      if(element.exerciseId === exerciseWrapper.exerciseId){
+        this.selectedExercises.splice(index, 1)
+      }
+    })               
     this.selectedExercises.push(exerciseWrapper)
     console.log(this.selectedExercises)
   }
 
   deleteExercise(id) {
+    this.selectedExercises.forEach((element, index) => {
+      if(element.exerciseId === id){
+        this.selectedExercises.splice(index, 1)
+      }
+    }) 
   }
 
   handlePageChange(event) {
@@ -192,9 +215,26 @@ export class EditWorkoutPlanComponent implements OnInit {
 
     let params = {};
 
-    params['workoutType'] = this.selectedWorkoutType;
-    params['muscleGroups'] = this.selectedMuscleGroups;
-    params['equipment'] = this.selectedEquipment;
+    let exerciseIds = []
+    this.selectedExercises.forEach(exerciseWrapper => {
+      exerciseIds.push(exerciseWrapper.exerciseId)
+    })
+
+    if(this.selectedWorkoutType !== null) {
+      params['workoutType'] = this.selectedWorkoutType;
+    }
+
+    if(this.selectedMuscleGroups !== null) {
+      params['muscleGroup'] = this.selectedMuscleGroups;
+    }
+
+    if(this.selectedEquipment !== null) {
+      params['equipment'] = this.selectedEquipment;
+    }
+
+    if(exerciseIds !== null || exerciseIds.length !== 0) {
+      params['id'] = exerciseIds
+    }
 
     if (page) {
     params[`page`] = page - 1;
@@ -209,6 +249,15 @@ export class EditWorkoutPlanComponent implements OnInit {
 
   onSubmit() {
     console.log(this.workout.value)
+
+    this.additionalExercises.forEach(exerciseWrapper => {
+      this.selectedExercises.push(exerciseWrapper)
+    })
+
+    this.selectedExercises.forEach(exerciseWrapper => {
+      exerciseWrapper.exercise = null
+    })
+
     const uploadImageData = new FormData();
     let workoutPlan;
 
@@ -235,7 +284,7 @@ export class EditWorkoutPlanComponent implements OnInit {
       }
 
     } else {
-      uploadImageData.append('imageFile', null, null);
+      // uploadImageData.append('imageFile', null, null);
       this.currentWorkout.image.pictureBytes = null
 
       workoutPlan = {
@@ -267,6 +316,10 @@ export class EditWorkoutPlanComponent implements OnInit {
   addNewImage(){
     console.log(this.newImage)
     return this.newImage
+  }
+
+  changeNewExercisesFlag() {
+    this.newExercises = !this.newExercises
   }
 
 }

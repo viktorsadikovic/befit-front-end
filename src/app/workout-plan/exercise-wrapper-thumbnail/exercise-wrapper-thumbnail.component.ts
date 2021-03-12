@@ -31,6 +31,9 @@ export class ExerciseWrapperThumbnailComponent implements OnInit {
       series: series,
       reps: reps
     })
+
+    this.exerciseForm.controls['reps'].disable()
+    this.exerciseForm.controls['series'].disable()
   }
 
   onSubmit() {
@@ -48,6 +51,9 @@ export class ExerciseWrapperThumbnailComponent implements OnInit {
 
   changeExercise() {
     this.changed = true
+    this.exerciseForm.controls['reps'].enable()
+    this.exerciseForm.controls['series'].enable()
+
   }
 
   delete() {

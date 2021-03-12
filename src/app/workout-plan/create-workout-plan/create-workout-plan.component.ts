@@ -200,4 +200,12 @@ export class CreateWorkoutPlanComponent implements OnInit {
     })
   }
 
+  deleteExercise(id) {
+    this.selectedExercises.forEach((element, index) => {
+      if(element.exerciseId === id){
+        this.selectedExercises.splice(index, 1)
+      }
+    }) 
+  }
+
 }

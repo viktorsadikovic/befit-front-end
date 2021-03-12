@@ -128,6 +128,7 @@ export class LoginComponent implements OnInit {
       console.log(data)
       if(data.statusCode === 200) {
         this.oauthService.updateUser(data.user)
+        this.tokenService.setToken(data.token)
         this.router.navigate(['/home'])
       } else if (data.statusCode === 401) {
         this.loginSuccess = false

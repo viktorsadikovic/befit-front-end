@@ -123,7 +123,11 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   }
 
   delete() {
-    this.service.deleteWorkoutPlan(this.workoutProgram.id).subscribe(data => {
+    this.service.deleteWorkoutPlan(this.workoutProgram.id).subscribe(
+      (data) => {
+      this.router.navigate(['/workout-plans'])
+    },
+    (error) => {
       this.router.navigate(['/workout-plans'])
     })
   }
