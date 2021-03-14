@@ -26,7 +26,7 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="mealType">Meal type</label>
+          <label for="mealType">Meal type<i class="fa fa-refresh" style="padding-left: 10px;" (click)="resetMealType()" aria-hidden="true"></i> </label>
           <select multiple class="form-control" id="mealTypes" formControlName="mealTypes" [(ngModel)]="selectedMealTypes" (change)="changeMealTypes()">
             <option value="BREAKFAST">Breakfast</option>
             <option value="LUNCH">Lunch</option>
@@ -57,6 +57,7 @@
         <div class="form-group">
           <label for="preparationTime">Preparation time</label>
           <select class="form-control" id="preparationTime" formControlName="preparationTime" [(ngModel)]="selectedPreparationTime" (change)="changePrepTime()">
+            <option value="ANY">Any</option>
             <option value="LESS_THAN_30">Less than 30 minutes</option>
             <option value="BETWEEN_30_60">Between 30 and 60 minutes</option>
             <option value="MORE_THAN_60">More than 60 minutes</option>
@@ -68,6 +69,7 @@
         <div class="form-group">
           <label for="cookingTime">Cooking time</label>
           <select class="form-control" id="cookingTime" formControlName="cookingTime" [(ngModel)]="selectedCookingTime" (change)="changeCookTime()">
+            <option value="ANY">Any</option>
             <option value="LESS_THAN_30">Less than 30 minutes</option>
             <option value="BETWEEN_30_60">Between 30 and 60 minutes</option>
             <option value="MORE_THAN_60">More than 60 minutes</option>
@@ -75,14 +77,14 @@
         </div>
       </div>
 
-      <label>Servings</label>
+      <label>Servings <i class="fa fa-refresh" style="padding-left: 10px;" (click)="resetServings()" aria-hidden="true"></i></label>
       <mat-slider
         class="average"
         thumbLabel
         [displayWith]="formatLabel"
         tickInterval="1000"
         min="1"
-        max="10"
+        max="15"
         formControlName='servings'
         [(ngModel)]="selectedServings"
         (change)="changeServings()"
@@ -94,7 +96,7 @@
 
     <div class="container buttons" style="float: right; width: 70%;">
       <div class="form-row">
-        <div class="form-group col-md-11 search-button" style="padding: 0;">
+        <div class="form-group col-md-11 search-button" style="padding: 0; border-radius: 10px;">
           <input type="text" class="form-control" id="title" placeholder="Search" [(ngModel)]="searchTerm" (change)="searchMeals()">
         </div>
         <div class="col-md-1 create-button" style="padding-left: 15px;" [hidden]="!isAuthenticated()">

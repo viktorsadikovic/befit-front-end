@@ -7,7 +7,7 @@
 .meal {
   background: url('../../assets/img/nutrition.cms') top center;
   background-size: cover;
-  min-height: 135vh;
+  min-height: 145vh;
 }
 
 .form-group {
@@ -16,7 +16,8 @@
 }
 
 .left {
-  border-radius: 15px;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 mat-slider {
@@ -86,5 +87,9 @@ mat-slider {
 
 .not-authenticated {
   visibility: hidden;
+}
+
+.fa-refresh:hover {
+  color: #2dc997!important;
 }
 

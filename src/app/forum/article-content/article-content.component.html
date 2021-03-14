@@ -10,10 +10,10 @@
               <div class="media-body ml-3">
                   <a href="javascript:void(0)" class="text-secondary">{{article?.title}}</a>
                   <small class="text-muted ml-2">{{article?.submissionTime | date}}</small>
-                  <div class="mt-3 font-size-sm">
+                  <div class="mt-3 font-size-sm" style="text-align: justify;">
                       <p>{{article?.description}}</p>
-                      <a href="javascript:void(0)" *ngIf="isAuthenticated()" class="text-muted small" data-toggle="modal" data-target="#threadModall">Reply</a>
-                      <i class="fa fa-trash" *ngIf="isCreator()" (click)="delete()"></i>
+                      <a href="javascript:void(0)" *ngIf="isAuthenticated()" class="text-muted reply" data-toggle="modal" data-target="#threadModall">Reply</a>
+                      <i class="fa fa-trash" style="padding-left: 10px;" *ngIf="isCreator()" (click)="delete()"></i>
 
                   </div>
               </div>
@@ -23,34 +23,7 @@
           </div>
       </div>
   </div>
-  <!-- <div class="card mb-2" *ngFor="let comment of article?.comments">
-      <div class="card-body">
-          <div class="media forum-item">
-              <a href="javascript:void(0)" class="card-link">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle" width="50" alt="User" />
-              </a>
-              <div class="media-body ml-3">
-                  <a href="javascript:void(0)" class="text-secondary">{{comment?.submitter?.username}}</a>
-                  <small class="text-muted ml-2">{{comment?.submissionTime | date}}</small>
-                  <div class="mt-3 font-size-sm">
-                      <p>{{comment?.text}}</p>
-                  </div>
-              </div>
-              <div>
-                <div class="text-muted small text-center">
-                    <span class="d-none d-sm-inline-block upvote"><i class="fa fa-chevron-up"></i></span>
-                </div>
-                <div class="text-muted small text-center">
-                    <span class="d-none d-sm-inline-block upvote">0</span>
-                </div>
-                <div class="text-muted small text-center">
-                    <span class="d-none d-sm-inline-block downvote"><i class="fa fa-chevron-down"></i></span>
-                </div>
-              </div>
 
-          </div>
-      </div>
-  </div> -->
   <app-comment-thumbnail *ngFor="let comment of article?.comments" [comment]="comment" [article]="article"></app-comment-thumbnail>
 </div>
 <!-- /Forum Detail -->

@@ -18,8 +18,8 @@ export class WorkoutPlanComponent implements OnInit {
   bPart: {[key: string]: string} =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
   mGroups: {[key: string]: string} =  { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
   exercises;
-  selectedWorkoutType: any;
-  selectedBodyPart: any;
+  selectedWorkoutType = 'ALL';
+  selectedBodyPart = 'ALL';
   selectedMuscleGroups: any;
   selectedEquipment: any;
   criteria = "None";
@@ -33,8 +33,8 @@ export class WorkoutPlanComponent implements OnInit {
   workout = new FormGroup({
     username : new FormControl(null),
     equipment : new FormControl(true),
-    workoutType : new FormControl(null),
-    bodyPart: new FormControl(null),
+    workoutType : new FormControl('ALL'),
+    bodyPart: new FormControl('ALL'),
     muscleGroups: new FormControl(),
     sort: new FormControl()
   })
@@ -105,7 +105,7 @@ export class WorkoutPlanComponent implements OnInit {
   }
 
   retrieveData(criteria) {
-    const params = this.getRequestParams(this.page, 3);
+    const params = this.getRequestParams(this.page, 2);
 
     this.service.getWorkoutPlans(params, criteria)
       .subscribe(
@@ -133,11 +133,11 @@ export class WorkoutPlanComponent implements OnInit {
       params[`size`] = pageSize;
     }
 
-    if(this.selectedWorkoutType){
+    if(this.selectedWorkoutType && this.selectedWorkoutType !== "ALL"){
       params['workoutType'] = this.selectedWorkoutType
     }
 
-    if (this.selectedBodyPart) {
+    if (this.selectedBodyPart && this.selectedBodyPart !== "ALL") {
       params[`bodyPart`] = this.selectedBodyPart;
     }
 
@@ -145,7 +145,7 @@ export class WorkoutPlanComponent implements OnInit {
       params[`muscleGroups`] = this.selectedMuscleGroups;
     }
 
-    if (this.selectedEquipment !== undefined) {
+    if (this.selectedEquipment !== undefined && this.selectedEquipment !== null) {
       params[`equipment`] = this.selectedEquipment;
     }
 
@@ -162,6 +162,16 @@ export class WorkoutPlanComponent implements OnInit {
 
   isAuthenticated() {
     return this.oauthService.checkUserLoggedIn()
+  }
+
+  resetEquipment() {
+    this.selectedEquipment = null;
+    this.retrieveData(this.criteria)
+  }
+
+  resetMuscleGroups() {
+    this.workout.controls.muscleGroups.reset();
+    this.retrieveData(this.criteria)
   }
 
 }

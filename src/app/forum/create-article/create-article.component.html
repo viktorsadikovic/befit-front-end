@@ -20,14 +20,10 @@
                     <textarea class="form-control summernote" id="description" placeholder="Description" formControlName="description"></textarea>
                   </div>
 
-                  <div class="custom-file form-control-sm mt-3" style="max-width: 300px;">
-                      <input type="file" class="custom-file-input" id="customFile" multiple="" />
-                      <label class="custom-file-label" for="customFile">Attachment</label>
-                  </div>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
-                  <button type="submit" class="btn btn-primary" [disabled]="!article.valid">Post</button>
+                  <button type="submit" class="btn" style="background-color: #2dc997!important; color: white;" [disabled]="!article.valid">Post</button>
               </div>
           </form>
       </div>

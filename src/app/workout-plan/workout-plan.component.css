@@ -6,7 +6,7 @@
 .workout {
   background: url('../../assets/img/limit.jpg') top center;
   background-size: cover;
-  min-height: 125vh;
+  min-height: 145vh;
 }
 
 
@@ -28,12 +28,13 @@
 }
 
 .form-group {
-  width: 90%;
+  width: 100%;
   padding: 10px
 }
 
 .left {
-  border-radius: 15px;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 .filters-button {
@@ -87,3 +88,8 @@
 .not-authenticated {
   visibility: hidden;
 }
+
+.fa-refresh:hover {
+  color: #2dc997!important;
+}
+

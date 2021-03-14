@@ -20,19 +20,19 @@ export class MealComponent implements OnInit {
   activeMeals: Meal[]
   criteria = "None";
   selectedMealTypes;
-  selectedDietaryType;
+  selectedDietaryType = "ALL";
   selectedServings;
-  selectedPreparationTime;
-  selectedCookingTime;
+  selectedPreparationTime = 'ANY';
+  selectedCookingTime = 'ANY';
   searchTerm = '';
 
   meal = new FormGroup({
     mealTypes : new FormControl(null),
     dietaryType : new FormControl('VEGAN'),
     preparationTime : new FormControl(),
-    cookingTime : new FormControl(null),
+    cookingTime : new FormControl('ANY'),
     servings : new FormControl(null),
-    preparation : new FormControl(null),
+    preparation : new FormControl('ANY'),
     sort: new FormControl()
   })
 
@@ -61,7 +61,7 @@ export class MealComponent implements OnInit {
   }
 
   retrieveData(criteria) {
-    const params = this.getRequestParams(this.page, 3);
+    const params = this.getRequestParams(this.page, 2);
 
     this.service.getMeals(params, criteria)
       .subscribe(
@@ -90,11 +90,11 @@ export class MealComponent implements OnInit {
       params[`size`] = pageSize;
     }
 
-    if (this.selectedDietaryType) {
+    if (this.selectedDietaryType && this.selectedDietaryType !== "ALL") {
       params[`dietaryType`] = this.selectedDietaryType;
     }
 
-    if (this.selectedMealTypes) {
+    if (this.selectedMealTypes && this.selectedMealTypes !== "ALL") {
       params[`mealTypes`] = this.selectedMealTypes;
     }
 
@@ -160,6 +160,16 @@ export class MealComponent implements OnInit {
 
   isAuthenticated() {
     return this.oauthService.checkUserLoggedIn()
+  }
+
+  resetMealType() {
+    this.meal.controls.mealTypes.reset();
+    this.retrieveData(this.criteria)
+  }
+
+  resetServings() {
+    this.selectedServings = null;
+    this.retrieveData(this.criteria)
   }
 
 

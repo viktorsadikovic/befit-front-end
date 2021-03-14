@@ -16,6 +16,7 @@
           <div class="form-group">
             <label for="workoutType">Workout type</label>
             <select class="form-control" id="workoutType" formControlName="workoutType" [(ngModel)]="selectedWorkoutType" (change)="changeWorkoutType()">
+              <option value="ALL">All</option>
               <option *ngFor="let type of wType | keyvalue" [value]="type.value">{{ type.key }}</option>
             </select>
           </div>
@@ -27,18 +28,21 @@
             <select class="form-control" id="bodyPart" formControlName="bodyPart"
             [(ngModel)]="selectedBodyPart"
             (change)="changeBodyPart()">
-              <option [value]='null'></option>
-              <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
+            <option value="ALL">All</option>
+            <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
             </select>
           </div>
         </div>
 
-        <label for="muscleGroups">Muscle groups</label>
         <div class="form-row">
+          <div class="form-group">
+            <label for="muscleGroups">Muscle groups <i class="fa fa-refresh" style="padding-left: 10px;" (click)="resetMuscleGroups()" aria-hidden="true"></i></label>
 
           <select multiple class="form-control" id="mus" formControlName="muscleGroups" [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()">
             <option [value]="group.value" *ngFor='let group of mGroups | keyvalue'>{{group.key}}</option>
           </select>
+          </div>
+          
         </div>
 
         <div class="form-row">
@@ -59,7 +63,7 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="equipment">Equipment</label>
+            <label for="equipment">Equipment <i class="fa fa-refresh" style="padding-left: 10px;" (click)="resetEquipment()" aria-hidden="true"></i></label>
 
             <div class="form-check">
               <input class="form-check-input"  type="radio" name="equipment" id="exampleRadios1" formControlName="equipment" [value]="true" [(ngModel)]="selectedEquipment" (change)="changedEquipment()">
@@ -81,7 +85,7 @@
 
     <div class="container buttons" style="float: right; width: 70%;">
       <div class="form-row">
-        <div class="form-group col-md-11 search-button" style="padding: 0;">
+        <div class="form-group col-md-11 search-button" style="padding: 0; border-radius: 10px;">
           <input type="text" class="form-control" id="title" placeholder="Search" [(ngModel)]="searchTerm" (change)="searchWorkoutPlans()">
         </div>
         <div class="col-md-1 create-button" style="padding-left: 15px;" [hidden]="!isAuthenticated()">
@@ -98,7 +102,7 @@
           <ul class="list-group shadow" >
             <app-workout-plan-thumbnail *ngFor="let program of workoutPrograms | paginate: {
               id: 'workout_pagination',
-              itemsPerPage: 3,
+              itemsPerPage: 2,
               currentPage: page,
               totalItems: totalPrograms }" [workoutPlan]="program"></app-workout-plan-thumbnail>
           </ul>

@@ -1,5 +1,10 @@
 .fa-trash:hover {
-    color:#00b09b;
+    color:#2dc997;
+    cursor : pointer
+  }
+
+  .reply:hover {
+    color:#2dc997!important;
     cursor : pointer
   }
   
