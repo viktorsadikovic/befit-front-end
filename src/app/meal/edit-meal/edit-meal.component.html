@@ -41,19 +41,19 @@
         <div class="form-group col-md-4">
           <label for="preparationTime">Preparation time</label>
           <div *ngIf="preparationTime.invalid && (preparationTime.dirty || preparationTime.touched) && preparationTime.errors.required" class="text-danger">Required</div>
-          <input type="text" class="form-control" id="preparationTime" placeholder="Preparation time" formControlName="preparationTime">
+          <input type="number" min="0" class="form-control" id="preparationTime" placeholder="Preparation time" formControlName="preparationTime">
         </div>
 
         <div class="form-group col-md-4">
           <label for="cookingTime">Cooking time</label>
           <div *ngIf="cookingTime.invalid && (cookingTime.dirty || cookingTime.touched) && cookingTime.errors.required" class="text-danger">Required</div>
-          <input type="text" class="form-control" id="cookingTime" placeholder="Cooking time" formControlName="cookingTime">
+          <input type="number" min="0" class="form-control" id="cookingTime" placeholder="Cooking time" formControlName="cookingTime">
         </div>
 
         <div class="form-group col-md-4">
           <label for="servings">Servings</label>
           <div *ngIf="servings.invalid && (servings.dirty || servings.touched) && servings.errors.required" class="text-danger">Required</div>
-          <input type="text" class="form-control" id="servings" placeholder="Servings" formControlName="servings">
+          <input type="number" min="0" class="form-control" id="servings" placeholder="Servings" formControlName="servings">
         </div>
       </div>
 
@@ -62,7 +62,7 @@
           <label for="description">Description</label>
           <div *ngIf="description.invalid && (description.dirty || description.touched) && description.errors.required" class="alert alert-danger">Required</div>
 
-          <textarea type="text" class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+          <textarea rows="4" type="text" class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
         </div>
       </div>
 
@@ -70,7 +70,7 @@
         <div class="form-group col-md-12">
           <label for="ingredients">Ingredients</label>
           <div *ngIf="ingredients.invalid && (ingredients.dirty || ingredients.touched) && ingredients.errors.required" class="alert alert-danger">Required</div>
-          <textarea type="text" class="form-control" id="ingredients" placeholder="Ingredients" formControlName="ingredients"></textarea>
+          <textarea rows="4" type="text" class="form-control" id="ingredients" placeholder="Ingredients" formControlName="ingredients"></textarea>
         </div>
       </div>
 
@@ -78,7 +78,7 @@
         <div class="form-group col-md-12">
           <label for="preparation">Preparation</label>
           <div *ngIf="preparation.invalid && (preparation.dirty || preparation.touched) && preparation.errors.required" class="alert alert-danger">Required</div>
-          <textarea type="text" class="form-control" id="preparation" placeholder="Preparation" formControlName="preparation"></textarea>
+          <textarea rows="4" type="text" class="form-control" id="preparation" placeholder="Preparation" formControlName="preparation"></textarea>
         </div>
       </div>
 
@@ -86,13 +86,11 @@
         <div class="form-group col-md-12">
           <label for="price">Price</label>
           <div *ngIf="price.invalid && (price.dirty || price.touched) && price.errors.required" class="alert alert-danger">Required</div>
-          <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
+          <input type="number" min="0" class="form-control" id="price" placeholder="Price" formControlName="price">
         </div>
       </div>
 
       <div class="form-row">
-        <img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" alt="Generic placeholder image" width="40%" class="ml-lg-5 order-1 order-lg-2">
-
         <div class="form-group col-md-12">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="newImage"  [(ngModel)]="newImage" (change)="addNewImage()">
@@ -103,9 +101,12 @@
           <input type="file" [disabled]="!addNewImage()" (change)="onFileChanged($event)" class="form-control">
         </div>
       </div>
+      <div class="form-group">
+        <img [src]="'data:image/gif;base64,'+ meal?.image.pictureBytes" alt="Generic placeholder image" width="40%" class="ml-lg-5 order-1 order-lg-2">
 
+      </div>
       <button type="button" class="btn btn-primary col-md-6" style="background-color: #de5246;" (click)="cancel()">Cancel</button>
-      <button type="submit" class="btn btn-primary col-md-6" [disabled]="!mealForm.valid">Create</button>
+      <button type="submit" class="btn col-md-6" [disabled]="!mealForm.valid">Create</button>
 
     </form>
   </div>

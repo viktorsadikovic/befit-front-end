@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Meal, User, WorkoutPlan } from '../shared/data.model';
@@ -21,6 +22,13 @@ export class HomeComponent implements OnInit {
   usersCount;
   trendingMeals: Meal[];
   trendingWorkoutPlans: WorkoutPlan[];
+
+  messageForm = new FormGroup({
+    name: new FormControl(),
+    message: new FormControl(),
+    email: new FormControl(),
+    subject: new FormControl()
+  })
 
   constructor(
     private router: Router,
@@ -118,6 +126,12 @@ export class HomeComponent implements OnInit {
     } else {
       this.router.navigate(['/login'])
     }
+  }
+
+  sendMail() {
+   this.service.sendEmail(this.messageForm.value).subscribe(data => {
+     this.messageForm.reset();
+   })
   }
 
 }

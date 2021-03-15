@@ -204,4 +204,15 @@ export class DataService {
     return this.http.post<any>(this.api + "auth/logout", null).subscribe()
   }
 
+  sendEmail(data) {
+    return this.http.post("https://formspree.io/f/mnqoelqq", {
+      name: data.name,
+      _subject: data.subject,
+      _replyto: data.email,
+      message: data.message
+    },
+    this.options
+    )
+  }
+
 }

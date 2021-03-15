@@ -5,7 +5,7 @@
   <br>
   <br>
 
-    <div class="container left" style="float: left; width: 55%; background-color: white; padding: 40px; border-radius: 20px;" [formGroup]="workout">
+    <div class="container left" style="float: left; width: 55%; background-color: white; padding: 40px; border-radius: 10px;" [formGroup]="workout">
       <form [formGroup]="workout" (ngSubmit)="onSubmit()" data-aos="zoom-in" data-aos-delay="100">
         <div class="form-row">
           <div class="form-group">
@@ -78,7 +78,7 @@
           <div class="form-group">
             <label for="price">Price</label>
             <div *ngIf="price.invalid && (price.dirty || price.touched) && price.errors.required" class="alert alert-danger">Required</div>
-            <input type="text" class="form-control" id="price" placeholder="Price" formControlName="price">
+            <input type="number" min="0" class="form-control" id="price" placeholder="Price" formControlName="price">
           </div>
         </div>
 

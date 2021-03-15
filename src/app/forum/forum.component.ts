@@ -41,7 +41,7 @@ export class ForumComponent implements OnInit {
   }
 
   retrieveData(criteria) {
-    const params = this.getRequestParams(this.page, 5);
+    const params = this.getRequestParams(this.page, 4);
 
     this.service.getArticles(params, criteria)
       .subscribe(

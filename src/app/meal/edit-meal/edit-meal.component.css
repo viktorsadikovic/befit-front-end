@@ -7,19 +7,21 @@
 .create-meal-background {
   background: url('../../../assets/img/nutrition.cms') top center;
   background-size: cover;
-  min-height: 125vh;
+  min-height: 145vh!important;
 }
 
 .btn {
   font-size: 15px;
   font-weight: bold;
   background-color: #2dc997;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
+  font-weight: normal!important;
+  color: white;
 }
 
 .btn:hover, .btn:active:focus {
-  background-color: transparent!important;
+  background-color: white!important;
   border: 2px solid;
   border-color: gray;
   color: gray;

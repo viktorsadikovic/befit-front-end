@@ -12,9 +12,12 @@ export class ArticleThumbnailComponent implements OnChanges {
   constructor(private service: DataService) { }
   @Input() article: Article;
   @Output() eventClick = new EventEmitter<Article>();
+  shortTitle;
   commentsCount;
 
-  ngOnChanges(): void {   
+  ngOnChanges(): void { 
+    this.shortTitle = this.article.description.split('.', 3) + "...";
+
       if(isNaN(this.article.comments?.length)) {
         this.commentsCount = 0;
       } else {

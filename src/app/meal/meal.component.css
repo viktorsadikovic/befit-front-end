@@ -93,3 +93,36 @@ mat-slider {
   color: #2dc997!important;
 }
 
+::ng-deep .ngx-pagination {
+  width: 36%!important;
+  margin: auto!important;
+}
+
+::ng-deep .ngx-pagination .current {
+  background-color: #2dc997!important;
+}
+
+::ng-deep .ngx-pagination li:not(.current) {
+  background-color: white!important;
+  color: #2dc997!important;
+}
+
+::ng-deep .ngx-pagination .pagination-previous, 
+::ng-deep .ngx-pagination .pagination-next {
+  background-color: white!important;
+  color: #2dc997!important;
+}
+
+::ng-deep .ngx-pagination .pagination-previous:hover {
+  color: #2dc997!important;
+  background-color: rgb(230, 224, 224)!important;
+}
+
+::ng-deep .ngx-pagination .pagination-next:hover {
+  background-color: #2dc997!important;
+  color: #2dc997!important;
+}
+
+::ng-deep .ngx-pagination li {
+  margin: 5px;
+}

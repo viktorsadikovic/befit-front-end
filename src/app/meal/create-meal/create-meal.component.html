@@ -42,19 +42,19 @@
         <div class="form-group col-md-4">
           <label for="preparationTime">Preparation time</label>
           <div *ngIf="preparationTime.invalid && (preparationTime.dirty || preparationTime.touched) && preparationTime.errors.required" class="text-danger">Required</div>
-          <input type="text" class="form-control" id="preparationTime" placeholder="Preparation time" formControlName="preparationTime">
+          <input type="number" min="0" class="form-control" id="preparationTime" placeholder="Preparation time" formControlName="preparationTime">
         </div>
 
         <div class="form-group col-md-4">
           <label for="cookingTime">Cooking time</label>
           <div *ngIf="cookingTime.invalid && (cookingTime.dirty || cookingTime.touched) && cookingTime.errors.required" class="text-danger">Required</div>
-          <input type="text" class="form-control" id="cookingTime" placeholder="Cooking time" formControlName="cookingTime">
+          <input type="number" min="0" class="form-control" id="cookingTime" placeholder="Cooking time" formControlName="cookingTime">
         </div>
 
         <div class="form-group col-md-4">
           <label for="servings">Servings</label>
           <div *ngIf="servings.invalid && (servings.dirty || servings.touched) && servings.errors.required" class="text-danger">Required</div>
-          <input type="text" class="form-control" id="servings" placeholder="Servings" formControlName="servings">
+          <input type="number" min="0" class="form-control" id="servings" placeholder="Servings" formControlName="servings">
         </div>
       </div>
 
@@ -87,7 +87,7 @@
         <div class="form-group col-md-12">
           <label for="price">Price</label>
           <div *ngIf="price.invalid && (price.dirty || price.touched) && price.errors.required" class="alert alert-danger">Required</div>
-          <input type="number" class="form-control" id="price" placeholder="Price" formControlName="price">
+          <input type="number" min="0" class="form-control" id="price" placeholder="Price" formControlName="price">
         </div>
       </div>
 

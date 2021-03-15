@@ -8,7 +8,7 @@
 
           <!-- Inner main -->
               <!-- Inner main header -->
-              <div class="inner-main-header">
+              <div class="inner-main-header" style="border-radius: 5px!important;">
                   <a class="nav-link nav-icon rounded-circle nav-link-faded mr-3 d-md-none" href="#" data-toggle="modal" data-target="#threadModal"><i class="fa fa-plus"></i></a>
                   <button class="btn btn-primary" [disabled]="!isAuthenticated()" type="button" data-toggle="modal" data-target="#threadModal" style="background-color: #2dc997;border:none" >
 
@@ -34,7 +34,7 @@
                   itemsPerPage: 5,
                   currentPage: page,
                   totalItems: totalArticles }" [article]="article" (eventClick)="changeCurrentArticle($event)"></app-article-thumbnail>
-
+                    
                   <pagination-controls  id="forum_pagination"
                       (pageChange)="handlePageChange($event)"
                       maxSize="5"

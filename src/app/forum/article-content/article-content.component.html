@@ -8,11 +8,11 @@
                   <small class="d-block text-center text-muted">{{article?.submitter?.username}}</small>
               </a>
               <div class="media-body ml-3">
-                  <a href="javascript:void(0)" class="text-secondary">{{article?.title}}</a>
-                  <small class="text-muted ml-2">{{article?.submissionTime | date}}</small>
+                  <a href="javascript:void(0)" class="text-secondary" style="font-size: 16px!important;">{{article?.title}}</a>
+                  <small style="padding-left: 15px;" class="text-muted ml-2">{{article?.submissionTime | date}}</small>
                   <div class="mt-3 font-size-sm" style="text-align: justify;">
                       <p>{{article?.description}}</p>
-                      <a href="javascript:void(0)" *ngIf="isAuthenticated()" class="text-muted reply" data-toggle="modal" data-target="#threadModall">Reply</a>
+                      <a href="javascript:void(0)" *ngIf="isAuthenticated()" class="text-muted reply" data-toggle="modal" data-target="#threadModall"><i class="fa fa-comments-o" aria-hidden="true" style="padding-right: 5px;"></i>Reply</a>
                       <i class="fa fa-trash" style="padding-left: 10px;" *ngIf="isCreator()" (click)="delete()"></i>
 
                   </div>
