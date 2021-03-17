@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'befit-frontend';
-  isLoggedIn = false;
 
-  setIsLoggedIn(componentRef) {
-    console.log("test emit")
-  }
 }

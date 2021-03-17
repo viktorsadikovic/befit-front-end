@@ -31,7 +31,6 @@ export class ForumComponent implements OnInit {
   }
 
   changeCurrentArticle(currArticle) {
-    console.log(currArticle)
     this.currentArticle = currArticle
   }
 
@@ -50,8 +49,6 @@ export class ForumComponent implements OnInit {
           this.articles = articles;
           this.currentArticle = this.articles[0]
           this.totalArticles = totalItems;
-          console.log("response")
-          console.log(response);
         },
         error => {
           console.log(error);
@@ -76,7 +73,6 @@ export class ForumComponent implements OnInit {
   }
 
   sortArticles() {
-    console.log(this.criteria)
     this.retrieveData(this.criteria)
   }
 

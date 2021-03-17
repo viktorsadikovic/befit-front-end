@@ -61,12 +61,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.socialUser = data;
         const tokenGoogle = new TokenDto(this.socialUser.idToken);
-        console.log("Alo bre")
+
         this.oauthService.google(tokenGoogle).subscribe(
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-            console.log(res)
             this.oauthService.updateUser(res.user)
 
             this.router.navigate(['/home'])
@@ -89,12 +88,11 @@ export class LoginComponent implements OnInit {
       data => {
         this.socialUser = data;
         const tokenFace = new TokenDto(this.socialUser.authToken);
-        console.log(data)
+
         this.oauthService.facebook(tokenFace).subscribe(
           res => {
             this.tokenService.setToken(res.value);
             this.isLogged = true;
-            console.log(res)
             this.oauthService.updateUser(res.user)
 
             this.router.navigate(['/home'])
@@ -115,7 +113,6 @@ export class LoginComponent implements OnInit {
   logOut(): void {
     this.tokenService.logOut();
     this.isLogged = false;
-    console.log("logout")
   }
 
   onSubmit() {
@@ -125,7 +122,6 @@ export class LoginComponent implements OnInit {
     }
 
     this.service.login(loginDto).subscribe(data => {
-      console.log(data)
       if(data.statusCode === 200) {
         this.oauthService.updateUser(data.user)
         this.tokenService.setToken(data.token)

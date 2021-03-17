@@ -19,12 +19,10 @@ export class OauthService {
   oauthURL = 'http://localhost:8080/oauth/';
 
   public google(tokenDto: TokenDto): Observable<TokenDto> {
-    console.log(tokenDto + " oauth-service")
     return this.http.post<TokenDto>(this.oauthURL + 'google', tokenDto, options);
   }
 
   public facebook(tokenDto: TokenDto): Observable<TokenDto> {
-    console.log(tokenDto + " oauth-service")
     return this.http.post<TokenDto>(this.oauthURL + 'facebook', tokenDto, options);
   }
 

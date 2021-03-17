@@ -34,7 +34,6 @@ export class ExerciseThumbnailComponent implements OnInit {
       numberOfReps: this.exerciseForm.value.reps,
     }
 
-    console.log(this.exercise)
     this.eventClick.emit(exercise)
   }
 

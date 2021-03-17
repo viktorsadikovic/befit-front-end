@@ -71,7 +71,6 @@ export class HomeComponent implements OnInit {
       this.trendingMeals = data;
     })
 
-    console.log(this.oauthService.isLoggedIn)
   }
 
   isFavoriteWorkout(id) {

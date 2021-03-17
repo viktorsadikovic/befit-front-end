@@ -121,8 +121,6 @@ export class EditWorkoutPlanComponent implements OnInit {
   }
 
   changeWorkoutType() {
-    console.log(this.selectedWorkoutType)
-
     if(this.selectedWorkoutType === "BODYBUILDING"){
     this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
     this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
@@ -135,7 +133,6 @@ export class EditWorkoutPlanComponent implements OnInit {
     this.workout.controls.bodyPart.setValue(null)
     this.selectedMuscleGroups = null
     this.retrieveData()
-    console.log(this.wTypeDisabled)
     }
   }
 
@@ -146,7 +143,6 @@ export class EditWorkoutPlanComponent implements OnInit {
     } else if(this.selectedBodyPart === "LOWER_BODY"){
     this.mGroups = {'Legs' : 'LEGS'}
     this.retrieveData()
-    console.log(this.wTypeDisabled)
     } else if(this.selectedBodyPart == "UPPER_BODY"){
     this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
     this.retrieveData()
@@ -154,7 +150,6 @@ export class EditWorkoutPlanComponent implements OnInit {
   }
 
   changeMuscleGroup() {
-    console.log(this.selectedMuscleGroups)
     this.retrieveData()
   }
 
@@ -171,14 +166,12 @@ export class EditWorkoutPlanComponent implements OnInit {
   }
 
   editExistingExercises(exerciseWrapper) {
-    // this.selectedExercises.push(exerciseWrapper)
     this.selectedExercises.forEach((element, index) => {
       if(element.exerciseId === exerciseWrapper.exerciseId){
         this.selectedExercises.splice(index, 1)
       }
-    })               
+    })
     this.selectedExercises.push(exerciseWrapper)
-    console.log(this.selectedExercises)
   }
 
   deleteExercise(id) {
@@ -186,7 +179,7 @@ export class EditWorkoutPlanComponent implements OnInit {
       if(element.exerciseId === id){
         this.selectedExercises.splice(index, 1)
       }
-    }) 
+    })
   }
 
   handlePageChange(event) {
@@ -203,8 +196,6 @@ export class EditWorkoutPlanComponent implements OnInit {
       const { exercises, totalItems } = response;
       this.exercises = exercises;
       this.totalExercises = totalItems;
-      console.log("response")
-      console.log(response);
     },
     error => {
       console.log(error);
@@ -248,8 +239,6 @@ export class EditWorkoutPlanComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.workout.value)
-
     this.additionalExercises.forEach(exerciseWrapper => {
       this.selectedExercises.push(exerciseWrapper)
     })
@@ -308,13 +297,11 @@ export class EditWorkoutPlanComponent implements OnInit {
 
     uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
 
-    console.log(workoutPlan)
     this.service.editWorkoutPlan(uploadImageData)
     this.router.navigate(['/workout-plans'])
   }
 
   addNewImage(){
-    console.log(this.newImage)
     return this.newImage
   }
 

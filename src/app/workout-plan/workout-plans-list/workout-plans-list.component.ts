@@ -60,8 +60,6 @@ export class WorkoutPlansListComponent implements OnInit {
           const { workoutPlans, totalItems } = response;
           this.workoutPrograms = workoutPlans;
           this.totalPrograms = totalItems;
-          console.log("response")
-          console.log(response);
         },
         error => {
           console.log(error);
@@ -73,8 +71,6 @@ export class WorkoutPlansListComponent implements OnInit {
           const { workoutPlans, totalItems } = response;
           this.workoutPrograms = workoutPlans;
           this.totalPrograms = totalItems;
-          console.log("response")
-          console.log(response);
         },
         error => {
           console.log(error);
@@ -99,8 +95,6 @@ export class WorkoutPlansListComponent implements OnInit {
     params['text'] = this.searchTerm;
 
     params['favoriteForUsers'] = this.oauthService.getUserEmail()
-
-    console.log(params)
 
     return params;
   }

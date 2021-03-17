@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 import { TokenService } from '../shared/token.service';
 
 @Injectable()
-export class MealsInterceptor implements HttpInterceptor {
+export class BeFitInterceptor implements HttpInterceptor {
 
   constructor(private tokenService: TokenService) { }
 
@@ -25,4 +25,4 @@ export class MealsInterceptor implements HttpInterceptor {
   }
 }
 
-export const mealsInterceptor = [ {provide: HTTP_INTERCEPTORS, useClass: MealsInterceptor, multi: true}];
+export const befitInterceptor = [ {provide: HTTP_INTERCEPTORS, useClass: BeFitInterceptor, multi: true}];

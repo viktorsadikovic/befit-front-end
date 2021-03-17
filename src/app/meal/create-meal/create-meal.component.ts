@@ -53,8 +53,6 @@ export class CreateMealComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.mealForm.value)
-
     const uploadImageData = new FormData();
 
     uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
@@ -80,8 +78,6 @@ export class CreateMealComponent implements OnInit {
 
     uploadImageData.append('meal', JSON.stringify(this.meal));
 
-    console.log(this.meal)
-    console.log(uploadImageData.get('imageFile'))
     this.service.createMeal(uploadImageData).subscribe(data => {
       this.router.navigate(['/meals']);
     });

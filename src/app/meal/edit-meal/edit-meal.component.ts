@@ -57,7 +57,6 @@ export class EditMealComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.service.getSingleMeal(+params['id']).subscribe(data => {
         this.meal = data
-        console.log(data)
         this.initializeForm()
       })
     })
@@ -98,63 +97,35 @@ export class EditMealComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.mealForm.value)
-
     const uploadImageData = new FormData();
+
+    this.meal = {
+      id: this.meal.id,
+      title: this.mealForm.value.title,
+      creator: this.meal.creator,
+      mealTypes: this.mealForm.value.mealTypes,
+      dietaryType: this.mealForm.value.dietaryType,
+      preparationTime: this.mealForm.value.preparationTime,
+      cookingTime : this.mealForm.value.cookingTime,
+      servings : this.mealForm.value.servings,
+      description : this.mealForm.value.description,
+      ingredients : this.mealForm.value.ingredients,
+      preparation : this.mealForm.value.preparation,
+      submissionTime: null,
+      reviews : this.meal.reviews,
+      image: this.meal.image,
+      favoriteForUsers: this.meal.favoriteForUsers,
+      price: this.mealForm.value.price
+    }
+    this.meal.image.pictureBytes = null
 
     if(this.newImage) {
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-      console.log("so nova slika")
-      this.meal.image.pictureBytes = null
-
-      this.meal = {
-        id: this.meal.id,
-        title: this.mealForm.value.title,
-        creator: this.meal.creator,
-        mealTypes: this.mealForm.value.mealTypes,
-        dietaryType: this.mealForm.value.dietaryType,
-        preparationTime: this.mealForm.value.preparationTime,
-        cookingTime : this.mealForm.value.cookingTime,
-        servings : this.mealForm.value.servings,
-        description : this.mealForm.value.description,
-        ingredients : this.mealForm.value.ingredients,
-        preparation : this.mealForm.value.preparation,
-        submissionTime: null,
-        reviews : this.meal.reviews,
-        image: this.meal.image,
-        favoriteForUsers: this.meal.favoriteForUsers,
-        price: this.mealForm.value.price
-      }
     } else {
-      console.log("bez nova slika")
       uploadImageData.append('imageFile', null, null);
-      this.meal.image.pictureBytes = null
-
-      this.meal = {
-        id: this.meal.id,
-        title: this.mealForm.value.title,
-        creator: this.meal.creator,
-        mealTypes: this.mealForm.value.mealTypes,
-        dietaryType: this.mealForm.value.dietaryType,
-        preparationTime: this.mealForm.value.preparationTime,
-        cookingTime : this.mealForm.value.cookingTime,
-        servings : this.mealForm.value.servings,
-        description : this.mealForm.value.description,
-        ingredients : this.mealForm.value.ingredients,
-        preparation : this.mealForm.value.preparation,
-        submissionTime: null,
-        reviews : this.meal.reviews,
-        image: this.meal.image,
-        favoriteForUsers: this.meal.favoriteForUsers,
-        price: this.mealForm.value.price
-      }
     }
 
-    console.log(this.meal)
-
     uploadImageData.append('meal', JSON.stringify(this.meal));
-
-    console.log(this.meal)
 
     this.service.editMeal(uploadImageData);
     this.router.navigate(['/meals']);
@@ -165,7 +136,6 @@ export class EditMealComponent implements OnInit {
  }
 
  addNewImage() {
-   console.log(this.newImage)
    return this.newImage
  }
 }

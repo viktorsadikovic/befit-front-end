@@ -15,7 +15,7 @@ export class ArticleThumbnailComponent implements OnChanges {
   shortTitle;
   commentsCount;
 
-  ngOnChanges(): void { 
+  ngOnChanges(): void {
     this.shortTitle = this.article.description.split('.', 3) + "...";
 
       if(isNaN(this.article.comments?.length)) {
@@ -26,7 +26,6 @@ export class ArticleThumbnailComponent implements OnChanges {
   }
 
   sendData() {
-    console.log(this.article)
     this.service.updateViews(this.article.id);
     this.eventClick.emit(this.article)
   }

@@ -56,19 +56,14 @@ export class RegisterComponent implements OnInit {
         likedComments: null
       }
 
-      console.log(user)
-
       this.service.register(user).subscribe(data => {
         if(data.body.statusCode === 200) {
-          console.log(data)
           this.router.navigate(['/login'])
         }
-
       })
     } else {
       this.passwordMatch = false;
     }
-
   }
 
   checkPasswords() {

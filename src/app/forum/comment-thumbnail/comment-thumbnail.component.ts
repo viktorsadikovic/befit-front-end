@@ -25,7 +25,6 @@ export class CommentThumbnailComponent implements OnInit {
   alreadyUpVoted() {
     if(this.oauthService.checkUserLoggedIn()) {
       let user = this.oauthService.getCurrentUser();
-      console.log(user)
       return user.likedComments.filter(elem => elem.commentId === this.comment.id && elem.vote === "upVote").length !== 0
     }
     return false;
@@ -88,8 +87,6 @@ export class CommentThumbnailComponent implements OnInit {
 
   delete() {
     this.service.deleteComment(this.comment.id, this.comment, this.article.id).subscribe(data => {
-      // this.router.navigate(['/forum'])
-
       setTimeout(function() {
         window.location.reload()
       }, 1000)

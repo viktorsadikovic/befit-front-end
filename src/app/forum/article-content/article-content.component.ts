@@ -15,8 +15,6 @@ export class ArticleContentComponent implements OnChanges {
   @Input() article: Article;
 
   ngOnChanges(): void {
-    console.log(this.article)
-    console.log("zgolemi")
 
   }
 
@@ -33,8 +31,6 @@ export class ArticleContentComponent implements OnChanges {
 
   delete() {
     this.service.deleteArticle(this.article.id).subscribe(data => {
-      // this.router.navigate(['/forum'])
-
       setTimeout(function() {
         window.location.reload()
       }, 1000)

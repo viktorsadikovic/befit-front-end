@@ -28,7 +28,7 @@ import {
   GoogleLoginProvider,
   FacebookLoginProvider,
 } from 'angularx-social-login';
-import { mealsInterceptor } from './interceptors/meals.interceptor';
+import { befitInterceptor } from './interceptors/meals.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WorkoutPlanThumbnailComponent } from './workout-plan/workout-plan-thumbnail/workout-plan-thumbnail.component';
 import { CreateArticleComponent } from './forum/create-article/create-article.component';
@@ -108,7 +108,7 @@ import { ExerciseWrapperThumbnailComponent } from './workout-plan/exercise-wrapp
         ],
       }  as SocialAuthServiceConfig,
     },
-    mealsInterceptor,
+    befitInterceptor,
     TokenService,
     OauthService,
     UserAuthenticated

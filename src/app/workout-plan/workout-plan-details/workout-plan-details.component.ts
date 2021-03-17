@@ -76,7 +76,6 @@ export class WorkoutPlanDetailsComponent implements OnInit {
         window.location.reload()
       }, 3000)
 
-      console.log(review);
       this.service.addWorkoutReviews(this.workoutProgram.id, review);
     } else {
       this.router.navigate(['/login'])
@@ -86,7 +85,6 @@ export class WorkoutPlanDetailsComponent implements OnInit {
 
 
   isFavoriteWorkout(id) {
-
     if(this.oauthService.checkUserLoggedIn()){
       return this.userLogged?.favoriteWorkoutPlans.filter(elemId => elemId === id).length !== 0
     }
@@ -94,7 +92,6 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   }
 
   addToFavoriteWorkoutPrograms(id) {
-
     if(this.oauthService.checkUserLoggedIn()) {
 
       if(this.isFavoriteWorkout(id)) {

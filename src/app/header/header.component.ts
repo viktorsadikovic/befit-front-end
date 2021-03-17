@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(this.oauthService.user)
     this.authService.authState.subscribe(
       data => {
         this.userLogged = data;

@@ -50,13 +50,7 @@ export class WorkoutPlanComponent implements OnInit {
     this.retrieveData(this.criteria);
   }
 
-  onSubmit() {
-    console.log(this.workout.value)
-  }
-
   changeWorkoutType() {
-    console.log(this.selectedWorkoutType)
-
     if(this.selectedWorkoutType === "BODYBUILDING"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
         this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
@@ -66,8 +60,6 @@ export class WorkoutPlanComponent implements OnInit {
       this.mGroups = null
       this.workout.controls.muscleGroups.setValue(null)
       this.workout.controls.bodyPart.setValue(null)
-
-      console.log(this.wTypeDisabled)
     }
     this.retrieveData(this.criteria);
   }
@@ -78,7 +70,6 @@ export class WorkoutPlanComponent implements OnInit {
       this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
     } else if(this.selectedBodyPart === "LOWER_BODY"){
         this.mGroups = {'Legs' : 'LEGS'}
-      console.log(this.wTypeDisabled)
     } else if(this.selectedBodyPart == "UPPER_BODY"){
         this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS'};
     }
@@ -86,8 +77,6 @@ export class WorkoutPlanComponent implements OnInit {
   }
 
   changeMuscleGroup() {
-    console.log(this.workout.value)
-    console.log(this.selectedMuscleGroups)
     this.retrieveData(this.criteria);
   }
 
@@ -113,8 +102,6 @@ export class WorkoutPlanComponent implements OnInit {
           const { workoutPlans, totalItems } = response;
           this.workoutPrograms = workoutPlans;
           this.totalPrograms = totalItems;
-          console.log("response")
-          console.log(response);
         },
         error => {
           console.log(error);
@@ -150,8 +137,6 @@ export class WorkoutPlanComponent implements OnInit {
     }
 
     params['title'] = this.searchTerm;
-
-    console.log(params)
 
     return params;
   }

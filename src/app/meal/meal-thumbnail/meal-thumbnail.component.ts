@@ -19,7 +19,6 @@ export class MealThumbnailComponent implements OnChanges {
       if(isNaN(this.rating)) {
         this.rating = 0;
       } else {
-        console.log(this.rating)
         this.rating = this.rating/this.meal.reviews.length;
       }
 

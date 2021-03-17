@@ -38,7 +38,6 @@ export class AddExerciseComponent implements OnInit {
  }
 
  onSubmit() {
-  console.log(this.exerciseForm.value)
   const uploadImageData = new FormData();
 
   uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
@@ -53,10 +52,9 @@ export class AddExerciseComponent implements OnInit {
     image: null
   }
 
-  console.log(this.exercise)
   uploadImageData.append('exercise', JSON.stringify(this.exercise));
   this.service.addExercise(uploadImageData);
-  
+
   this.service.getSingleExercise(null).subscribe(res => {
     this.retrieveResponse = res;
     this.retrievedImage = 'data:image/gif;base64,' + this.retrieveResponse.image.pictureBytes;

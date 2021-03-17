@@ -13,7 +13,6 @@ export class DataService {
   optionsImage = { headers: new HttpHeaders({'Content-Type': 'multipart/form-data; charset=UTF-8'})}
 
   getExercises(params){
-    console.log(params)
     return this.http.get<any>(this.api + "exercises/all", { params });
   }
 
@@ -122,7 +121,6 @@ export class DataService {
   }
 
   saveArticle(article) {
-    console.log(article)
     this.http.post<Article>(this.api + "forum/articles/add", article, this.options).subscribe();
   }
 
@@ -152,7 +150,6 @@ export class DataService {
   }
 
   updateViews(id) {
-    console.log("increment service")
     this.http.post(this.api + "forum/increment-views/" + id, new Object()).subscribe();
   }
 

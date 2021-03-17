@@ -32,7 +32,6 @@ export class CreateArticleComponent implements OnInit {
 
   onSubmit() {
     if(this.oauthService.checkUserLoggedIn()) {
-      console.log(this.article.value)
       this.service.saveArticle(this.article.value)
       setTimeout(function() {
         window.location.reload()

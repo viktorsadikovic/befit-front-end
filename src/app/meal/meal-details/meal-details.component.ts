@@ -49,8 +49,6 @@ export class MealDetailsComponent implements OnInit {
     })
 
     this.userLogged = this.oauthService.getCurrentUser();
-    console.log(this.userLogged)
-
   }
 
   onStarEnter(starId: number){
@@ -118,7 +116,6 @@ export class MealDetailsComponent implements OnInit {
   delete() {
     this.service.deleteMeal(this.meal.id).subscribe(
       (data) => {
-      console.log("test")
       this.router.navigate(['/meals'])
     },
     (error) => {

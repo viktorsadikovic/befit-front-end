@@ -70,8 +70,6 @@ export class MealComponent implements OnInit {
           this.meals = meals;
           this.activeMeals = meals
           this.totalMeals = totalItems;
-          console.log("response")
-          console.log(response);
         },
         error => {
           console.log(error);
@@ -124,7 +122,6 @@ export class MealComponent implements OnInit {
 
     params['title'] = this.searchTerm
 
-    console.log(params)
 
     return params;
   }
@@ -150,7 +147,6 @@ export class MealComponent implements OnInit {
   }
 
   sortMeals() {
-    console.log(this.criteria)
     this.retrieveData(this.criteria);
   }
 
@@ -171,8 +167,6 @@ export class MealComponent implements OnInit {
     this.selectedServings = null;
     this.retrieveData(this.criteria)
   }
-
-
 }
 
 
