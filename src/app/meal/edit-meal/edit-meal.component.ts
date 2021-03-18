@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Meal } from 'src/app/shared/data.model';
-import { DataService } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/service/data.service';
 
 @Component({
   selector: 'app-edit-meal',

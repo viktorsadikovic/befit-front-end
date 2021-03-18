@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
-import { OauthService } from '../shared/oauth.service';
-import { TokenService } from '../shared/token.service';
+import { OauthService } from '../shared/service/oauth.service';
+import { TokenService } from '../shared/service/token.service';
 
 @Component({
   selector: 'app-header',

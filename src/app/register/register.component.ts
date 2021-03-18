@@ -1,8 +1,7 @@
-import { mergeNsAndName } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from '../shared/data.service';
+import { DataService } from '../shared/service/data.service';
 
 @Component({
   selector: 'app-register',

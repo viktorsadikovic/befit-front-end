@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Article } from 'src/app/shared/data.model';
-import { DataService } from 'src/app/shared/data.service';
-import { OauthService } from 'src/app/shared/oauth.service';
+import { DataService } from 'src/app/shared/service/data.service';
+import { OauthService } from 'src/app/shared/service/oauth.service';
 
 @Component({
   selector: 'app-article-content',

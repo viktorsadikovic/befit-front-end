@@ -8,7 +8,7 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenService } from '../shared/token.service';
+import { TokenService } from '../shared/service/token.service';
 
 @Injectable()
 export class BeFitInterceptor implements HttpInterceptor {

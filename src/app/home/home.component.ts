@@ -3,9 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SocialAuthService, SocialUser } from 'angularx-social-login';
 import { Meal, User, WorkoutPlan } from '../shared/data.model';
-import { DataService } from '../shared/data.service';
-import { OauthService } from '../shared/oauth.service';
-import { TokenService } from '../shared/token.service';
+import { DataService } from '../shared/service/data.service';
+import { OauthService } from '../shared/service/oauth.service';
+import { TokenService } from '../shared/service/token.service';
 
 @Component({
   selector: 'app-home',

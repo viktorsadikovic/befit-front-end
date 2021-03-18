@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, EventEmitter, Output } from '@angular/core';
-import { TokenDto } from './data.model';
+import { TokenDto } from '../data.model';
 import { Observable, of } from 'rxjs';
 
 const options = {headers: new HttpHeaders({'Content-Type' : 'application/json'})};

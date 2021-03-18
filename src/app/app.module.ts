@@ -13,9 +13,9 @@ import { CreateWorkoutPlanComponent } from './workout-plan/create-workout-plan/c
 import { MealComponent } from './meal/meal.component';
 import { CreateMealComponent } from './meal/create-meal/create-meal.component';
 import { ForumComponent } from './forum/forum.component';
-import { DataService } from '../app/shared/data.service';
-import { OauthService } from '../app/shared/oauth.service';
-import { TokenService } from '../app/shared/token.service'
+import { DataService } from './shared/service/data.service';
+import { OauthService } from '../app/shared/service/oauth.service';
+import { TokenService } from '../app/shared/service/token.service'
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MealThumbnailComponent } from './meal/meal-thumbnail/meal-thumbnail.component';

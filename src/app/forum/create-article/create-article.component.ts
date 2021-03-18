@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/shared/data.service';
-import { OauthService } from 'src/app/shared/oauth.service';
+import { DataService } from 'src/app/shared/service/data.service';
+import { OauthService } from 'src/app/shared/service/oauth.service';
 
 @Component({
   selector: 'app-create-article',

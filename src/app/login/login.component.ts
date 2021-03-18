@@ -4,9 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SocialAuthService, SocialUser, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { TokenDto } from '../shared/data.model';
-import { DataService } from '../shared/data.service';
-import { OauthService } from '../shared/oauth.service';
-import { TokenService } from '../shared/token.service';
+import { DataService } from '../shared/service/data.service';
+import { OauthService } from '../shared/service/oauth.service';
+import { TokenService } from '../shared/service/token.service';
 
 @Component({
   selector: 'app-login',

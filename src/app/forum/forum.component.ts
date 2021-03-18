@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../shared/data.model';
-import { DataService } from '../shared/data.service';
-import { OauthService } from '../shared/oauth.service';
+import { DataService } from '../shared/service/data.service';
+import { OauthService } from '../shared/service/oauth.service';
 
 @Component({
   selector: 'app-forum',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Exercise } from '../shared/data.model';
-import { DataService } from '../shared/data.service';
+import { DataService } from '../shared/service/data.service';
 
 @Component({
   selector: 'app-add-exercise',

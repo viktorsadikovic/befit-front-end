@@ -11,7 +11,7 @@ import { MealDetailsComponent } from './meal/meal-details/meal-details.component
 import { MealComponent } from './meal/meal.component';
 import { MealsListComponent } from './meal/meals-list/meals-list.component';
 import { RegisterComponent } from './register/register.component';
-import { OauthService } from './shared/oauth.service';
+import { OauthService } from './shared/service/oauth.service';
 import { CreateWorkoutPlanComponent } from './workout-plan/create-workout-plan/create-workout-plan.component';
 import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
 import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';

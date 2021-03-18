@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Article } from 'src/app/shared/data.model';
-import { DataService } from 'src/app/shared/data.service';
+import { DataService } from 'src/app/shared/service/data.service';
 
 @Component({
   selector: 'app-article-thumbnail',

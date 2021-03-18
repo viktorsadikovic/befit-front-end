@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { WorkoutPlan } from 'src/app/shared/data.model';
-import { DataService } from 'src/app/shared/data.service';
-import { OauthService } from 'src/app/shared/oauth.service';
+import { DataService } from 'src/app/shared/service/data.service';
+import { OauthService } from 'src/app/shared/service/oauth.service';
 
 @Component({
   selector: 'app-workout-plans-list',
