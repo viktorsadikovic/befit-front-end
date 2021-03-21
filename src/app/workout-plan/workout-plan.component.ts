@@ -20,7 +20,7 @@ export class WorkoutPlanComponent implements OnInit {
   exercises;
   selectedWorkoutType = 'ALL';
   selectedBodyPart = 'ALL';
-  selectedMuscleGroups: any;
+  selectedMuscleGroups = null;
   selectedEquipment: any;
   criteria = "None";
   wTypeDisabled = false;
@@ -51,19 +51,18 @@ export class WorkoutPlanComponent implements OnInit {
   }
 
   changeWorkoutType() {
-    if(this.selectedWorkoutType === "BODYBUILDING"){
-        this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
-        this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
-    } else {
-      this.workout.controls.muscleGroups.reset()
-      this.bPart = {'' : ''}
-      this.mGroups = null
-      this.workout.controls.muscleGroups.setValue(null)
-      this.workout.controls.bodyPart.setValue(null)
-    }
+    // if(this.selectedWorkoutType === "BODYBUILDING"){
+    //     this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
+    //     this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
+    // } else {
+    //   this.workout.controls.muscleGroups.reset()
+    //   this.bPart = {'' : ''}
+    //   this.mGroups = null
+    //   this.workout.controls.muscleGroups.setValue(null)
+    //   this.workout.controls.bodyPart.setValue(null)
+    // }
     this.retrieveData(this.criteria);
   }
-
 
   changeBodyPart() {
     if(this.selectedBodyPart === "FULL_BODY"){
@@ -158,5 +157,4 @@ export class WorkoutPlanComponent implements OnInit {
     this.workout.controls.muscleGroups.reset();
     this.retrieveData(this.criteria)
   }
-
 }

@@ -121,7 +121,7 @@ export class DataService {
   }
 
   saveArticle(article) {
-    this.http.post<Article>(this.api + "forum/articles/add", article, this.options).subscribe();
+    return this.http.post<Article>(this.api + "forum/articles/add", article, this.options);
   }
 
   deleteArticle(id) {
@@ -154,7 +154,7 @@ export class DataService {
   }
 
   addComment(id, comment) {
-    this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'}).subscribe();
+    return this.http.post<any>(this.api + "forum/articles/" + id + "/add-comment", comment, {observe: 'response'});
   }
 
   deleteComment(id, comment, articleId) {

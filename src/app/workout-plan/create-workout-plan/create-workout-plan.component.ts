@@ -20,8 +20,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
   totalExercises: Number
   page: Number = 1
 
-  selectedWorkoutType: any;
-  selectedBodyPart: any;
+  selectedWorkoutType = 'ALL';
+  selectedBodyPart = 'ALL';
   selectedMuscleGroups: any;
   selectedEquipment: any;
   wTypeDisabled = false;
@@ -37,8 +37,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
       title : new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       equipment : new FormControl(null,[Validators.required]),
-      workoutType : new FormControl(null, [Validators.required]),
-      bodyPart: new FormControl(null, [Validators.required]),
+      workoutType : new FormControl('ALL', [Validators.required]),
+      bodyPart: new FormControl('ALL', [Validators.required]),
       muscleGroups: new FormControl(null, [Validators.required]),
       price: new FormControl('', Validators.required)
     })
@@ -70,19 +70,7 @@ export class CreateWorkoutPlanComponent implements OnInit {
   }
 
   changeWorkoutType() {
-    if(this.selectedWorkoutType === "BODYBUILDING"){
-        this.mGroups = { 'Arms' : 'ARMS', 'Shoulders' : 'SHOULDERS', 'Chest' : 'CHEST', 'Back' : 'BACK', 'Abs' : 'ABS', 'Legs' : 'LEGS'};
-        this.bPart =  { 'Full body' : 'FULL_BODY', 'Upper body' : 'UPPER_BODY', 'Lower body' : 'LOWER_BODY'};
-        this.retrieveData()
-    } else {
-      this.workout.controls.muscleGroups.reset()
-      this.bPart = {'' : ''}
-      this.mGroups = {'' : ''}
-      this.workout.controls.muscleGroups.setValue(null)
-      this.workout.controls.bodyPart.setValue(null)
-      this.selectedMuscleGroups = null
-      this.retrieveData()
-    }
+    this.retrieveData()
   }
 
   changeBodyPart() {
@@ -138,24 +126,28 @@ export class CreateWorkoutPlanComponent implements OnInit {
 
     let params = {};
 
-    if(this.selectedWorkoutType !== null) {
-      params['workoutType'] = this.selectedWorkoutType;
-    }
-
-    if(this.selectedMuscleGroups !== null) {
-      params['muscleGroup'] = this.selectedMuscleGroups;
-    }
-
-    if(this.selectedEquipment !== null) {
-      params['equipment'] = this.selectedEquipment;
-    }
-
     if (page) {
       params[`page`] = page - 1;
     }
 
     if (pageSize) {
       params[`size`] = pageSize;
+    }
+
+    if(this.selectedWorkoutType && this.selectedWorkoutType !== "ALL"){
+      params['workoutType'] = this.selectedWorkoutType
+    }
+
+    if (this.selectedBodyPart && this.selectedBodyPart !== "ALL") {
+      params[`bodyPart`] = this.selectedBodyPart;
+    }
+
+    if (this.selectedMuscleGroups) {
+      params[`muscleGroups`] = this.selectedMuscleGroups;
+    }
+
+    if (this.selectedEquipment !== undefined && this.selectedEquipment !== null) {
+      params[`equipment`] = this.selectedEquipment;
     }
 
     return params;

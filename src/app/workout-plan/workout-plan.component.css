@@ -4,7 +4,7 @@
 }
 
 .workout {
-  background: url('../../assets/img/limit.jpg') top center;
+  background-color: #cecece;
   background-size: cover;
   min-height: 145vh;
 }

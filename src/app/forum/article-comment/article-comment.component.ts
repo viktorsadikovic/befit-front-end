@@ -33,11 +33,10 @@ export class ArticleCommentComponent implements OnChanges {
       submissionTime: null,
       rating: null
     }
-    setTimeout(function() {
-      window.location.reload()
-    },2000)
 
-    this.service.addComment(this.article.id, comment);
+    this.service.addComment(this.article.id, comment).subscribe(data => {
+      window.location.reload();
+    });
   }
 
   isAuthenticated() {

@@ -31,9 +31,7 @@ export class ArticleContentComponent implements OnChanges {
 
   delete() {
     this.service.deleteArticle(this.article.id).subscribe(data => {
-      setTimeout(function() {
-        window.location.reload()
-      }, 1000)
+      window.location.reload()
     })
   }
 

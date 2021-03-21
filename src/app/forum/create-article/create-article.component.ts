@@ -32,10 +32,9 @@ export class CreateArticleComponent implements OnInit {
 
   onSubmit() {
     if(this.oauthService.checkUserLoggedIn()) {
-      this.service.saveArticle(this.article.value)
-      setTimeout(function() {
+      this.service.saveArticle(this.article.value).subscribe(data => {
         window.location.reload()
-      }, 3000)
+      })
     } else {
       this.router.navigate(['/login'])
     }

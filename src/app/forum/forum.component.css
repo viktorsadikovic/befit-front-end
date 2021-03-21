@@ -139,7 +139,7 @@ body{
 }
 
 .forum {
-  background: url('https://images7.alphacoders.com/990/990740.jpg') top center;
+  background-color: #cecece;
   background-size: cover;
   min-height: 160vh;
 }

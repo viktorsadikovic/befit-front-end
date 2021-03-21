@@ -83,4 +83,5 @@ export class ForumComponent implements OnInit {
   isAuthenticated() {
     return this.oauthService.checkUserLoggedIn()
   }
+
 }

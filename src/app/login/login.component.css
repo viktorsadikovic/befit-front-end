@@ -41,9 +41,7 @@ input:focus {
 }
 
 .login-page {
-  background: #00b09b!important;
-  background: -webkit-linear-gradient(to right, #00b09b, #96c93d);
-  background: linear-gradient(to right, #00b09b, #96c93d)!important;
+  background-color: #cecece;
   min-height: 100vh;
   padding-top: 10%;
 }

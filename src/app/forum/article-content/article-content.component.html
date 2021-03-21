@@ -23,7 +23,10 @@
           </div>
       </div>
   </div>
+  <div style="overflow-y: scroll; max-height: 440px;">
+    <app-comment-thumbnail *ngFor="let comment of article?.comments" [comment]="comment" [article]="article"></app-comment-thumbnail>
 
-  <app-comment-thumbnail *ngFor="let comment of article?.comments" [comment]="comment" [article]="article"></app-comment-thumbnail>
+  </div>
+
 </div>
 <!-- /Forum Detail -->
