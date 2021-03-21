@@ -20,8 +20,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
   totalExercises: Number
   page: Number = 1
 
-  selectedWorkoutType = 'ALL';
-  selectedBodyPart = 'ALL';
+  selectedWorkoutType: any;
+  selectedBodyPart: any;
   selectedMuscleGroups: any;
   selectedEquipment: any;
   wTypeDisabled = false;
@@ -37,8 +37,8 @@ export class CreateWorkoutPlanComponent implements OnInit {
       title : new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       equipment : new FormControl(null,[Validators.required]),
-      workoutType : new FormControl('ALL', [Validators.required]),
-      bodyPart: new FormControl('ALL', [Validators.required]),
+      workoutType : new FormControl(null, [Validators.required]),
+      bodyPart: new FormControl(null, [Validators.required]),
       muscleGroups: new FormControl(null, [Validators.required]),
       price: new FormControl('', Validators.required)
     })
@@ -127,29 +127,25 @@ export class CreateWorkoutPlanComponent implements OnInit {
     let params = {};
 
     if (page) {
-      params[`page`] = page - 1;
+      params['page'] = page - 1;
     }
 
     if (pageSize) {
-      params[`size`] = pageSize;
+      params['size'] = pageSize;
     }
 
-    if(this.selectedWorkoutType && this.selectedWorkoutType !== "ALL"){
+    if(this.selectedWorkoutType !== null){
       params['workoutType'] = this.selectedWorkoutType
     }
 
-    if (this.selectedBodyPart && this.selectedBodyPart !== "ALL") {
-      params[`bodyPart`] = this.selectedBodyPart;
+    if (this.selectedMuscleGroups !== null) {
+      params['muscleGroup'] = this.selectedMuscleGroups;
     }
 
-    if (this.selectedMuscleGroups) {
-      params[`muscleGroups`] = this.selectedMuscleGroups;
+    if (this.selectedEquipment !== null) {
+      params['equipment'] = this.selectedEquipment;
     }
-
-    if (this.selectedEquipment !== undefined && this.selectedEquipment !== null) {
-      params[`equipment`] = this.selectedEquipment;
-    }
-
+    console.log(params)
     return params;
   }
 

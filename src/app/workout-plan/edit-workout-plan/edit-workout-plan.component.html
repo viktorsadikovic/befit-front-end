@@ -30,7 +30,6 @@
             <select class="form-control" id="bodyPart" formControlName="bodyPart"
                     [(ngModel)]="selectedBodyPart"
                     (change)="changeBodyPart()">
-              <option [value]='null'></option>
               <option *ngFor="let part of bPart | keyvalue" [value]="part.value">{{ part.key }}</option>
             </select>
           </div>
@@ -39,7 +38,6 @@
             <label for="muscleGroups">Muscle groups</label>
             <em *ngIf="muscleGroups.invalid && (muscleGroups.dirty || muscleGroups.touched) && muscleGroups.errors.required" class="text-danger"><br>Required</em>
             <select multiple class="form-control" id="muscleGroups" formControlName="muscleGroups" [(ngModel)]="selectedMuscleGroups" (change)="changeMuscleGroup()">
-              <option [value]='null'></option>
               <option *ngFor='let group of mGroups | keyvalue' [value]='group.value'>{{ group.key }}</option>
             </select>
           </div>

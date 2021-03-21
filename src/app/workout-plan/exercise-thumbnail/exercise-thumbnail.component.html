@@ -3,25 +3,23 @@
           <!-- Custom content-->
           <div class="media align-items-lg-center flex-column flex-lg-row p-3">
             <div class="media-body order-2 order-lg-1">
-              <h5 style="font-size: 17px!important;" class="mt-0 font-weight-bold mb-2">{{exercise?.name}}</h5>
+              <h5 class="mt-0 font-weight-bold mb-2">{{exercise?.name}}</h5>
               <form class="d-flex align-items-center justify-content-between mt-1" [formGroup]="exerciseForm" (ngSubmit)="onSubmit()">
 
                 <div class="form-group col-md-6" style="text-align: center;">
                   <label for="title">Series</label>
                   <input type="number" class="form-control" id="series" placeholder="Series" formControlName="series" min="0">
-                  <button type="submit" [disabled]="added" style="background-color: #2dc997; color: white;" class="btn col-md-12">Add</button>
+                  <br>
+                  <button type="submit" [disabled]="added" style="background-color: #2dc997; color: white;" class="btn">Add</button>
 
                 </div>
 
                 <div class="form-group col-md-6" style="text-align: center;">
                   <label for="title">Reps</label>
                   <input type="number" class="form-control" id="reps" min="0" placeholder="Reps" formControlName="reps">
-                  <button type="submit" [disabled]="!added" (click)="delete()" class="btn btn-danger col-md-12">Remove</button>
-
+                  <br>
+                  <button type="submit" [disabled]="!added" (click)="delete()" class="btn btn-danger">Delete</button>
                 </div>
-                
-               
-
 
               </form>
             </div><img [src]="'data:image/gif;base64,'+ exercise?.image.pictureBytes" alt="Generic placeholder image" width="200" class="order-1 order-lg-2">
