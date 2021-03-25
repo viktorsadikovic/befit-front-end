@@ -250,55 +250,34 @@ export class EditWorkoutPlanComponent implements OnInit {
     const uploadImageData = new FormData();
     let workoutPlan;
 
+    workoutPlan = {
+      id : this.currentWorkout.id,
+      title : this.workout.value.title,
+      description: this.workout.value.description,
+      username : this.currentWorkout.creator,
+      equipment : this.workout.value.equipment,
+      workoutType : this.workout.value.workoutType,
+      bodyPart: this.workout.value.bodyPart,
+      muscleGroups: this.workout.value.muscleGroups,
+      exercises: this.selectedExercises,
+      submissionTime: null,
+      reviews : null,
+      image: this.currentWorkout.image,
+      favoriteForUsers: this.currentWorkout.favoriteForUsers,
+      price: this.workout.value.price
+    }
+    this.currentWorkout.image.pictureBytes = null
 
     if(this.newImage) {
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
-      this.currentWorkout.image.pictureBytes = null
-
-      workoutPlan = {
-        id : this.currentWorkout.id,
-        title : this.workout.value.title,
-        description: this.workout.value.description,
-        username : this.currentWorkout.creator,
-        equipment : this.workout.value.equipment,
-        workoutType : this.workout.value.workoutType,
-        bodyPart: this.workout.value.bodyPart,
-        muscleGroups: this.workout.value.muscleGroups,
-        exercises: this.selectedExercises,
-        submissionTime: null,
-        reviews : this.currentWorkout.reviews,
-        image: this.currentWorkout.image,
-        favoriteForUsers: this.currentWorkout.favoriteForUsers,
-        price: this.workout.value.price
-      }
-
-    } else {
-      // uploadImageData.append('imageFile', null, null);
-      this.currentWorkout.image.pictureBytes = null
-
-      workoutPlan = {
-        id : this.currentWorkout.id,
-        title : this.workout.value.title,
-        description: this.workout.value.description,
-        username : this.currentWorkout.creator,
-        equipment : this.workout.value.equipment,
-        workoutType : this.workout.value.workoutType,
-        bodyPart: this.workout.value.bodyPart,
-        muscleGroups: this.workout.value.muscleGroups,
-        exercises: this.selectedExercises,
-        submissionTime: null,
-        reviews : this.currentWorkout.reviews,
-        image: this.currentWorkout.image,
-        favoriteForUsers: this.currentWorkout.favoriteForUsers,
-        price: this.workout.value.price
-        }
-    }
+    } 
 
 
     uploadImageData.append('workoutPlan', JSON.stringify(workoutPlan));
 
-    this.service.editWorkoutPlan(uploadImageData)
-    this.router.navigate(['/workout-plans'])
+    this.service.editWorkoutPlan(uploadImageData).subscribe(data => {
+      this.router.navigate(['/workout-plans'])
+    })
   }
 
   addNewImage(){

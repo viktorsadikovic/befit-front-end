@@ -78,11 +78,11 @@ export class CommentThumbnailComponent implements OnInit {
     if(!this.oauthService.checkUserLoggedIn()) {
       return false;
     }
-    return (this.comment?.submitter?.email === this.oauthService.getCurrentUser().email) || (this.article.submitter?.email === this.oauthService.getCurrentUser())
+    return (this.comment?.submitter?.email === this.oauthService.getCurrentUser()?.email) || (this.article.submitter?.email === this.oauthService.getCurrentUser())
   }
 
   isCreatorVoting() {
-    return this.comment?.submitter?.email === this.oauthService.getCurrentUser().email
+    return this.comment?.submitter?.email === this.oauthService.getCurrentUser()?.email
   }
 
   delete() {

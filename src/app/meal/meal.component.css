@@ -94,7 +94,7 @@ mat-slider {
 }
 
 ::ng-deep .ngx-pagination {
-  width: 36%!important;
+  width: 50%!important;
   margin: auto!important;
 }
 

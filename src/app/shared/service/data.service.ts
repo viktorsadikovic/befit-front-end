@@ -65,7 +65,7 @@ export class DataService {
   }
 
   editMeal(meal) {
-    this.http.post(this.api + "meals/edit", meal, {observe: 'response' }).subscribe();
+    return this.http.post(this.api + "meals/edit", meal, {observe: 'response' });
   }
 
   deleteMeal(id) {
@@ -97,7 +97,7 @@ export class DataService {
   }
 
   editWorkoutPlan(workoutPlan) {
-    this.http.post<any>(this.api + "workouts/edit", workoutPlan, {observe: 'response' }).subscribe();
+    return this.http.post<any>(this.api + "workouts/edit", workoutPlan, {observe: 'response' });
   }
 
   deleteWorkoutPlan(id) {
@@ -142,11 +142,11 @@ export class DataService {
   }
 
   addMealReview(id, review) {
-    this.http.post(this.api + "reviews/add/meal/" + id, review).subscribe();
+    return this.http.post(this.api + "reviews/add/meal/" + id, review);
   }
 
   addWorkoutReviews(id, review) {
-    this.http.post(this.api + "reviews/add/workout-plan/" + id, review).subscribe();
+    return this.http.post(this.api + "reviews/add/workout-plan/" + id, review);
   }
 
   updateViews(id) {

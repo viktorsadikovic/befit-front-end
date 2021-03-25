@@ -4,7 +4,7 @@
     <div class="media-body order-2 order-lg-1">
       <h5 class="mt-0 font-weight-bold mb-2" style="font-size: 20px!important;">{{workoutPlan?.title}}</h5>
       <br>
-      <p class="text-muted mb-0" style="text-align: justify; font-size: .875em!important">{{shortDescription}}</p>
+      <p class="text-muted mb-0" style="text-align: justify; font-size: .875em!important">{{workoutPlan?.description | slice:0:400}}</p>
       <div class="d-flex align-items-center justify-content-between mt-1">
         <h4 class="font-weight-bold my-2">{{workoutPlan?.price | currency:'USD'}}</h4>
         <ul class="list-inline small">

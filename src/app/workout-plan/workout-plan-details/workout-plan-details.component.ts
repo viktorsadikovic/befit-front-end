@@ -72,11 +72,9 @@ export class WorkoutPlanDetailsComponent implements OnInit {
         submissionTime: null
       }
 
-      setTimeout(function() {
-        window.location.reload()
-      }, 3000)
-
-      this.service.addWorkoutReviews(this.workoutProgram.id, review);
+      this.service.addWorkoutReviews(this.workoutProgram.id, review).subscribe((data) => {
+        window.location.reload();
+      });
     } else {
       this.router.navigate(['/login'])
     }

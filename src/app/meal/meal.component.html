@@ -113,7 +113,7 @@
           <ul class="list-group shadow" >
             <app-meal-thumbnail *ngFor="let meal of activeMeals  | paginate: {
               id: 'meal_pagination',
-              itemsPerPage: 3,
+              itemsPerPage: 2,
               currentPage: page,
               totalItems: totalMeals }" [meal]="meal"></app-meal-thumbnail>
 
@@ -123,7 +123,7 @@
 
       <pagination-controls  id="meal_pagination"
                       (pageChange)="handlePageChange($event)"
-                      maxSize="5"
+                      maxSize="100"
                       autoHide="true"
                       directionLinks="true"
                       responsive="true"

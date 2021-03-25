@@ -112,7 +112,7 @@ export class EditMealComponent implements OnInit {
       ingredients : this.mealForm.value.ingredients,
       preparation : this.mealForm.value.preparation,
       submissionTime: null,
-      reviews : this.meal.reviews,
+      reviews : null,
       image: this.meal.image,
       favoriteForUsers: this.meal.favoriteForUsers,
       price: this.mealForm.value.price
@@ -122,13 +122,13 @@ export class EditMealComponent implements OnInit {
     if(this.newImage) {
       uploadImageData.append('imageFile', this.selectedFile, this.selectedFile.name);
     } else {
-      uploadImageData.append('imageFile', null, null);
     }
 
     uploadImageData.append('meal', JSON.stringify(this.meal));
 
-    this.service.editMeal(uploadImageData);
-    this.router.navigate(['/meals']);
+    this.service.editMeal(uploadImageData).subscribe(data => {
+      this.router.navigate(['/meals']);
+    })
   }
 
   onFileChanged(event) {

@@ -13,7 +13,6 @@ export class WorkoutPlanThumbnailComponent implements OnInit {
   @Input() workoutPlan: WorkoutPlan;
   rating = 0;
   stars = [1,2,3,4,5]
-  shortDescription = null;
 
   ngOnInit(): void {
     this.workoutPlan.reviews?.forEach(rev => this.rating += rev.score);
@@ -22,10 +21,6 @@ export class WorkoutPlanThumbnailComponent implements OnInit {
       } else {
         this.rating = this.rating/this.workoutPlan.reviews.length;
       }
-
-      this.shortDescription = this.workoutPlan.description.split('.', 3);
-
-
   }
 
 }

@@ -73,11 +73,9 @@ export class MealDetailsComponent implements OnInit {
         submissionTime: null
       }
 
-      setTimeout(function() {
-        window.location.reload()
-      }, 3000)
-
-      this.service.addMealReview(this.meal.id, review);
+      this.service.addMealReview(this.meal.id, review).subscribe((data) => {
+        window.location.reload();
+      });
     } else {
       this.router.navigate(['/login'])
     }
