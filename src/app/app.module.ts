@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule, UserAuthenticated } from './app-routing.module';
+import { AppRoutingModule, UserAuthenticated, UserAuthorized } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -111,7 +111,8 @@ import { ExerciseWrapperThumbnailComponent } from './workout-plan/exercise-wrapp
     befitInterceptor,
     TokenService,
     OauthService,
-    UserAuthenticated
+    UserAuthenticated,
+    UserAuthorized
   ],
   bootstrap: [AppComponent]
 })

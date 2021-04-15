@@ -1,5 +1,5 @@
 import { Injectable, NgModule } from '@angular/core';
-import { Routes, RouterModule, CanActivate, Router } from '@angular/router';
+import { Routes, RouterModule, CanActivate, Router, ActivatedRouteSnapshot } from '@angular/router';
 import { AddExerciseComponent } from './add-exercise/add-exercise.component';
 import { ForumComponent } from './forum/forum.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,10 +11,10 @@ import { MealDetailsComponent } from './meal/meal-details/meal-details.component
 import { MealComponent } from './meal/meal.component';
 import { MealsListComponent } from './meal/meals-list/meals-list.component';
 import { RegisterComponent } from './register/register.component';
+import { DataService } from './shared/service/data.service';
 import { OauthService } from './shared/service/oauth.service';
 import { CreateWorkoutPlanComponent } from './workout-plan/create-workout-plan/create-workout-plan.component';
 import { EditWorkoutPlanComponent } from './workout-plan/edit-workout-plan/edit-workout-plan.component';
-import { ExerciseThumbnailComponent } from './workout-plan/exercise-thumbnail/exercise-thumbnail.component';
 import { WorkoutPlanDetailsComponent } from './workout-plan/workout-plan-details/workout-plan-details.component';
 import { WorkoutPlanComponent } from './workout-plan/workout-plan.component';
 import { WorkoutPlansListComponent } from './workout-plan/workout-plans-list/workout-plans-list.component';
@@ -33,6 +33,38 @@ export class UserAuthenticated implements CanActivate {
   }
 }
 
+@Injectable()
+export class UserAuthorized implements CanActivate {
+
+  constructor(private oauthService: OauthService, private router: Router, private service: DataService){}
+
+  canActivate(route: ActivatedRouteSnapshot) {
+    let category = route.url[0].path
+    let id = route.url[2].path
+
+    if(category === "workout-plans") {
+
+      this.service.getSingleWorkoutPlan(id).subscribe(data => {
+
+        if(data.creator !== this.oauthService.getCurrentUser().email){
+          this.router.navigate(['/workout-plans'])
+          return false
+        }
+      })
+    } else if (category == "meals") {
+
+      this.service.getSingleMeal(id).subscribe(data => {
+        if(data.creator !== this.oauthService.getCurrentUser().email){
+          this.router.navigate(['/meals'])
+          return false
+        }
+      })
+    }
+
+    return true
+  }
+}
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -40,12 +72,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent },
   { path: 'workout-plans/create-workout-plan', component: CreateWorkoutPlanComponent, canActivate: [UserAuthenticated] },
-  { path: 'workout-plans/edit-workout-plan/:id', component: EditWorkoutPlanComponent, canActivate: [UserAuthenticated] },
+  { path: 'workout-plans/edit-workout-plan/:id', component: EditWorkoutPlanComponent, canActivate: [UserAuthenticated, UserAuthorized] },
   { path: 'workout-plans/workout-details/:id', component: WorkoutPlanDetailsComponent },
   { path: 'workout-plans/:routeParam', component: WorkoutPlansListComponent, canActivate: [UserAuthenticated] },
   { path: 'workout-plans', component: WorkoutPlanComponent },
   { path: 'meals/create-meal', component: CreateMealComponent, canActivate: [UserAuthenticated] },
-  { path: 'meals/edit-meal/:id', component: EditMealComponent, canActivate: [UserAuthenticated] },
+  { path: 'meals/edit-meal/:id', component: EditMealComponent, canActivate: [UserAuthenticated, UserAuthorized] },
   { path: 'meals/meal-details/:id', component: MealDetailsComponent },
   { path: 'meals/:routeParam', component: MealsListComponent, canActivate: [UserAuthenticated] },
   { path: 'meals', component: MealComponent},
