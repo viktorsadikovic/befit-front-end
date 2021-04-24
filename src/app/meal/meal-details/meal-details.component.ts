@@ -128,4 +128,8 @@ export class MealDetailsComponent implements OnInit {
     return this.meal?.creator === this.oauthService.getCurrentUser().email
   }
 
+  checkComments() {
+    return this.meal.reviews.length === 0
+  }
+
 }

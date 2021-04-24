@@ -36,7 +36,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
       this.id = params['id']
       this.service.getSingleWorkoutPlan(this.id).subscribe(data => {
         this.workoutProgram = data;
-
+        console.log(this.workoutProgram)
         this.service.getLatestWorkoutPrograms(this.workoutProgram.id).subscribe(data => {
           this.latest = data;
         })
@@ -127,5 +127,8 @@ export class WorkoutPlanDetailsComponent implements OnInit {
     })
   }
 
+  checkComments() {
+    return this.workoutProgram.reviews.length === 0
+  }
 
 }

@@ -9,22 +9,22 @@
 
       <ul class="nav-menu">
 
-        <li id="home-nav"><a [routerLink]='["/home"]'>Home</a></li>
-        <li id="workout-nav"><a [routerLink]='["/workout-plans"]'>Workout Programs</a></li>
-        <li id="nutrition-nav"><a [routerLink]='["/meals"]'>Nutrition</a></li>
-        <li id="forum-nav"><a [routerLink]='["/forum"]'>Forum</a></li>
+        <li id="home-nav"><a href="/home" [routerLink]='["/home"]'>Home</a></li>
+        <li id="workout-nav"><a href="/workout-plans" [routerLink]='["/workout-plans"]'>Workout Programs</a></li>
+        <li id="nutrition-nav"><a href="/meals" [routerLink]='["/meals"]'>Nutrition</a></li>
+        <li id="forum-nav"><a href="/forum" [routerLink]='["/forum"]'>Forum</a></li>
         <li class="menu-has-children" id="dropdown-nav" [hidden]="!isAuthenticated()"><a style="color:white; cursor:pointer">My activity</a>
           <ul>
             <li class="menu-has-children"><a href="#">Favorites</a>
               <ul>
-                <li><a [routerLink]='["/workout-plans", "favorites"]'>Favorite workout plans</a></li>
-                <li><a [routerLink]='["/meals", "favorites"]'>Favorite meals</a></li>
+                <li><a href="/workout-plans/favorites" [routerLink]='["/workout-plans", "favorites"]'>Favorite workout plans</a></li>
+                <li><a href="/meals/favorites" [routerLink]='["/meals", "favorites"]'>Favorite meals</a></li>
               </ul>
             </li>
             <li class="menu-has-children"><a href="#">Created</a>
               <ul>
-                <li><a [routerLink]='["/workout-plans", "my-workout-plans"]'>My workout plans</a></li>
-                <li><a [routerLink]='["/meals", "my-meals"]'>My meals</a></li>
+                <li><a href="/workout-plans/my-workout-plans" [routerLink]='["/workout-plans", "my-workout-plans"]'>My workout plans</a></li>
+                <li><a href="/meals/my-meals" [routerLink]='["/meals", "my-meals"]'>My meals</a></li>
               </ul>
             </li>
 

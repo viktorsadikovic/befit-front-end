@@ -181,7 +181,8 @@
                           <i class="fa fa-arrow-right"></i>
                       </a>
                   </div>
-                  <div class="col-12">
+                  <h3 *ngIf="checkComments()">No comments available</h3>
+                  <div *ngIf="!checkComments()" class="col-12">
                       <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
 
                           <div class="carousel-inner">
