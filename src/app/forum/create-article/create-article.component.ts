@@ -19,6 +19,7 @@ export class CreateArticleComponent implements OnInit {
     title: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     submitter:  new FormControl(null),
+    views: new FormControl(0),
     submissionTime: new FormControl(new Date()),
     comments:  new FormControl(null)
   })

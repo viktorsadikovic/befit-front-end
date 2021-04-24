@@ -11,7 +11,7 @@
 
         <li id="home-nav"><a href="/home" [routerLink]='["/home"]'>Home</a></li>
         <li id="workout-nav"><a href="/workout-plans" [routerLink]='["/workout-plans"]'>Workout Programs</a></li>
-        <li id="nutrition-nav"><a href="/meals" [routerLink]='["/meals"]'>Nutrition</a></li>
+        <li id="nutrition-nav"><a routerLink="/meals" [routerLink]='["/meals"]'>Nutrition</a></li>
         <li id="forum-nav"><a href="/forum" [routerLink]='["/forum"]'>Forum</a></li>
         <li class="menu-has-children" id="dropdown-nav" [hidden]="!isAuthenticated()"><a style="color:white; cursor:pointer">My activity</a>
           <ul>
