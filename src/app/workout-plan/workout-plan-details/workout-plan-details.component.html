@@ -13,7 +13,7 @@
                         <h2>{{workoutProgram?.title}}</h2>
 
                         <div style="cursor: pointer;" >
-                          <i *ngIf="!isCreator()" [ngClass]="{'fa-heart' : isFavoriteWorkout(workoutProgram?.id), 'fa-heart-o' : !isFavoriteWorkout(workoutProgram?.id)}" class="fa"></i>
+                          <i *ngIf="!isCreator()" [ngClass]="{'fa-heart' : isFavoriteWorkout(workoutProgram?.id), 'fa-heart-o' : !isFavoriteWorkout(workoutProgram?.id)}" (click)='addToFavoriteWorkoutPrograms(id)' class="fa"></i>
                           <i class="fa fa-pencil" *ngIf="isCreator()" [routerLink]='["/workout-plans/edit-workout-plan", workoutProgram?.id]'></i>
                           <i class="fa fa-trash" *ngIf="isCreator()" (click)="delete()"></i>
                         </div>

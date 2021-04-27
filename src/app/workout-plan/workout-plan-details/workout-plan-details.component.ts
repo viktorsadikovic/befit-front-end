@@ -128,7 +128,7 @@ export class WorkoutPlanDetailsComponent implements OnInit {
   }
 
   checkComments() {
-    return this.workoutProgram.reviews.length === 0
+    return this.workoutProgram?.reviews?.length === 0
   }
 
 }

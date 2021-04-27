@@ -129,7 +129,7 @@ export class MealDetailsComponent implements OnInit {
   }
 
   checkComments() {
-    return this.meal.reviews.length === 0
+    return this.meal?.reviews?.length === 0
   }
 
 }
